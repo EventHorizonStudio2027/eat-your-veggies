@@ -1,11 +1,11 @@
 # Active issues — Three.js web edition
 
-Completed implementation is archived in Docs/CHANGELOG.md. Remaining issues start at 1.
+Completed improvements are archived in Docs/CHANGELOG.md. Remaining issues restart at 1.
 
-1. **Live deployment and browser QA** — [GitHub Issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1). User reports the website link opens; real device playthrough, asset loading and CI result still require verification.
-2. **Professional visual assets and toddler UX validation** — [GitHub Issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2). New storybook UI, friendly character faces, mushrooms, flowers, clouds, butterflies, particles and narrated story implemented; authored character models, performance, accessibility and caregiver testing remain.
-3. **Offline-first support** — local save exists; Three.js still loads from a CDN and Google fonts need a connection; bundle dependencies, service worker, asset caching and offline fallback remain.
-4. **Parent gate and accessible storytelling** — optional browser speech narration and reduced-motion support exist; parent-only settings, consistent voices, caption review and speech controls remain.
-5. **Child safety and release QA** — verify no food-discovery coercion, privacy, iOS/Android performance, age-appropriate play and accessibility with qualified reviewers.
+1. **Deployment and browser QA** — [GitHub Issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1). User confirms website opens. Confirm current deploy, JS checks, iOS/Android rendering and all buttons.
+2. **Professional visual assets and usability** — [GitHub Issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2). New storybook world, rounded character faces, effects, read-aloud and responsive controls are committed. Authored 3D characters, real-device performance and caregiver testing remain.
+3. **Offline-first support** — local save is implemented; CDN Three.js and Google fonts still require a network connection. Bundle dependencies, service worker and installable PWA.
+4. **Parent-only controls and accessible narration** — a dedicated read-aloud button, optional automatic narration and reduced-motion support are implemented. Parent gate, voice consistency, voice selection and accessible playtest remain.
+5. **Child-safety and release QA** — no eating required; verify no-food paths, privacy, accessibility and preschool user testing.
 
-Unity source under Assets/ remains archived for reference. Three.js is the active engine.
+Unity source under Assets/ is historical reference; Three.js is the active game.
