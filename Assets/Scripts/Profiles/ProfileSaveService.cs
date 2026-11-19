@@ -20,16 +20,38 @@ namespace EatYourVeggies.Profiles
             string path = GetPath(profile.Id);
             string temporary = path + ".tmp";
             File.WriteAllText(temporary, JsonUtility.ToJson(profile, true));
-            if (File.Exists(path)) File.Delete(path);
-            File.Move(temporary, path);
+            // Keep a recoverable previous version until the new file is in place.
+            string backup = path + ".bak";
+            if (File.Exists(path))
+            {
+                if (File.Exists(backup)) File.Delete(backup);
+                File.Move(path, backup);
+            }
+            try { File.Move(temporary, path); }
+            catch
+            {
+                if (!File.Exists(path) && File.Exists(backup)) File.Move(backup, path);
+                throw;
+            }
         }
 
         public ChildProfile Load(string profileId)
         {
             string path = GetPath(profileId);
-            if (!File.Exists(path)) return null;
+            string backup = path + ".bak";
+            if (!File.Exists(path) && !File.Exists(backup)) return null;
+            try { return ReadProfile(path, profileId); }
+            catch (Exception ex) when (ex is IOException || ex is ArgumentException || ex is InvalidDataException)
+            {
+                if (!File.Exists(backup)) throw;
+                return ReadProfile(backup, profileId);
+            }
+        }
+
+        private static ChildProfile ReadProfile(string path, string expectedId)
+        {
             var profile = JsonUtility.FromJson<ChildProfile>(File.ReadAllText(path));
-            if (profile == null || profile.Id != profileId)
+            if (profile == null || profile.Id != expectedId)
                 throw new InvalidDataException("Invalid profile data.");
             return profile;
         }
