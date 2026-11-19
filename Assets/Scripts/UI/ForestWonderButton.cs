@@ -41,8 +41,7 @@ namespace EatYourVeggies.UI
             counter.rectTransform.anchorMin = new Vector2(0.16f, 0.81f);
             counter.rectTransform.anchorMax = new Vector2(0.84f, 0.86f);
             counter.rectTransform.offsetMin = counter.rectTransform.offsetMax = Vector2.zero;
-            controller.Initialize(controller.GetComponentsInChildren<WonderMarker>(true).Length == 0
-                ? new GameObject[0] : WonderMarker.FindObjects(), counter);
+            controller.Initialize(WonderMarker.FindObjects(), counter);
         }
     }
 
