@@ -29,6 +29,9 @@ namespace EatYourVeggies.UI
             label.alignment = TextAnchor.MiddleCenter;
             label.color = new Color(0.12f, 0.23f, 0.15f);
             label.raycastTarget = false;
+            var labelShadow = labelObject.AddComponent<Shadow>();
+            labelShadow.effectColor = new Color(1f, 1f, 1f, 0.25f);
+            labelShadow.effectDistance = new Vector2(0f, -2f);
             label.rectTransform.anchorMin = Vector2.zero;
             label.rectTransform.anchorMax = Vector2.one;
             label.rectTransform.offsetMin = label.rectTransform.offsetMax = Vector2.zero;
@@ -42,6 +45,9 @@ namespace EatYourVeggies.UI
             counter.resizeTextMinSize = 20;
             counter.alignment = TextAnchor.MiddleCenter;
             counter.color = Color.white;
+            var counterOutline = counterObject.AddComponent<Outline>();
+            counterOutline.effectColor = new Color(0.08f, 0.25f, 0.16f, 0.85f);
+            counterOutline.effectDistance = new Vector2(2f, -2f);
             counter.rectTransform.anchorMin = new Vector2(0.16f, 0.77f);
             counter.rectTransform.anchorMax = new Vector2(0.84f, 0.82f);
             counter.rectTransform.offsetMin = counter.rectTransform.offsetMax = Vector2.zero;
