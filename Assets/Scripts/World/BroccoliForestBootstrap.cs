@@ -35,6 +35,7 @@ namespace EatYourVeggies.World
             hero.transform.position = new Vector3(0f, 1f, 0f);
             Colorize(hero, new Color(0.96f, 0.75f, 0.34f));
             CreateFireflies();
+            CreateSprig();
 
             if (Camera.main == null)
             {
@@ -53,6 +54,27 @@ namespace EatYourVeggies.World
                 sunlight.intensity = 1.3f;
                 lightObject.transform.rotation = Quaternion.Euler(48f, -25f, 0f);
             }
+        }
+
+        private static void CreateSprig()
+        {
+            var sprig = new GameObject("Sprig - Broccoli Companion");
+            sprig.transform.position = new Vector3(2.4f, 1.1f, 0.4f);
+            var stem = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            stem.name = "Sprig Stem";
+            stem.transform.SetParent(sprig.transform, false);
+            stem.transform.localScale = new Vector3(0.65f, 0.65f, 0.65f);
+            Colorize(stem, new Color(0.50f, 0.83f, 0.34f));
+            for (int i = 0; i < 3; i++)
+            {
+                var crown = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                crown.name = "Sprig Floret " + i;
+                crown.transform.SetParent(sprig.transform, false);
+                crown.transform.localPosition = new Vector3((i - 1) * 0.48f, 0.65f + (i == 1 ? 0.3f : 0f), 0f);
+                crown.transform.localScale = Vector3.one * 0.95f;
+                Colorize(crown, new Color(0.20f, 0.66f, 0.31f));
+            }
+            sprig.AddComponent<SprigCompanion>();
         }
 
         private static void CreateFireflies()
