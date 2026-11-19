@@ -1,7 +1,9 @@
 {
   "name": "EatYourVeggies.EditModeTests",
   "rootNamespace": "EatYourVeggies.Tests",
-  "references": [],
+  "references": [
+    "EatYourVeggies.Runtime"
+  ],
   "includePlatforms": [
     "Editor"
   ],
