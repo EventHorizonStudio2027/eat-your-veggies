@@ -1,11 +1,12 @@
 # Active issues — November 19, 2026
 
-Completed implementation tasks are archived in Docs/CHANGELOG.md. Open issues start at 1.
+Completed work is recorded in Docs/CHANGELOG.md. Outstanding issues restart at 1.
 
-1. **Unity 6 compilation and test execution** — editor import, package compatibility, assembly references, and automated tests are still unverified.
-2. **Broccoli Forest vertical slice polish** — tapping individual lights, optional button collection, and Sprig celebration are implemented in source; add authored 3D art, audio, interaction feedback and device validation.
-3. **Parent gate and data reliability** — backup profile recovery exists; parent verification, migrations, interrupted-write tests remain.
-4. **Avatar creation and accessible UI** — safe-area story panel and responsive wonder labels exist; spoken narration, avatar editing and device layout tests remain.
-5. **Safety and release QA** — verify all food-discovery skip paths, child privacy review, mobile performance, and accessibility.
+1. **Compile and execute Unity tests** — package resolution, assembly references, Unity Editor import, and actual tests remain unverified.
+2. **Polish the Broccoli Forest vertical slice** — direct light tapping, Sprig reactions, and readable controls exist in source; authored assets, audio, animation polish, and actual playtesting remain.
+3. **Parent gate and crash-safe persistence** — backup recovery and corrupt-primary preservation implemented; secure parent access, save interruption tests, and migration remain.
+4. **Avatar customization and accessibility** — safe-area narration HUD and high-contrast wonder labels implemented; spoken narration, avatar editor, and device screen testing remain.
+5. **Child safety and mobile release QA** — verify all no-food-required play paths, privacy, performance and specialist review.
 
-This file is the active issue tracker, not GitHub Issues tickets. Committed source is not a verified playable build.
+GitHub issue status: this Markdown tracker is the current issue list; no claim of corresponding GitHub Issues tickets.
+Code committed to GitHub is not a verified Unity build.
