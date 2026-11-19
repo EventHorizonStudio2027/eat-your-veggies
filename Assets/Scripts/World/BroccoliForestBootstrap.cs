@@ -13,6 +13,8 @@ namespace EatYourVeggies.World
             BuildWorld();
             if (hud == null) hud = AdventureHudFactory.Create();
             hud.Bind(BroccoliIntro.Create());
+            var wonderController = new GameObject("Forest Wonder Controller").AddComponent<ForestWonderController>();
+            ForestWonderButton.Attach(wonderController);
         }
 
         private void BuildWorld()
@@ -66,6 +68,7 @@ namespace EatYourVeggies.World
                 if (collider != null) Object.Destroy(collider);
                 Colorize(glow, new Color(1f, 0.88f, 0.32f));
                 glow.AddComponent<ForestSparkle>();
+                glow.AddComponent<WonderMarker>();
             }
         }
 
