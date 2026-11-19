@@ -1,12 +1,12 @@
 # Active issues — November 19, 2026
 
-Completed tasks are archived in the changelog; active tasks restart numbering at 1.
+Completed work is archived in Docs/CHANGELOG.md. Active issues restart at 1.
 
-1. **Compile and import the Unity project.** Editor verification blocked until Unity 6 is run; package versions and Unity metadata need confirmation.
-2. **Harden local profile persistence and parent access.** Profile save code exists but lacks atomic replacement, migration, and device tests; adult gate is not yet secure.
-3. **Create playable 3D Broccoli Forest.** Intro quest data exists; scene, environment, character controls, and world interactions are not built.
-4. **Complete avatar customization and polished child HUD.** HUD controller exists; actual UI prefab, responsive layout, and narrated interaction remain.
-5. **Validate child safety, accessibility, and skip path.** Tests are authored but have not run in Unity; professional review is pending.
+1. **Compile the Unity 6 project.** Package resolution, script compilation, and device performance are unverified. Confirm editor version and resolve any compile errors.
+2. **Create a genuinely interactive Broccoli Forest vertical slice.** Primitive scene generator exists, but there is no authored scene asset committed, movement, character animation, or complete guided play.
+3. **Implement a secure parent gate and robust save recovery.** Basic profile save exists; crash-safe atomic writes, migration, and adult verification are outstanding.
+4. **Polish child UI and avatar creation.** Narration HUD controller and tap prototype exist; need actual accessible UI, visible touch target, responsive layouts, and avatar editor.
+5. **Run tests and safety/accessibility checks.** Tests exist but have not been executed in Unity. Check skip-every-food-action flow and consult child safety experts before launch.
 
-## Status convention
-Implemented / Tested / Verified / Blocked are separate. No unrun tests may be called passing.
+## Verified versus implemented
+A GitHub commit verifies source delivery only. No Unity compile, gameplay, mobile device test, or production safety review is claimed.
