@@ -1,12 +1,11 @@
-# Active issues — November 19, 2026
+# Active issues — Three.js web edition
 
-Completed work is recorded in Docs/CHANGELOG.md. Outstanding issues restart at 1.
+Completed work is archived in Docs/CHANGELOG.md. Open issues start at 1.
 
-1. **Compile and execute Unity tests** — package resolution, assembly references, Unity Editor import, and actual tests remain unverified.
-2. **Polish the Broccoli Forest vertical slice** — direct light tapping, Sprig reactions, and readable controls exist in source; authored assets, audio, animation polish, and actual playtesting remain.
-3. **Parent gate and crash-safe persistence** — backup recovery and corrupt-primary preservation implemented; secure parent access, save interruption tests, and migration remain.
-4. **Avatar customization and accessibility** — safe-area narration HUD and high-contrast wonder labels implemented; spoken narration, avatar editor, and device screen testing remain.
-5. **Child safety and mobile release QA** — verify all no-food-required play paths, privacy, performance and specialist review.
+1. **Verify GitHub Pages deployment and browser playability.** Web entry point and deployment workflow committed; Pages repository setting, workflow result and live URL remain unverified.
+2. **Replace placeholder art and refine 3D scene.** The web forest, Little Hero, Sprig, trees, flowers and wonder lights are rendered using procedural shapes; professional assets and performance testing remain.
+3. **Complete child-safe story and accessibility.** Optional food discovery is non-coercive; add narrated story, captions, robust reduced-motion settings and parental-only controls.
+4. **Save progress offline.** Implement local profiles, recoverable checkpoints, asset caching/service worker and optional installable PWA.
+5. **Mobile QA and release readiness.** Test browsers, screen sizes, touch interactions, privacy and age-appropriate play with qualified reviewers.
 
-GitHub issue status: this Markdown tracker is the current issue list; no claim of corresponding GitHub Issues tickets.
-Code committed to GitHub is not a verified Unity build.
+Unity prototype retained in Assets/ as historical reference. Web game is now the active development target.
