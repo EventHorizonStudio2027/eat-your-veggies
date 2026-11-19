@@ -1,9 +1,12 @@
-# Active Issues — November 19, 2026
+# Active issues — November 19, 2026
 
-1. Import and compile Unity 6 project; verify on target device.
-2. Implement protected parent access and robust profile saving.
-3. Build playable 3D Broccoli Forest guided scene.
-4. Integrate avatar customization, authored quests, and calm adventure HUD.
-5. Verify skip-all-food-interactions path, accessibility, and food safety.
+Completed tasks are archived in the changelog; active tasks restart numbering at 1.
 
-Completed issues are archived separately. Implemented ≠ tested ≠ verified.
+1. **Compile and import the Unity project.** Editor verification blocked until Unity 6 is run; package versions and Unity metadata need confirmation.
+2. **Harden local profile persistence and parent access.** Profile save code exists but lacks atomic replacement, migration, and device tests; adult gate is not yet secure.
+3. **Create playable 3D Broccoli Forest.** Intro quest data exists; scene, environment, character controls, and world interactions are not built.
+4. **Complete avatar customization and polished child HUD.** HUD controller exists; actual UI prefab, responsive layout, and narrated interaction remain.
+5. **Validate child safety, accessibility, and skip path.** Tests are authored but have not run in Unity; professional review is pending.
+
+## Status convention
+Implemented / Tested / Verified / Blocked are separate. No unrun tests may be called passing.
