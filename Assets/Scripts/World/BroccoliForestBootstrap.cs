@@ -15,6 +15,8 @@ namespace EatYourVeggies.World
             hud.Bind(BroccoliIntro.Create());
             var wonderController = new GameObject("Forest Wonder Controller").AddComponent<ForestWonderController>();
             ForestWonderButton.Attach(wonderController);
+            var sprig = FindFirstObjectByType<SprigCompanion>();
+            if (sprig != null) wonderController.WonderCollected += sprig.Celebrate;
         }
 
         private void BuildWorld()
