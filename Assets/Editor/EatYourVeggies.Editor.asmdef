@@ -1,0 +1,11 @@
+{
+  "name": "EatYourVeggies.Editor",
+  "rootNamespace": "EatYourVeggies.Editor",
+  "references": [
+    "EatYourVeggies.Runtime"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "autoReferenced": true
+}
