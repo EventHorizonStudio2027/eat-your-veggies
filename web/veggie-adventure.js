@@ -21,7 +21,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  const gardenMarker=part(scene,new THREE.CylinderGeometry(1.25,1.25,.14,32),stageMat,0,.12,-2,1,1,1);gardenMarker.receiveShadow=true;
  function activeLevel(){return levels[level]}
  function refreshLevel(){const l=activeLevel();$('#level-label').textContent='LEVEL '+(level+1)+' · '+l.name;$('#level-goal').textContent='Munch '+l.need+' '+l.type.toLowerCase()+(l.need>1?'s':'')+' to unlock the next garden!';$('#level-count').textContent=levelMunched+' / '+l.need+' munched';$('#level-fill').style.width=(levelMunched/l.need*100)+'%';stageMat.color.set(l.color)}
- function restock(){for(const v of veggies){v.visible=true;v.userData.type=types[(level+veggies.indexOf(v))%types.length]}bag.length=0;counter.textContent='0';munch.textContent='🥕 Find veggies';updateHud()}
+ function restock(){for(const v of veggies){v.visible=true}bag.length=0;counter.textContent='0';munch.textContent='🥕 Find veggies';updateHud()}
  function advance(){level=(level+1)%levels.length;levelMunched=0;restock();refreshLevel();say('🌟 New garden unlocked! '+activeLevel().name+'!');hero.position.set(0,0,1);target=null;celebration=2.5}
 
  for(let i=0;i<16;i++){const a=i*2.39996,r=3.2+(i%4)*1.35;makeVeggie(types[i%4],Math.cos(a)*r,Math.sin(a)*r)}
