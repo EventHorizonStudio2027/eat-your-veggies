@@ -29,6 +29,22 @@ public sealed class ProfileSaveServiceTests
     }
 
     [Test]
+    public void SaveAfterCorruptionKeepsKnownGoodBackup()
+    {
+        var store = new ProfileSaveService(folder);
+        var profile = ChildProfile.Create("Explorer");
+        store.Save(profile);
+        profile.OutfitId = "raincoat";
+        store.Save(profile);
+        var path = Path.Combine(folder, profile.Id + ".json");
+        File.WriteAllText(path, "{ invalid");
+        profile.OutfitId = "boots";
+        store.Save(profile);
+        File.WriteAllText(path, "{ invalid again");
+        Assert.AreEqual("explorer", store.Load(profile.Id).OutfitId);
+    }
+
+    [Test]
     public void BackupRecoversFromCorruptPrimary()
     {
         var store = new ProfileSaveService(folder);
