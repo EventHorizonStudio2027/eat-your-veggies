@@ -23,9 +23,22 @@ namespace EatYourVeggies.World
 
         public void CollectNext()
         {
-            if (wonders == null || collected >= wonders.Length) return;
-            var wonder = wonders[collected];
-            if (wonder != null) wonder.SetActive(false);
+            if (wonders == null) return;
+            foreach (var wonder in wonders)
+            {
+                if (wonder != null && wonder.activeSelf)
+                {
+                    Collect(wonder);
+                    return;
+                }
+            }
+        }
+
+        public void Collect(GameObject wonder)
+        {
+            if (wonders == null || wonder == null || !wonder.activeSelf) return;
+            if (System.Array.IndexOf(wonders, wonder) < 0) return;
+            wonder.SetActive(false);
             collected++;
             Refresh();
             WonderCollected?.Invoke(collected, wonders.Length);
