@@ -21,6 +21,7 @@ self.addEventListener('fetch',event=>{
       }
       return response;
     }).catch(()=>cached||Response.error());
-    return cached||request;
+    // Fresh game code takes priority; cached copy is only an offline fallback.
+    return url.origin===self.location.origin ? request : (cached||request);
   }));
 });
