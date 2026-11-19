@@ -1,0 +1,9 @@
+{
+  "name": "EatYourVeggies.Runtime",
+  "rootNamespace": "EatYourVeggies",
+  "references": [
+    "Unity.InputSystem",
+    "Unity.InputSystem.UI"
+  ],
+  "autoReferenced": true
+}
