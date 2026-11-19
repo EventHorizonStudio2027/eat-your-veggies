@@ -20,3 +20,8 @@
 @media(max-height:660px){.welcome h1{font-size:clamp(28px,4.5vw,45px)}.welcome{top:74px}.quest{top:160px}.story{max-height:54dvh}.gentle{display:none}.story-top small{display:none}}
 @media(max-height:500px){.chapter-pill{display:none}.welcome h1{font-size:30px}.quest{top:112px}.story{width:min(480px,55vw);left:auto;right:10px;transform:none;max-height:72dvh}.actions button{min-height:40px}.story-top{gap:6px}}
 @media(prefers-reduced-motion:reduce){.loading-flower{animation:none}}
+
+/* The completed quest becomes a small celebratory reward, without gating play. */
+.quest.complete{background:linear-gradient(135deg,#fffef0,#e9ffd8);border-color:#fff7bd;box-shadow:0 8px 0 #a7cc84,0 17px 42px #3f805344}.quest.complete .quest-icon{background:#ffebb1;transform:rotate(-9deg)}.quest.complete .quest-heading strong{color:#43835d}.quest.complete .track>div{background:linear-gradient(90deg,#7bcf91,#f8d378)}.companion.happy{background:#f0ffe3;border-color:#fff7c2}.companion.happy .companion-heart{color:#e48c95;font-size:23px}
+.retry{display:block;background:#fffdf3;border:3px solid #fff;border-radius:20px;padding:13px 24px;color:#407e61;font-family:Fredoka,system-ui,sans-serif;font-size:20px;box-shadow:0 5px 0 #9ccea7;cursor:pointer}.retry[hidden]{display:none}
+@media(max-width:420px){.topbar{gap:5px}.top-actions{gap:4px}.brand{gap:6px}.brand strong{font-size:15px}.icon-button{min-width:36px;height:36px;border-radius:12px;font-size:21px}}
