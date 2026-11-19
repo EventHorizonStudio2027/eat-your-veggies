@@ -1,10 +1,10 @@
 # Development changelog
 
-## 2026-11-19
-- Established Unity source repository, quest engine, profiles, and child-safety requirements.
-- Added placeholder 3D Broccoli Forest, story HUD, optional wonder lights, and animated Sprig.
-- Added Unity assembly definitions and EditMode tests.
-- Added direct tapping of individual wonder lights, optional button alternative, and Sprig celebration.
-- **Batch 10:** corrected UI hit testing for touchscreen coordinates, fixed story HUD listener cleanup and completion-label access, preserved known-good backups after corrupt saves, added a regression test, and improved wonder-label contrast.
+## 2026-11-19 — Three.js pivot
+- Selected Three.js as the active browser-first engine; retained existing Unity source for reference.
+- Added root index.html and responsive web/styles.css with a premium forest interface, story panel, quest progress and companion identification.
+- Added web/main.js with procedural 3D Broccoli Forest, Little Hero, Sprig, eight collectible wonder lights, direct 3D raycast interaction, optional accessible collection button, four story steps, simple synthesized sound and celebration animation.
+- Added GitHub Pages deployment workflow. Pages activation and live browser verification are still outstanding.
 
-Unity compilation, automated test execution, device performance and child-safety review remain unverified.
+## Earlier Unity prototype
+- Quest and profile model, Broccoli Forest prototype, UI, optional food discovery, save recovery and Unity tests remain archived in source. No Unity build was verified.
