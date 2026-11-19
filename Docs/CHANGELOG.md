@@ -1,16 +1,16 @@
 # Development changelog
 
-## 2026-11-19 — Batch 13: toddler UX and rendering polish
-- Added independent one-tap **Read aloud** button; narration can be played even with optional sound effects off.
-- Added a friendly illustrated loading state that clears after the 3D scene is initialized.
-- Improved mobile and short-screen story card layout, scroll containment and button sizing.
-- Made wonder-light tapping forgiving for young children by allowing a nearby screen-space touch radius.
-- Reduced mobile rendering load by limiting pixel ratio and disabling dynamic shadows on narrow screens.
-- Retained previous storybook interface, character facial details, flowers, mushrooms, butterflies, sparkles, save/resume, optional discovery and reduced-motion behavior.
+## 2026-11-19 — Batch 14: installable game and child-friendly recovery
+- Added web app manifest and custom SVG broccoli-face icon for installing the game on supported devices.
+- Added a service worker caching the app shell and eligible Three.js/font responses, with network-first app updates and offline fallback after successful caching.
+- Added a friendly connection/error recovery state with a Try Again button instead of an endless loading flower.
+- Added a celebratory quest-complete card and happy companion visual state; restart restores the normal appearance.
+- Extended GitHub Actions validation to include service worker syntax and PWA assets; refined small-phone header spacing.
+- Offline support is best-effort and not yet device verified; first visit requires internet.
 
-## Earlier Three.js work
-- Responsive pastel HUD, procedural Broccoli Forest, Little Hero, Sprig, story steps, local saves and GitHub Pages deployment workflow.
-- GitHub issues [#1](https://github.com/FatesPassage/eat-your-veggies/issues/1) and [#2](https://github.com/FatesPassage/eat-your-veggies/issues/2) track live verification and professional visual QA.
+## Earlier Three.js batches
+- Pastel storybook forest, procedural hero and Sprig, flowers, butterflies, particles, forgiving touch targets, story read-aloud, local progress saving and responsive UI.
+- GitHub Pages deployment workflow and issue tracker.
 
 ## Earlier Unity prototype
-- Unity source retained under Assets/ as historical reference.
+- Unity code retained under Assets/ as historical reference.
