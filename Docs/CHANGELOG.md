@@ -1,11 +1,10 @@
 # Development changelog
 
 ## 2026-11-19
-- Initialized Unity source repository, architecture and child-safety requirements.
-- Implemented quest session, profiles, food discovery model, and early tests.
-- Added Unity manifest, profile persistence, Broccoli Forest quest, and narration HUD.
-- Added placeholder 3D forest and scene generator.
-- Connected touch-first story UI and gentle food-skip wording.
-- **Batch 6:** profile backup/recovery, default UI input actions, mobile safe-area panel, animated wonder lights, and profile save tests.
+- Established repository, architecture, child safety requirements, quest engine and profiles.
+- Added local profile saves, optional food discovery model, EditMode tests and scene generator.
+- Added Broccoli Forest placeholder geometry, gentle animated lights, and story HUD.
+- Added safe-area story panel, input-system initialization and save backup/recovery.
+- **Batch 7:** added optional wonder-light collection button, progress counter, completion state, and Unity EditMode test assembly definition.
 
-Unity compilation, test execution, runtime performance, and child-safety review remain unverified.
+All Unity compilation, automated test execution, device behavior, and child-safety review remain unverified.
