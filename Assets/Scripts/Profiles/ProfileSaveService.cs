@@ -24,8 +24,17 @@ namespace EatYourVeggies.Profiles
             string backup = path + ".bak";
             if (File.Exists(path))
             {
-                if (File.Exists(backup)) File.Delete(backup);
-                File.Move(path, backup);
+                // Preserve a known-good backup when the current primary is corrupt.
+                bool primaryValid;
+                try { ReadProfile(path, profile.Id); primaryValid = true; }
+                catch (Exception ex) when (ex is IOException || ex is ArgumentException || ex is InvalidDataException)
+                { primaryValid = false; }
+                if (primaryValid)
+                {
+                    if (File.Exists(backup)) File.Delete(backup);
+                    File.Move(path, backup);
+                }
+                else File.Delete(path);
             }
             try { File.Move(temporary, path); }
             catch
@@ -50,7 +59,10 @@ namespace EatYourVeggies.Profiles
 
         private static ChildProfile ReadProfile(string path, string expectedId)
         {
-            var profile = JsonUtility.FromJson<ChildProfile>(File.ReadAllText(path));
+            ChildProfile profile;
+            try { profile = JsonUtility.FromJson<ChildProfile>(File.ReadAllText(path)); }
+            catch (Exception ex) when (ex is ArgumentException || ex is NullReferenceException)
+            { throw new InvalidDataException("Profile JSON is malformed.", ex); }
             if (profile == null || profile.Id != expectedId)
                 throw new InvalidDataException("Invalid profile data.");
             return profile;
