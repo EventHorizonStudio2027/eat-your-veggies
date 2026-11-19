@@ -1,10 +1,35 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#102a25"><meta name="description" content="Eat Your Veggies — a magical, gentle adventure in the Veggieverse."><title>Eat Your Veggies · Broccoli Forest</title><link rel="stylesheet" href="./web/styles.css"></head>
-<body><main id="app"><canvas id="world" aria-label="Interactive magical broccoli forest"></canvas>
-<div class="vignette" aria-hidden="true"></div><header class="topbar"><div class="brand"><span class="brand-mark">✦</span><div><strong>Eat Your Veggies</strong><small>THE VEGGIEVERSE</small></div></div><button id="restart" class="icon-button" title="Start a new adventure" aria-label="Start a new adventure">↺</button><button id="sound" class="icon-button" aria-label="Turn sound on" aria-pressed="false">♪</button></header>
-<div class="chapter"><span class="eyebrow">CHAPTER 01 · THE AWAKENING</span><h1>Broccoli <em>Forest</em></h1><p>Where little wonders bring color back.</p></div>
-<div class="quest" role="status" aria-live="polite"><div class="quest-heading"><span>✦ &nbsp; WONDER LIGHTS</span><span id="count">0 / 8</span></div><div class="track"><div id="progress"></div></div></div>
-<div class="companion" id="companion"><span class="companion-dot">●</span><span><strong>Sprig</strong><small>Your forest friend</small></span></div>
-<section class="story" aria-label="Adventure story"><div class="story-top"><span class="story-icon">✦</span><span id="speaker">SPRIG SAYS</span><span class="story-step" id="step">01 / 04</span></div><p id="narration">Welcome, Little Explorer! Our forest is waiting for its sparkle. Tap a golden light to help us!</p><div class="actions"><button id="find" class="secondary">✦ Find a light</button><button id="next" class="primary">Continue <span>→</span></button></div><p class="gentle">Explore at your own pace. Every discovery is optional.</p></section>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#d8f3e5"><meta name="description" content="A cozy, magical adventure for little explorers.">
+<title>Eat Your Veggies · The Wonder Forest</title>
+<link rel="stylesheet" href="./web/styles.css">
+</head>
+<body>
+<main id="app">
+<canvas id="world" aria-label="Magical 3D forest with glowing wonder lights. Tap a light to collect it."></canvas>
+<div class="sky-wash" aria-hidden="true"></div>
+<header class="topbar">
+ <div class="brand"><span class="brand-mark" aria-hidden="true">✿</span><div><strong>eat your veggies<span class="brand-period">.</span></strong><small>A LITTLE BIG ADVENTURE</small></div></div>
+ <div class="top-actions"><button id="restart" class="icon-button" aria-label="Start a new adventure" title="Start over">↺</button><button id="sound" class="icon-button" aria-label="Turn sound on" aria-pressed="false" title="Sound">♫</button></div>
+</header>
+<section class="welcome" aria-label="Current adventure">
+ <span class="chapter-pill"><span class="pill-sparkle">✦</span> WORLD 01 <span class="pill-divider">·</span> THE VEGGIEVERSE</span>
+ <h1>Welcome to the<br><em>Wonder Forest!</em></h1>
+ <p>Little discoveries. Big magic. <span aria-hidden="true">✧</span></p>
+</section>
+<div class="quest" role="status" aria-live="polite">
+ <div class="quest-icon" aria-hidden="true">✦</div>
+ <div class="quest-details"><div class="quest-heading"><strong>Find the little lights</strong><span id="count">0 / 8</span></div><div class="track"><div id="progress"></div></div></div>
+</div>
+<div class="companion" id="companion"><span class="companion-face" aria-hidden="true">🌱</span><span><strong>Meet Sprig!</strong><small>Your new forest buddy</small></span><span class="companion-heart" aria-hidden="true">♥</span></div>
+<section class="story" aria-label="Adventure story">
+ <div class="story-top"><span class="story-avatar" aria-hidden="true">🌱</span><div><strong id="speaker">SPRIG SAYS</strong><small>YOUR FOREST FRIEND</small></div><span class="story-step" id="step">01 / 04</span></div>
+ <p id="narration">Welcome, Little Explorer! Our forest is waiting for its sparkle. Tap a golden light to help us!</p>
+ <div class="actions"><button id="find" class="secondary"><span aria-hidden="true">✦</span> Find a sparkle</button><button id="next" class="primary">Let's go! <span aria-hidden="true">➜</span></button></div>
+ <p class="gentle">Take your time, little explorer. There's no wrong way to play. ♡</p>
+</section>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-</main><script type="module" src="./web/main.js"></script></body></html>
+</main><script type="module" src="./web/main.js"></script>
+</body></html>
