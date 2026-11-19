@@ -1,12 +1,11 @@
 # Active issues — November 19, 2026
 
-Completed tasks are archived in Docs/CHANGELOG.md. Open issues start at 1.
+Completed implementation tasks are archived in Docs/CHANGELOG.md. Open issues start at 1.
 
-1. **Compile and execute tests in Unity 6.** Runtime/editor/test assemblies are defined, but package resolution, compiler output and test execution are unverified.
-2. **Finish interactive Broccoli Forest.** Optional wonder collection, a placeholder Sprig companion and world scenery exist; add animation feedback, spatial interaction, sounds and authored 3D art.
-3. **Parent gate and data reliability.** Backup-based profile recovery exists; secure parent verification, migration and interruption tests remain.
-4. **Avatar creator and mobile child UX.** Safe-area story panel and wonder controls exist; responsive device validation, spoken narration and avatar selection remain.
-5. **Child safety and QA.** Run no-food-required playthroughs, mobile performance checks and professional feeding/privacy reviews.
+1. **Unity 6 compilation and test execution** — editor import, package compatibility, assembly references, and automated tests are still unverified.
+2. **Broccoli Forest vertical slice polish** — tapping individual lights, optional button collection, and Sprig celebration are implemented in source; add authored 3D art, audio, interaction feedback and device validation.
+3. **Parent gate and data reliability** — backup profile recovery exists; parent verification, migrations, interrupted-write tests remain.
+4. **Avatar creation and accessible UI** — safe-area story panel and responsive wonder labels exist; spoken narration, avatar editing and device layout tests remain.
+5. **Safety and release QA** — verify all food-discovery skip paths, child privacy review, mobile performance, and accessibility.
 
-**GitHub issue status:** This document is the project's active tracker; it is not a claim that GitHub Issues tickets were created.
-**Verification:** Committed code is not a compiled, tested, or playable release.
+This file is the active issue tracker, not GitHub Issues tickets. Committed source is not a verified playable build.
