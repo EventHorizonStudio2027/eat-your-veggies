@@ -31,5 +31,9 @@
  <p class="gentle">Take your time, little explorer. There's no wrong way to play. ♡</p>
 </section>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-</main><script>\nwindow.addEventListener("load",()=>{if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});});\nwindow.addEventListener("error",()=>{const box=document.querySelector("#loading");if(box&&!box.classList.contains("hidden")){box.querySelector("strong").textContent="The forest needs a moment";box.querySelector("small").textContent="Check your connection and try again.";document.querySelector("#retry").hidden=false;}});\ndocument.addEventListener("DOMContentLoaded",()=>{document.querySelector("#retry").addEventListener("click",()=>location.reload());setTimeout(()=>{const box=document.querySelector("#loading");if(box&&!box.classList.contains("hidden")){box.querySelector("strong").textContent="The forest is taking a little longer";box.querySelector("small").textContent="Please check your connection.";document.querySelector("#retry").hidden=false;}},12000)});\n</script><script type="module" src="./web/main.js"></script>
+</main><script>
+window.addEventListener("load",()=>{if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});});
+window.addEventListener("error",()=>{const box=document.querySelector("#loading");if(box&&!box.classList.contains("hidden")){box.querySelector("strong").textContent="The forest needs a moment";box.querySelector("small").textContent="Check your connection and try again.";document.querySelector("#retry").hidden=false;}});
+document.addEventListener("DOMContentLoaded",()=>{document.querySelector("#retry").addEventListener("click",()=>location.reload());setTimeout(()=>{const box=document.querySelector("#loading");if(box&&!box.classList.contains("hidden")){box.querySelector("strong").textContent="The forest is taking a little longer";box.querySelector("small").textContent="Please check your connection.";document.querySelector("#retry").hidden=false;}},12000)});
+</script><script type="module" src="./web/main.js"></script>
 </body></html>
