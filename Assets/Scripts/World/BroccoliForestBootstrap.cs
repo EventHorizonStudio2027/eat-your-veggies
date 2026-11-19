@@ -15,6 +15,7 @@ namespace EatYourVeggies.World
             hud.Bind(BroccoliIntro.Create());
             var wonderController = new GameObject("Forest Wonder Controller").AddComponent<ForestWonderController>();
             ForestWonderButton.Attach(wonderController);
+            gameObject.AddComponent<WonderWorldTap>().Initialize(wonderController);
             var sprig = FindFirstObjectByType<SprigCompanion>();
             if (sprig != null) wonderController.WonderCollected += sprig.Celebrate;
         }
@@ -88,8 +89,7 @@ namespace EatYourVeggies.World
                 glow.name = "Wonder Light " + (i + 1);
                 glow.transform.position = new Vector3(Mathf.Cos(angle) * 5f, 2.1f + (i % 3) * 0.4f, Mathf.Sin(angle) * 5f);
                 glow.transform.localScale = Vector3.one * 0.35f;
-                var collider = glow.GetComponent<Collider>();
-                if (collider != null) Object.Destroy(collider);
+                // Keep a collider so children can discover lights by tapping them directly.
                 Colorize(glow, new Color(1f, 0.88f, 0.32f));
                 glow.AddComponent<ForestSparkle>();
                 glow.AddComponent<WonderMarker>();
