@@ -13,7 +13,7 @@ namespace EatYourVeggies.UI
             if (Object.FindFirstObjectByType<EventSystem>() == null)
             {
                 var events = new GameObject("UI Event System", typeof(EventSystem), typeof(InputSystemUIInputModule));
-                Object.DontDestroyOnLoad(events);
+                events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
             }
 
             var canvasObject = new GameObject("Adventure HUD", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
@@ -24,6 +24,7 @@ namespace EatYourVeggies.UI
             scaler.referenceResolution = new Vector2(1080, 1920);
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
             scaler.matchWidthOrHeight = 0.5f;
+            canvasObject.AddComponent<SafeAreaPanel>();
 
             var panel = new GameObject("Story Panel", typeof(RectTransform), typeof(Image));
             panel.transform.SetParent(canvasObject.transform, false);
