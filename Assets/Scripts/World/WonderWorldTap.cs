@@ -1,6 +1,7 @@
 using EatYourVeggies.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
 namespace EatYourVeggies.World
@@ -15,11 +16,9 @@ namespace EatYourVeggies.World
         {
             if (controller == null || Camera.main == null) return;
             Vector2 position;
-            int pointerId = -1;
             if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.wasPressedThisFrame)
             {
                 position = Touchscreen.current.primaryTouch.position.ReadValue();
-                pointerId = Touchscreen.current.primaryTouch.touchId.ReadValue();
             }
             else if (Mouse.current != null && Mouse.current.leftButton.wasPressedThisFrame)
             {
@@ -27,7 +26,14 @@ namespace EatYourVeggies.World
             }
             else return;
 
-            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(pointerId)) return;
+            // Check the actual screen position, independent of touch pointer IDs.
+            if (EventSystem.current != null)
+            {
+                var eventData = new PointerEventData(EventSystem.current) { position = position };
+                var hits = new List<RaycastResult>();
+                EventSystem.current.RaycastAll(eventData, hits);
+                if (hits.Count > 0) return;
+            }
             Ray ray = Camera.main.ScreenPointToRay(position);
             if (Physics.Raycast(ray, out var hit, 100f) && hit.collider.GetComponent<WonderMarker>() != null)
                 controller.Collect(hit.collider.gameObject);
