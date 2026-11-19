@@ -1,9 +1,10 @@
 # Development changelog
 
 ## 2026-11-19
-- Established Unity source project, quest engine, profiles and child-safety requirements.
-- Implemented generated Broccoli Forest, touch-first story HUD, optional food discovery, and profile save backups.
-- Added wonder lights, optional collection UI, Sprig companion, Unity assembly definitions and test assembly.
-- **Batch 9:** direct tapping on individual wonder lights with an accessible button alternative; Sprig celebrates discoveries; more breathable responsive wonder UI and accurate progress handling.
+- Established Unity source repository, quest engine, profiles, and child-safety requirements.
+- Added placeholder 3D Broccoli Forest, story HUD, optional wonder lights, and animated Sprig.
+- Added Unity assembly definitions and EditMode tests.
+- Added direct tapping of individual wonder lights, optional button alternative, and Sprig celebration.
+- **Batch 10:** corrected UI hit testing for touchscreen coordinates, fixed story HUD listener cleanup and completion-label access, preserved known-good backups after corrupt saves, added a regression test, and improved wonder-label contrast.
 
-Unity compilation, automated tests, mobile performance, and professional child-safety review remain unverified.
+Unity compilation, automated test execution, device performance and child-safety review remain unverified.
