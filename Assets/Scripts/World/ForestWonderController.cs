@@ -1,11 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace EatYourVeggies.World
 {
     /// <summary>Optional tactile forest discovery. Never gates story progression.</summary>
     public sealed class ForestWonderController : MonoBehaviour
     {
+        public event Action<int, int> WonderCollected;
         private int collected;
         private Text counter;
         private Button collectButton;
@@ -26,6 +28,7 @@ namespace EatYourVeggies.World
             if (wonder != null) wonder.SetActive(false);
             collected++;
             Refresh();
+            WonderCollected?.Invoke(collected, wonders.Length);
         }
 
         private void Refresh()
