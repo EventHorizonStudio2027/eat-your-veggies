@@ -8,7 +8,7 @@
 </head>
 <body>
 <main id="app">
-<canvas id="world" aria-label="Magical 3D forest with glowing wonder lights. Tap a light to collect it."></canvas>
+<canvas id="world" aria-label="3D forest adventure. Tap the ground or use the joystick to move your character and collect vegetables."></canvas>
 <div class="sky-wash" aria-hidden="true"></div><div id="loading" class="loading" role="status" aria-live="polite"><span class="loading-flower">✿</span><strong>Growing your adventure…</strong><small>Just a little moment!</small><button id="retry" class="retry" hidden>Try again ↻</button></div>
 <header class="topbar">
  <div class="brand"><span class="brand-mark" aria-hidden="true">✿</span><div><strong>eat your veggies<span class="brand-period">.</span></strong><small>A LITTLE BIG ADVENTURE</small></div></div>
@@ -30,7 +30,7 @@
  <div class="actions"><button id="find" class="secondary"><span aria-hidden="true">✦</span> Find a sparkle</button><button id="next" class="primary">Let's go! <span aria-hidden="true">➜</span></button></div>
  <p class="gentle">Take your time, little explorer. There's no wrong way to play. ♡</p>
 </section>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="play-hud" aria-label="Vegetable adventure controls"><div class="play-score"><span>🥕 Veggies found <b id="veggie-found">0</b></span><span>😋 Munched <b id="veggie-eaten">0</b></span></div><div id="play-status" class="play-status" role="status" aria-live="polite">Explore and find yummy veggies!</div><div class="play-controls"><div id="joystick" class="joystick" aria-label="Move character with joystick"><div class="joystick-cross">✣</div><div id="joystick-nub" class="joystick-nub"></div></div><div class="play-bag"><span>Basket <b id="veggie-count">0</b></span><button id="munch" disabled>🥕 Find veggies</button></div></div></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
 </main><script>
 window.addEventListener("load",()=>{if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});});
 window.addEventListener("error",()=>{const box=document.querySelector("#loading");if(box&&!box.classList.contains("hidden")){box.querySelector("strong").textContent="The forest needs a moment";box.querySelector("small").textContent="Check your connection and try again.";document.querySelector("#retry").hidden=false;}});
