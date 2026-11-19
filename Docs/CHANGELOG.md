@@ -1,16 +1,15 @@
 # Development changelog
 
-## 2026-11-19 — Batch 14: installable game and child-friendly recovery
-- Added web app manifest and custom SVG broccoli-face icon for installing the game on supported devices.
-- Added a service worker caching the app shell and eligible Three.js/font responses, with network-first app updates and offline fallback after successful caching.
-- Added a friendly connection/error recovery state with a Try Again button instead of an endless loading flower.
-- Added a celebratory quest-complete card and happy companion visual state; restart restores the normal appearance.
-- Extended GitHub Actions validation to include service worker syntax and PWA assets; refined small-phone header spacing.
-- Offline support is best-effort and not yet device verified; first visit requires internet.
+## 2026-11-19 — Batch 15: playable vegetable adventure foundation
+- Added free-roaming 3D movement with large touch joystick, tap-to-move, and WASD/arrow keys.
+- Added sixteen collectible 3D vegetables (carrots, broccoli, tomatoes and peas), proximity pickup and basket counter.
+- Added a large Munch! button that consumes a collected in-game vegetable, with a playful character reaction and separate found/munched counts.
+- Added companion following and smooth camera tracking; converted the screen to a play-first layout with prominent child-friendly controls.
+- Extended CI JavaScript validation to the gameplay module.
+- **Unverified:** GitHub Pages deployment, mobile controls and end-to-end playtest. This is a first gameplay implementation, not a finished game.
 
-## Earlier Three.js batches
-- Pastel storybook forest, procedural hero and Sprig, flowers, butterflies, particles, forgiving touch targets, story read-aloud, local progress saving and responsive UI.
-- GitHub Pages deployment workflow and issue tracker.
+## Earlier batches
+- Pastel storybook forest, 3D hero and Sprig, mushrooms, butterflies, sparkle effects, optional narrated story, local story save, installable PWA and best-effort caching.
 
-## Earlier Unity prototype
-- Unity code retained under Assets/ as historical reference.
+## Unity prototype
+- Retained under Assets/ as historical reference.
