@@ -36,6 +36,11 @@ namespace EatYourVeggies.UI
             Refresh();
         }
 
+        private void OnDestroy()
+        {
+            if (continueButton != null) continueButton.onClick.RemoveListener(Advance);
+        }
+
         private void Refresh()
         {
             if (narration != null)
@@ -45,7 +50,7 @@ namespace EatYourVeggies.UI
             if (continueButton != null)
                 continueButton.interactable = session != null && !session.IsComplete;
             if (buttonLabel != null)
-                buttonLabel.text = session != null && session.Current != null && session.Current.OptionalFoodDiscovery ? "Maybe Later / Continue" : "Continue";
+                buttonLabel.text = session != null && !session.IsComplete && session.Current != null && session.Current.OptionalFoodDiscovery ? "Maybe Later / Continue" : "Continue";
         }
     }
 }
