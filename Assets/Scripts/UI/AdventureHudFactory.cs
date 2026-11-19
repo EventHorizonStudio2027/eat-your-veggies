@@ -12,8 +12,7 @@ namespace EatYourVeggies.UI
         {
             if (Object.FindFirstObjectByType<EventSystem>() == null)
             {
-                var events = new GameObject("UI Event System", typeof(EventSystem), typeof(InputSystemUIInputModule));
-                events.GetComponent<InputSystemUIInputModule>().AssignDefaultActions();
+                new GameObject("UI Event System", typeof(EventSystem), typeof(InputSystemUIInputModule));
             }
 
             var canvasObject = new GameObject("Adventure HUD", typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
