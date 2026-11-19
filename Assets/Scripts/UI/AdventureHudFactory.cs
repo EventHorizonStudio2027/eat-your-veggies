@@ -24,7 +24,6 @@ namespace EatYourVeggies.UI
             scaler.referenceResolution = new Vector2(1080, 1920);
             scaler.screenMatchMode = CanvasScaler.ScreenMatchMode.MatchWidthOrHeight;
             scaler.matchWidthOrHeight = 0.5f;
-            canvasObject.AddComponent<SafeAreaPanel>();
 
             var panel = new GameObject("Story Panel", typeof(RectTransform), typeof(Image));
             panel.transform.SetParent(canvasObject.transform, false);
@@ -32,6 +31,7 @@ namespace EatYourVeggies.UI
             rect.anchorMin = new Vector2(0.05f, 0.04f);
             rect.anchorMax = new Vector2(0.95f, 0.30f);
             rect.offsetMin = rect.offsetMax = Vector2.zero;
+            panel.AddComponent<SafeAreaPanel>();
             panel.GetComponent<Image>().color = new Color(0.10f, 0.24f, 0.19f, 0.94f);
 
             var narration = MakeText(panel.transform, "Story Narration", "Welcome to Broccoli Forest!", 44);
