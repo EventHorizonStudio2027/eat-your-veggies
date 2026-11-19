@@ -11,7 +11,8 @@ namespace EatYourVeggies.World
         private void Start()
         {
             BuildWorld();
-            if (hud != null) hud.Bind(BroccoliIntro.Create());
+            if (hud == null) hud = AdventureHudFactory.Create();
+            hud.Bind(BroccoliIntro.Create());
         }
 
         private void BuildWorld()
