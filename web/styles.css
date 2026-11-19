@@ -37,3 +37,5 @@
 @media(max-width:900px){.level-banner{width:min(320px,44vw);top:110px}.level-banner strong{font-size:14px}.play-status{top:37%}}
 @media(max-width:600px){.welcome{top:65px}.welcome h1{font-size:26px}.level-banner{left:12px;top:135px;transform:none;width:calc(100% - 24px);padding:8px 11px;border-radius:16px}.level-banner strong{font-size:14px;margin:3px 0}.level-banner>span:first-child{font-size:10px}.level-track{margin:5px 0 3px;height:9px}.play-score{top:76px}.play-status{top:265px;font-size:12px}.play-bag button{font-size:20px}}
 @media(max-height:550px){.level-banner{top:70px;left:35%;width:32%;padding:5px 9px}.level-banner strong{font-size:12px}.play-status{display:none}}
+
+.level-banner.level-unlock{animation:level-pop .8s ease-out}@keyframes level-pop{0%{filter:brightness(1.35);scale:.94}45%{scale:1.08}100%{scale:1}}@media(prefers-reduced-motion:reduce){.level-banner.level-unlock{animation:none}}
