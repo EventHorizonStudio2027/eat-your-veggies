@@ -1,15 +1,12 @@
 # Development changelog
 
-## 2026-11-19 — Batch 15: playable vegetable adventure foundation
-- Added free-roaming 3D movement with large touch joystick, tap-to-move, and WASD/arrow keys.
-- Added sixteen collectible 3D vegetables (carrots, broccoli, tomatoes and peas), proximity pickup and basket counter.
-- Added a large Munch! button that consumes a collected in-game vegetable, with a playful character reaction and separate found/munched counts.
-- Added companion following and smooth camera tracking; converted the screen to a play-first layout with prominent child-friendly controls.
-- Extended CI JavaScript validation to the gameplay module.
-- **Unverified:** GitHub Pages deployment, mobile controls and end-to-end playtest. This is a first gameplay implementation, not a finished game.
+## 2026-11-19 — Batch 16: munch to advance
+- Introduced four sequential vegetable level objectives: Carrot Patch (2 carrots), Broccoli Grove (3 broccoli), Tomato Town (3 tomatoes), Pea Party (4 peas).
+- Progression now requires the in-game hero to collect and munch the level's target vegetable. Picking up alone does not advance.
+- Added a prominent level goal card, live munch counter and progress meter.
+- Added automatic vegetable restocking and next-level unlock celebration, including reduced-motion support.
+- Preserved free movement, optional real-world food exploration, basket, Munch button and companion follow.
+- This is an implemented first progression loop; live browser and mobile playtesting are outstanding.
 
-## Earlier batches
-- Pastel storybook forest, 3D hero and Sprig, mushrooms, butterflies, sparkle effects, optional narrated story, local story save, installable PWA and best-effort caching.
-
-## Unity prototype
-- Retained under Assets/ as historical reference.
+## Previous batches
+- Free-roaming joystick, tap-to-move, 3D vegetable pickups, Munch action, storybook forest, responsive UI, PWA shell, narrated story and local story save.
