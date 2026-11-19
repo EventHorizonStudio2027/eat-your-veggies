@@ -11,7 +11,7 @@ namespace EatYourVeggies.UI
         private void Update()
         {
             if (session == null || session.IsComplete) return;
-            bool tapped = Input.GetMouseButtonDown(0);
+            bool tapped = false; // Legacy input removed: the touch-friendly UI button owns progression.
             if (tapped)
             {
                 Debug.Log(session.Current.Narration);
