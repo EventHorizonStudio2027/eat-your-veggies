@@ -13,8 +13,8 @@ namespace EatYourVeggies.UI
             var buttonObject = new GameObject("Find Wonder Button", typeof(RectTransform), typeof(Image), typeof(Button));
             buttonObject.transform.SetParent(canvas.transform, false);
             var rect = buttonObject.GetComponent<RectTransform>();
-            rect.anchorMin = new Vector2(0.20f, 0.73f);
-            rect.anchorMax = new Vector2(0.80f, 0.80f);
+            rect.anchorMin = new Vector2(0.20f, 0.68f);
+            rect.anchorMax = new Vector2(0.80f, 0.76f);
             rect.offsetMin = rect.offsetMax = Vector2.zero;
             buttonObject.GetComponent<Image>().color = new Color(0.98f, 0.84f, 0.46f);
             buttonObject.GetComponent<Button>().onClick.AddListener(controller.CollectNext);
@@ -24,6 +24,8 @@ namespace EatYourVeggies.UI
             label.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             label.text = "Find a Wonder Light";
             label.fontSize = 38;
+            label.resizeTextForBestFit = true;
+            label.resizeTextMinSize = 22;
             label.alignment = TextAnchor.MiddleCenter;
             label.color = new Color(0.12f, 0.23f, 0.15f);
             label.raycastTarget = false;
@@ -36,10 +38,12 @@ namespace EatYourVeggies.UI
             var counter = counterObject.GetComponent<Text>();
             counter.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
             counter.fontSize = 32;
+            counter.resizeTextForBestFit = true;
+            counter.resizeTextMinSize = 20;
             counter.alignment = TextAnchor.MiddleCenter;
             counter.color = Color.white;
-            counter.rectTransform.anchorMin = new Vector2(0.16f, 0.81f);
-            counter.rectTransform.anchorMax = new Vector2(0.84f, 0.86f);
+            counter.rectTransform.anchorMin = new Vector2(0.16f, 0.77f);
+            counter.rectTransform.anchorMax = new Vector2(0.84f, 0.82f);
             counter.rectTransform.offsetMin = counter.rectTransform.offsetMax = Vector2.zero;
             controller.Initialize(WonderMarker.FindObjects(), counter, buttonObject.GetComponent<Button>());
         }
