@@ -1,11 +1,11 @@
 # Development changelog
 
 ## 2026-11-19
-- Established repository, architecture, safety constraints, and GitHub issue tracker.
-- Added adventure engine, profiles, optional food discovery model, and unit tests.
-- Added Unity manifest, profile persistence, Broccoli Forest story, and narration controller.
-- Added generated placeholder forest, editor scene creation menu, and initial prototype controller.
-- **Batch 5:** added visible mobile-first runtime HUD with narration and large Continue button, connected the quest to the generated world, added gentle optional-discovery button copy, profile tests, and editor verification instructions.
-- Removed legacy tap progression from generated scenes to avoid competing input handlers.
+- Initialized Unity source repository, architecture and child-safety requirements.
+- Implemented quest session, profiles, food discovery model, and early tests.
+- Added Unity manifest, profile persistence, Broccoli Forest quest, and narration HUD.
+- Added placeholder 3D forest and scene generator.
+- Connected touch-first story UI and gentle food-skip wording.
+- **Batch 6:** profile backup/recovery, default UI input actions, mobile safe-area panel, animated wonder lights, and profile save tests.
 
-All Unity compilation, test execution, mobile runtime behavior, and child-safety review remain unverified.
+Unity compilation, test execution, runtime performance, and child-safety review remain unverified.
