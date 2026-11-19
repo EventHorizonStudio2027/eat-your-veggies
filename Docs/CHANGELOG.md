@@ -1,10 +1,9 @@
 # Development changelog
 
 ## 2026-11-19
-- Established repository, architecture, child safety requirements, quest engine and profiles.
-- Added local profile saves, optional food discovery model, EditMode tests and scene generator.
-- Added Broccoli Forest placeholder geometry, gentle animated lights, and story HUD.
-- Added safe-area story panel, input-system initialization and save backup/recovery.
-- **Batch 7:** added optional wonder-light collection button, progress counter, completion state, and Unity EditMode test assembly definition.
+- Created Unity source repository, quest engine, child profiles and safety requirements.
+- Added story HUD, forest generator, wonder lights, profile saves and EditMode tests.
+- Implemented backup-based profile recovery, safe-area story panel, and optional wonder collection.
+- **Batch 8:** added runtime/editor assembly definitions, linked test assembly to runtime, added animated placeholder Sprig companion, and simplified UI input initialization.
 
-All Unity compilation, automated test execution, device behavior, and child-safety review remain unverified.
+Unity compilation, automated test execution, device performance and specialist child-safety review remain unverified.
