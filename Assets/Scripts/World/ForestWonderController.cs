@@ -8,12 +8,14 @@ namespace EatYourVeggies.World
     {
         private int collected;
         private Text counter;
+        private Button collectButton;
         private GameObject[] wonders;
 
-        public void Initialize(GameObject[] objects, Text counterText)
+        public void Initialize(GameObject[] objects, Text counterText, Button button)
         {
             wonders = objects;
             counter = counterText;
+            collectButton = button;
             Refresh();
         }
 
@@ -29,9 +31,10 @@ namespace EatYourVeggies.World
         private void Refresh()
         {
             if (counter == null) return;
+            if (collectButton != null) collectButton.interactable = wonders != null && collected < wonders.Length;
             int total = wonders == null ? 0 : wonders.Length;
             counter.text = collected >= total && total > 0
-                ? "The forest is sparkling! ✨"
+                ? "The forest is sparkling!"
                 : "Wonder lights: " + collected + " / " + total;
         }
     }
