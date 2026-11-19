@@ -26,12 +26,15 @@ jobs:
         run: |
           node --check web/main.js
           node --check web/storybook-world.js
+          node --check sw.js
       - name: Check web entry points
         run: |
           test -s index.html
           test -s web/styles.css
           test -s web/main.js
           test -s web/storybook-world.js
+          test -s manifest.webmanifest
+          test -s web/icon.svg
   deploy:
     needs: validate
     environment:
