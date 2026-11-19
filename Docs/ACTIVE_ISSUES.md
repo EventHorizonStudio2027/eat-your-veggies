@@ -1,12 +1,11 @@
 # Active issues — November 19, 2026
 
-Completed work is archived in Docs/CHANGELOG.md. Active issues restart at 1.
+Completed implementation tasks are archived in Docs/CHANGELOG.md. Active work starts at issue 1.
 
-1. **Compile the Unity 6 project.** Package resolution, script compilation, and device performance are unverified. Confirm editor version and resolve any compile errors.
-2. **Create a genuinely interactive Broccoli Forest vertical slice.** Primitive scene generator exists, but there is no authored scene asset committed, movement, character animation, or complete guided play.
-3. **Implement a secure parent gate and robust save recovery.** Basic profile save exists; crash-safe atomic writes, migration, and adult verification are outstanding.
-4. **Polish child UI and avatar creation.** Narration HUD controller and tap prototype exist; need actual accessible UI, visible touch target, responsive layouts, and avatar editor.
-5. **Run tests and safety/accessibility checks.** Tests exist but have not been executed in Unity. Check skip-every-food-action flow and consult child safety experts before launch.
+1. **Unity editor compilation and dependency resolution** — source committed; editor and device execution unverified. Follow Docs/UNITY_SETUP.md.
+2. **Complete the playable Broccoli Forest vertical slice** — generated placeholder world and visible UI wired; missing interactive objects, character animation, audio, and authored art.
+3. **Secure parent gate and reliable profile persistence** — save service exists; adult verification, migration, and crash recovery remain.
+4. **Avatar customization and mobile HUD polish** — child HUD runtime factory added; still need responsive safe-area testing, accessibility, and avatar editor.
+5. **Automated and human verification** — edit-mode tests authored but not executed in Unity; run skip path, device UX, and child safety review.
 
-## Verified versus implemented
-A GitHub commit verifies source delivery only. No Unity compile, gameplay, mobile device test, or production safety review is claimed.
+Source commits do not establish a successful Unity compile or playable release.
