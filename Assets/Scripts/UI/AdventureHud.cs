@@ -9,6 +9,14 @@ namespace EatYourVeggies.UI
         [SerializeField] private Text narration;
         [SerializeField] private Button continueButton;
         private AdventureSession session;
+        private Text buttonLabel;
+
+        public void Configure(Text story, Button action, Text actionLabel)
+        {
+            narration = story;
+            continueButton = action;
+            buttonLabel = actionLabel;
+        }
 
         public void Bind(AdventureSession adventure)
         {
@@ -36,6 +44,8 @@ namespace EatYourVeggies.UI
                     session.Current.Narration;
             if (continueButton != null)
                 continueButton.interactable = session != null && !session.IsComplete;
+            if (buttonLabel != null)
+                buttonLabel.text = session != null && session.Current != null && session.Current.OptionalFoodDiscovery ? "Maybe Later / Continue" : "Continue";
         }
     }
 }
