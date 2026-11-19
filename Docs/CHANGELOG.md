@@ -1,10 +1,11 @@
 # Development changelog
 
-## 2026-11-19 — Three.js pivot
-- Selected Three.js as the active browser-first engine; retained existing Unity source for reference.
-- Added root index.html and responsive web/styles.css with a premium forest interface, story panel, quest progress and companion identification.
-- Added web/main.js with procedural 3D Broccoli Forest, Little Hero, Sprig, eight collectible wonder lights, direct 3D raycast interaction, optional accessible collection button, four story steps, simple synthesized sound and celebration animation.
-- Added GitHub Pages deployment workflow. Pages activation and live browser verification are still outstanding.
+## 2026-11-19 — Three.js web edition
+- Created browser-based procedural 3D Broccoli Forest, Sprig, Little Hero, eight wonder lights, optional interaction and story steps.
+- Added responsive forest-themed HUD, progress display, synthesized optional chime and celebration.
+- Added GitHub Pages deployment workflow; live site not yet verified.
+- **Batch 11:** persist collected lights and story progress locally; restore them on reload; honor OS reduced-motion preference for 3D animation; add two-tap confirmed restart; refine header spacing and collection completion feedback.
+- Opened [GitHub Issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1) to verify deployment and real browser playability.
 
 ## Earlier Unity prototype
-- Quest and profile model, Broccoli Forest prototype, UI, optional food discovery, save recovery and Unity tests remain archived in source. No Unity build was verified.
+- Quest/profile model, UI, optional discovery and tests remain in Assets/ as reference.
