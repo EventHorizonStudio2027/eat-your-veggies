@@ -32,6 +32,7 @@ namespace EatYourVeggies.World
             hero.name = "Little Hero";
             hero.transform.position = new Vector3(0f, 1f, 0f);
             Colorize(hero, new Color(0.96f, 0.75f, 0.34f));
+            CreateFireflies();
 
             if (Camera.main == null)
             {
@@ -49,6 +50,22 @@ namespace EatYourVeggies.World
                 sunlight.type = LightType.Directional;
                 sunlight.intensity = 1.3f;
                 lightObject.transform.rotation = Quaternion.Euler(48f, -25f, 0f);
+            }
+        }
+
+        private static void CreateFireflies()
+        {
+            for (int i = 0; i < 8; i++)
+            {
+                float angle = i * Mathf.PI * 2f / 8f;
+                var glow = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                glow.name = "Wonder Light " + (i + 1);
+                glow.transform.position = new Vector3(Mathf.Cos(angle) * 5f, 2.1f + (i % 3) * 0.4f, Mathf.Sin(angle) * 5f);
+                glow.transform.localScale = Vector3.one * 0.35f;
+                var collider = glow.GetComponent<Collider>();
+                if (collider != null) Object.Destroy(collider);
+                Colorize(glow, new Color(1f, 0.88f, 0.32f));
+                glow.AddComponent<ForestSparkle>();
             }
         }
 
