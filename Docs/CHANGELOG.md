@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-19 — Batch 32: preserve vegetable shapes, companion pickup reactions and accessibility
+
+- Fixed target-vegetable animation to scale from each model's authored base dimensions, preserving carrot/broccoli/tomato/pea proportions.
+- Added a dedicated veggie-collected event. Sprig now reacts when the toddler finds a vegetable, with a stronger celebration when it matches the active garden goal; existing munch reactions remain.
+- Added polite, atomic announcements for found and munched totals so assistive technology can track the child's inventory and progress.
+- Strengthened GitHub Actions static checks to require the progressbar semantics and the vegetable interaction/adventure reset event hooks.
+- Interface improvement: pickup and munch counters are now assistive-technology live regions without adding visual clutter to the game HUD.
+- GitHub commits succeeded; Actions run result and live Pages/device testing are not independently verified.
+
+
 ## 2026-11-19 — Batch 31: preserve vegetable art, garden wayfinding and offline freshness
 
 - Fixed a visual regression in target-vegetable pulsing: pulse scaling now multiplies each model's authored base scale, preserving the distinct proportions of carrots, broccoli, tomatoes and peas.
