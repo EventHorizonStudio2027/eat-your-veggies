@@ -44,7 +44,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  joystick.addEventListener('pointermove',e=>{if(pointerId===e.pointerId)setStick(e.clientX,e.clientY)});
  for(const event of ['pointerup','pointercancel','lostpointercapture'])joystick.addEventListener(event,release);
  window.addEventListener('blur',()=>{release();keys.clear();target=null;if(started)saveAdventure()});document.addEventListener('visibilitychange',()=>{if(document.hidden){release();keys.clear();target=null;if(started)saveAdventure()}});
- window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyW','KeyA','KeyS','KeyD','Space'].includes(e.code)){if(e.target===document.body)e.preventDefault();keys.add(e.code);if(e.code==='Space'&&started&&!finished&&e.target===document.body&&!e.repeat)munch.click()}});
+ window.addEventListener('keydown',e=>{const gameplayFocus=e.target===document.body||e.target===canvas;if(!started||finished||!gameplayFocus)return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyW','KeyA','KeyS','KeyD','Space'].includes(e.code)){e.preventDefault();if(e.code==='Space'){if(!e.repeat)munch.click()}else keys.add(e.code)}});
  window.addEventListener('keyup',e=>keys.delete(e.code));
  const munch=$('#munch'),counter=$('#veggie-count'),status=$('#play-status');
  const say=text=>{status.textContent=text;clearTimeout(say.timer);say.timer=setTimeout(()=>{status.textContent='Explore and find yummy veggies!'},3600)};
