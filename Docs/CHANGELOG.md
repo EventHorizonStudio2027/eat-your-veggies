@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-20 — Batch 39: expressive Sprig and more rewarding garden completion
+
+- Added a reactive 3D smile and delighted eye accents to Sprig when the child collects or munches vegetables.
+- Extended Sprig's celebration when a full garden is restored.
+- Added a Sprig-centered sparkle burst alongside the existing garden repair celebration; respects reduced-motion preferences.
+- UI improvement: compressed gameplay guidance into a softly translucent, readable status chip to use screen space more effectively.
+- Extended static CI checks for Sprig's facial expression and completion reaction.
+- All source changes committed to GitHub. Device QA, browser rendering and Actions execution remain unverified.
+
+
 ## 2026-11-20 — Batch 38: anti-softlock gameplay, offline responsiveness and accessible completion
 
 - Added a goal-vegetable availability guard: after munching or loading a saved adventure, the game respawns enough missing goal vegetables to finish the current garden, avoiding a toddler-facing progression softlock.
