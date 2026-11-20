@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Batch 44: parent gate cleanup and world-aligned restoration markers
+
+- Fixed an overlooked adult-hold unlock path that left held keyboard inputs and the tap destination active when opening parent settings.
+- Corrected the Pea Party restoration firefly center to match the actual 3D party location at z=-5.
+- Added four lightweight ground-level restoration halos, with progress-dependent opacity and distinct garden colors.
+- Hide the halos when gameplay pauses and reset them with the world to avoid lingering effects.
+- Expanded static CI assertions for parent-gate input cleanup, Pea Party placement and garden halos.
+- One independent end-of-batch interface design polish is committed after documentation.
+- Source committed to GitHub; browser gameplay and workflow execution still require verification.
+
+
 ## 2026-11-20 — Batch 43: garden restoration fireflies and reset reliability
 
 - Added sixteen lightweight 3D restoration fireflies around the active garden; the effect grows with the chapter's repair progress and honors reduced-motion preferences.
