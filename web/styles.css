@@ -126,3 +126,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Batch 47 extra final design pass: warm, tactile level progression with accessible stillness. */
 .playing .garden-step.current{outline:2px solid rgba(255,255,255,.8);outline-offset:2px;filter:drop-shadow(0 3px 4px rgba(93,135,67,.16))}.playing .garden-step.done{color:#2c6844;text-shadow:0 1px 0 rgba(255,255,255,.75)}@media(prefers-reduced-motion:reduce){.playing .garden-step.current{animation:none;transition:none}}
+
+/* Product focus phase: legacy sparkle quest and story controls remain in DOM for compatibility, but are not part of the shipped vegetable adventure. */
+.quest,.story,.companion,.welcome{display:none!important}
