@@ -63,7 +63,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   if(dx||dz)target=null;
   if(!dx&&!dz&&target){dx=target.x-hero.position.x;dz=target.z-hero.position.z;if(Math.hypot(dx,dz)<.2){target=null;dx=dz=0}}
   const length=Math.hypot(dx,dz);walking=length>.03;
-  if(walking){const speed=3.5;hero.position.x+=dx/length*speed*dt;hero.position.z+=dz/length*speed*dt;hero.position.x=Math.max(-8,Math.min(8,hero.position.x));hero.position.z=Math.max(-8,Math.min(8,hero.position.z));hero.rotation.y=Math.atan2(dx,dz);stepTime+=dt*11;saveTimer+=dt;if(saveTimer>2){saveTimer=0;saveAdventure()}}
+  if(walking){const speed=3.5;const travel=Math.min(speed*Math.min(dt,.05),target?length:Infinity);hero.position.x+=dx/length*travel;hero.position.z+=dz/length*travel;hero.position.x=Math.max(-8,Math.min(8,hero.position.x));hero.position.z=Math.max(-8,Math.min(8,hero.position.z));hero.rotation.y=Math.atan2(dx,dz);stepTime+=dt*11;saveTimer+=dt;if(saveTimer>2){saveTimer=0;saveAdventure()}}
   // Keep the little companion nearby, without requiring player control.
   sprig.position.x+=(hero.position.x+1.5-sprig.position.x)*Math.min(1,dt*2);
   sprig.position.z+=(hero.position.z+.8-sprig.position.z)*Math.min(1,dt*2);
