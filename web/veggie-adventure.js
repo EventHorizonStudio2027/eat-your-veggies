@@ -46,7 +46,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyW','KeyA','KeyS','KeyD','Space'].includes(e.code)){if(e.target===document.body)e.preventDefault();keys.add(e.code)}});
  window.addEventListener('keyup',e=>keys.delete(e.code));
  const munch=$('#munch'),counter=$('#veggie-count'),status=$('#play-status');
- const say=text=>{status.textContent=text;clearTimeout(say.timer);say.timer=setTimeout(()=>{status.textContent='Explore and find yummy veggies!'},2600)};
+ const say=text=>{status.textContent=text;clearTimeout(say.timer);say.timer=setTimeout(()=>{status.textContent='Explore and find yummy veggies!'},3600)};
  function collect(v){if(!started||finished||!v||!v.visible)return;v.visible=false;bag.push(v.userData.type);state.collected++;counter.textContent=String(bag.length);munch.disabled=false;munch.textContent='😋 Munch!';say(v.userData.type===activeLevel().type?'Great! Munch this '+v.userData.type.toLowerCase()+' to grow!':'A '+v.userData.type.toLowerCase()+'! Look for '+activeLevel().type.toLowerCase()+'s too!');celebration=1.2;updateHud();saveAdventure()}
  function updateHud(){munch.disabled=bag.length===0;$('#veggie-found').textContent=String(state.collected);$('#veggie-eaten').textContent=String(state.eaten)}
  munch.addEventListener('click',()=>{if(!started||finished||!bag.length)return;const type=bag.shift();state.eaten++;munching=.75;snack.material=({Carrot:orange,Broccoli:green,Tomato:red,Pea:green})[type]||orange;snack.visible=true;celebration=1.4;counter.textContent=String(bag.length);munch.textContent=bag.length?'😋 Munch!':'🥕 Find veggies';if(type===activeLevel().type){levelMunched++;refreshLevel();if(levelMunched>=activeLevel().need){advance()}else say('Nom nom! '+(activeLevel().need-levelMunched)+' more '+activeLevel().type.toLowerCase()+' to go!')}else say('Yum! Find a '+activeLevel().type.toLowerCase()+' to unlock the next garden!');updateHud();if(!finished)saveAdventure();});
@@ -66,7 +66,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   // Keep the little companion nearby, without requiring player control.
   sprig.position.x+=(hero.position.x+1.5-sprig.position.x)*Math.min(1,dt*2);
   sprig.position.z+=(hero.position.z+.8-sprig.position.z)*Math.min(1,dt*2);
-  for(const v of veggies){if(!v.visible)continue;if(!reduced){v.rotation.y+=dt*.25;v.position.y=Math.sin(time*2+v.position.x)*.075}if(Math.hypot(v.position.x-hero.position.x,v.position.z-hero.position.z)<1.05)collect(v)}
+  for(const v of veggies){if(!v.visible)continue;if(!reduced){v.rotation.y+=dt*.25;v.position.y=Math.sin(time*2+v.position.x)*.075}if(Math.hypot(v.position.x-hero.position.x,v.position.z-hero.position.z)<1.35)collect(v)}
   munching=Math.max(0,munching-dt);snack.visible=munching>0;snack.scale.setScalar(Math.max(.01,munching/.75*.24));celebration=Math.max(0,celebration-dt);
   hero.scale.y=1+(munching?Math.sin(time*25)*.09:walking&&!reduced?Math.abs(Math.sin(stepTime))*.055:0);
   if(celebration>0&&!reduced)hero.rotation.z=Math.sin(time*16)*.06;else hero.rotation.z=0;
