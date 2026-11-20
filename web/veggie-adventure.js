@@ -16,13 +16,19 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   g.userData={type};veggies.push(g);return g;
  }
  const types=['Carrot','Broccoli','Tomato','Pea'];
+ let chosenTypes=[...types];let started=false;const setup=$('#parent-setup');
+ function applyChoices(){const selected=[...setup.querySelectorAll('input[type=checkbox]:checked')].map(el=>el.value).filter(v=>types.includes(v));if(!selected.length){$('#parent-error').textContent='Choose at least one veggie to begin.';return}chosenTypes=selected;level=0;levelMunched=0;bag.length=0;state.collected=0;state.eaten=0;counter.textContent='0';for(const v of veggies)v.visible=chosenTypes.includes(v.userData.type);started=true;setup.hidden=true;document.body.classList.add('playing');refreshLevel();updateHud();say('Explore! Find '+activeLevel().type.toLowerCase()+'s to help the garden!');try{localStorage.setItem('veggieverse-parent-choices',JSON.stringify(chosenTypes))}catch{}}
+ $('#start-adventure').addEventListener('click',applyChoices);
+ $('#parent-settings').addEventListener('click',()=>{started=false;setup.hidden=false;document.body.classList.remove('playing');release();target=null});
+ try{const saved=JSON.parse(localStorage.getItem('veggieverse-parent-choices')||'null');if(Array.isArray(saved)&&saved.length){for(const input of setup.querySelectorAll('input[type=checkbox]'))input.checked=saved.includes(input.value)}}catch{}
+
  const levels=[{name:'CARROT PATCH',type:'Carrot',need:2,color:'#f7cf9b'},{name:'BROCCOLI GROVE',type:'Broccoli',need:3,color:'#b9e7a5'},{name:'TOMATO TOWN',type:'Tomato',need:3,color:'#ffc0b4'},{name:'PEA PARTY',type:'Pea',need:4,color:'#c7eeb6'}];
  let level=0,levelMunched=0;const stageMat=new THREE.MeshStandardMaterial({color:levels[0].color,roughness:1});
  const gardenMarker=part(scene,new THREE.CylinderGeometry(1.25,1.25,.14,32),stageMat,0,.12,-2,1,1,1);gardenMarker.receiveShadow=true;
- function activeLevel(){return levels[level]}
+ function activeLevel(){return levels[types.indexOf(chosenTypes[level%chosenTypes.length])]}
  function refreshLevel(){const l=activeLevel();$('#level-label').textContent='LEVEL '+(level+1)+' · '+l.name;$('#level-goal').textContent='Munch '+l.need+' '+l.type.toLowerCase()+(l.need>1?'s':'')+' to unlock the next garden!';$('#level-count').textContent=levelMunched+' / '+l.need+' munched';$('#level-fill').style.width=(levelMunched/l.need*100)+'%';stageMat.color.set(l.color)}
- function restock(){for(const v of veggies){v.visible=true}bag.length=0;counter.textContent='0';munch.textContent='🥕 Find veggies';updateHud()}
- function advance(){level=(level+1)%levels.length;levelMunched=0;restock();refreshLevel();say('🌟 New garden unlocked! '+activeLevel().name+'!');hero.position.set(0,0,1);target=null;celebration=2.5;document.querySelector('.level-banner')?.classList.remove('level-unlock');void document.querySelector('.level-banner')?.offsetWidth;document.querySelector('.level-banner')?.classList.add('level-unlock')}
+ function restock(){for(const v of veggies){v.visible=chosenTypes.includes(v.userData.type)}bag.length=0;counter.textContent='0';munch.textContent='🥕 Find veggies';updateHud()}
+ function advance(){level=(level+1)%chosenTypes.length;levelMunched=0;restock();refreshLevel();say('🌟 New garden unlocked! '+activeLevel().name+'!');hero.position.set(0,0,1);target=null;celebration=2.5;document.querySelector('.level-banner')?.classList.remove('level-unlock');void document.querySelector('.level-banner')?.offsetWidth;document.querySelector('.level-banner')?.classList.add('level-unlock')}
 
  for(let i=0;i<16;i++){const a=i*2.39996,r=3.2+(i%4)*1.35;makeVeggie(types[i%4],Math.cos(a)*r,Math.sin(a)*r)}
  const state={collected:0,eaten:0};
@@ -39,13 +45,13 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  window.addEventListener('keyup',e=>keys.delete(e.code));
  const munch=$('#munch'),counter=$('#veggie-count'),status=$('#play-status');
  const say=text=>{status.textContent=text;clearTimeout(say.timer);say.timer=setTimeout(()=>{status.textContent='Explore and find yummy veggies!'},2600)};
- function collect(v){if(!v||!v.visible)return;v.visible=false;bag.push(v.userData.type);state.collected++;counter.textContent=String(bag.length);munch.disabled=false;munch.textContent='😋 Munch!';say(v.userData.type===activeLevel().type?'Great! Munch this '+v.userData.type.toLowerCase()+' to grow!':'A '+v.userData.type.toLowerCase()+'! Look for '+activeLevel().type.toLowerCase()+'s too!');celebration=1.2;updateHud()}
+ function collect(v){if(!started||!v||!v.visible)return;v.visible=false;bag.push(v.userData.type);state.collected++;counter.textContent=String(bag.length);munch.disabled=false;munch.textContent='😋 Munch!';say(v.userData.type===activeLevel().type?'Great! Munch this '+v.userData.type.toLowerCase()+' to grow!':'A '+v.userData.type.toLowerCase()+'! Look for '+activeLevel().type.toLowerCase()+'s too!');celebration=1.2;updateHud()}
  function updateHud(){munch.disabled=bag.length===0;$('#veggie-found').textContent=String(state.collected);$('#veggie-eaten').textContent=String(state.eaten)}
- munch.addEventListener('click',()=>{if(!bag.length)return;const type=bag.shift();state.eaten++;munching=.75;celebration=1.4;counter.textContent=String(bag.length);munch.textContent=bag.length?'😋 Munch!':'🥕 Find veggies';if(type===activeLevel().type){levelMunched++;refreshLevel();if(levelMunched>=activeLevel().need){advance()}else say('Nom nom! '+(activeLevel().need-levelMunched)+' more '+activeLevel().type.toLowerCase()+' to go!')}else say('Yum! Find a '+activeLevel().type.toLowerCase()+' to unlock the next garden!');updateHud();});
+ munch.addEventListener('click',()=>{if(!started||!bag.length)return;const type=bag.shift();state.eaten++;munching=.75;celebration=1.4;counter.textContent=String(bag.length);munch.textContent=bag.length?'😋 Munch!':'🥕 Find veggies';if(type===activeLevel().type){levelMunched++;refreshLevel();if(levelMunched>=activeLevel().need){advance()}else say('Nom nom! '+(activeLevel().need-levelMunched)+' more '+activeLevel().type.toLowerCase()+' to go!')}else say('Yum! Find a '+activeLevel().type.toLowerCase()+' to unlock the next garden!');updateHud();});
  const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
  canvas.addEventListener('pointerdown',e=>{const rect=canvas.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);const cam=window.__veggieCamera;if(!cam)return;raycaster.setFromCamera(pointer,cam);const ground=new THREE.Plane(new THREE.Vector3(0,1,0),0),hit=new THREE.Vector3();if(raycaster.ray.intersectPlane(ground,hit)){target=new THREE.Vector3(Math.max(-8,Math.min(8,hit.x)),0,Math.max(-8,Math.min(8,hit.z)));say('Here we go!')}})
  const shadow=part(hero,new THREE.CircleGeometry(.6,24),new THREE.MeshBasicMaterial({color:'#326c43',transparent:true,opacity:.14,depthWrite:false}),0,.04,0,1,1,1);shadow.rotation.x=-Math.PI/2;
- function update(dt,time,reduced){
+ function update(dt,time,reduced){if(!started)return;
   let dx=move.x,dz=move.z;
   if(keys.has('ArrowLeft')||keys.has('KeyA'))dx-=1;if(keys.has('ArrowRight')||keys.has('KeyD'))dx+=1;
   if(keys.has('ArrowUp')||keys.has('KeyW'))dz-=1;if(keys.has('ArrowDown')||keys.has('KeyS'))dz+=1;
