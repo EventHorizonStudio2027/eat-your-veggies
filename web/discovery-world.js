@@ -31,6 +31,15 @@ const locations=[[-6,-5],[5,-5],[-5,5],[5,5],[0,-7],[7,1]];
  const party=new THREE.Group();party.position.set(0,0,-5);scene.add(party);
  for(let i=0;i<5;i++){const a=i*1.257;const balloon=obj(sphere,[colors.pink,colors.peach,colors.yellow,colors.violet,colors.blue][i],Math.cos(a)*1.1,1.8+Math.sin(a)*.25,Math.sin(a)*.5,.3,.39,.28,party);balloon.scale.setScalar(.001);stageProps.push({kind:'party',mesh:balloon,original:[.3,.39,.28]})}
  // Four hand-arranged storybook garden landmarks add recognizable silhouettes.
+ // Small destination-specific sculptures make each repair site identifiable at a glance.
+ const signposts=[];
+ const signColors=[colors.peach,colors.mint,colors.blue,colors.violet];
+ for(let i=0;i<4;i++){const a=i*Math.PI/2+.5,x=Math.cos(a)*7,z=Math.sin(a)*7;const sign=new THREE.Group();sign.position.set(x,0,z);scene.add(sign);
+  obj(box,colors.wood,0,.66,0,.16,1.32,.16,sign);
+  obj(box,colors.cream,0,1.42,.02,1.45,.66,.22,sign);
+  obj(sphere,signColors[i],0,1.43,.17,.43,.25,.13,sign);
+  for(const side of [-1,1])obj(sphere,colors.yellow,side*.47,1.4,.17,.1,.1,.09,sign);
+  signposts.push(sign)}
  const themed=[];const butterflies=[];
  const themes=[{type:'flowers',x:-5,z:-2,petal:colors.peach},{type:'bridge',x:-4,z:3,petal:colors.mint},{type:'fountain',x:5,z:3,petal:colors.blue},{type:'party',x:4,z:-4,petal:colors.violet}];
  for(const theme of themes){const group=new THREE.Group();group.position.set(theme.x,0,theme.z);scene.add(group);
