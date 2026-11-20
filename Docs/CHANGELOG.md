@@ -1,12 +1,12 @@
 # Development changelog
 
-## 2026-11-19 — Batch 20: saving, stability and character polish
-- Added local adventure state persistence and restoration for chosen vegetables, current level, progress, basket, collected veggies and character position.
-- Fixed restart to clear adventure save rather than reload into the same game state.
-- Updated service worker shell cache version and included new adventure and discovery JavaScript modules.
-- Added expressive character arms and gentle animated gestures.
-- Improved level card with vegetable-specific icons and progress accessibility metadata.
-- Changes committed; deployment and end-to-end device tests remain unverified.
+## 2026-11-19 — Batch 21: toddler interaction and magical celebrations
+
+- Added tap-a-veggie path targeting so a child can tap a visible vegetable to walk toward it, in addition to ground taps and joystick.
+- Added garden-complete events and a golden sparkle burst around the hero when the final required veggie is munched.
+- Increased the automatic pickup radius to 1.35 world units and lengthened encouraging status messages for easier toddler interaction.
+- Added an accessible progressbar role and live progress values to the main veggie objective meter.
+- Updated issue tracker and archived completed improvements. Live deployment and touch-device testing remain unverified.
 
 ## Earlier batches
-- Parent vegetable selection, four veggie-munch stages, 2.5D camera, animated environmental repairs, six discoveries, toddler joystick, victory/replay and PWA shell.
+- Parent-selected veggies, garden munch goals, 2.5D camera, world repairs, discovery props, victory/replay, save/resume, expressive arms and offline shell caching.
