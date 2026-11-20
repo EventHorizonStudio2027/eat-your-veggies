@@ -66,3 +66,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 /* Parent reassurance is compact, readable and separate from the toddler play surface. */
 .parent-save-note{margin:12px auto 8px;padding:10px 13px;max-width:460px;background:#e9f6e7;border:1px solid #b8d8b9;border-radius:14px;color:#3f7357;font-size:13px;line-height:1.45;text-align:center}
 @media(max-width:650px){.parent-save-note{font-size:12px;padding:8px 10px}.playing .play-score{opacity:.9}.playing .play-score span{box-shadow:0 2px 0 #96c6a0}}
+
+/* Exploration reward stays subordinate to the main vegetable objective. */
+.play-score .discovery-score{background:#f1eaffeb;color:#6b5993;border-color:#fff9ff}.play-score .discovery-score b{color:#8467ba;font-size:clamp(14px,1.8vw,20px)}@media(max-width:650px){.playing .play-score{flex-wrap:wrap;justify-content:flex-end;max-width:min(340px,calc(100vw - 24px))}.playing .play-score .discovery-score{font-size:11px}}
