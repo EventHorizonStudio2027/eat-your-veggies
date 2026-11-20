@@ -1,6 +1,6 @@
 /* Cache the game shell and any successfully fetched 3D engine modules.
    First visit still needs internet; subsequent visits may work offline. */
-const CACHE='veggieverse-v7';
+const CACHE='veggieverse-v8';
 const ENGINE='https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
 const SHELL=['./','./index.html','./web/styles.css','./web/main.js','./web/storybook-world.js','./web/veggie-adventure.js','./web/discovery-world.js','./web/icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
@@ -20,6 +20,8 @@ self.addEventListener('fetch',event=>{
       if(response.ok||response.type==='opaque'){
         const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy)).catch(()=>{});
       }
+      // Preserve a previously working game if a deploy temporarily serves 404/500.
+      if(!response.ok&&response.type!=='opaque'&&cached)return cached;
       return response;
     }).catch(()=>cached||Response.error());
     // Navigation and game code prefer fresh responses, but a slow connection must not hang an installed game.
