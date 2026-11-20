@@ -24,6 +24,10 @@ jobs:
           from pathlib import Path
           html=Path('index.html').read_text()
           js=Path('web/veggie-adventure.js').read_text()
+          styles=Path('web/styles.css').read_text()
+          assert '.quest,.story,.companion,.welcome{display:none!important}' in styles, 'Retired sparkle quest UI must stay hidden'
+          assert '#read,#restart{display:none!important}' in styles, 'Retired legacy controls must stay hidden'
+          assert 'stopMovement();hero.position.set(-1.7,0,1)' in js, 'New adventure must start at the canonical hero spawn'
           cache=Path('sw.js').read_text()
           ids=['parent-setup','start-adventure','parent-settings','world','munch','victory','play-again','garden-journey','level-fill','joystick']
           import re
@@ -55,7 +59,7 @@ jobs:
           assert 'new THREE.RingGeometry(.3,.47,32)' in js and 'destinationMarker.visible=Boolean(target)' in js, 'Tap destination marker missing'
           assert 'v.visible&&chosenTypes.includes(v.userData.type)' in js, 'Tap targeting must respect selected vegetables'
           assert 'finished=true;started=false;stopMovement()' in js, 'Victory must clear movement state'
-          assert 'stopMovement();hero.position.set(0,0,1)' in js, 'New adventure must reset position and controls'
+          assert 'stopMovement();hero.position.set(-1.7,0,1)' in js, 'New adventure must reset position and controls'
           assert "canvas.addEventListener('blur'" in js, 'Canvas focus loss must clear movement'
           assert 'keys.clear();release();target=new THREE.Vector3' in js, 'Tap movement must override held input'
           assert 'banner.dataset.garden=type.toLowerCase()' in js, 'Garden celebration theming missing'
