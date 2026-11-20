@@ -64,6 +64,9 @@ jobs:
           assert "--hold-progress" in js and "--hold-progress" in Path('web/styles.css').read_text(), 'Adult hold visual feedback missing'
           world=Path('web/discovery-world.js').read_text()
           assert 'const restorationFireflies=[]' in world and 'restorationCenters=' in world, 'Restoration firefly world effect missing'
+          assert 'party:[0,-5]' in world, 'Pea Party effects must match the actual party location'
+          assert 'const gardenHalos={}' in world and 'halo.visible=explorationEnabled&&progress>.02' in world, 'Garden progress halos missing'
+          assert "stopMovement();setup.querySelector('input[type=checkbox]')" in js, 'Adult hold unlock must clear movement'
           assert 'fly.mesh.visible=explorationEnabled&&amount>.05' in world, 'Fireflies must respect paused gameplay'
           assert 'restoration.progress=0;for(const fly of restorationFireflies)' in world, 'New adventure must reset world restoration'
           assert 'const droplets=[]' in world and 'fountainAmount' in world, 'Fountain repair animation missing'
