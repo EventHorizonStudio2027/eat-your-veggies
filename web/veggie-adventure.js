@@ -56,11 +56,13 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  canvas.addEventListener('pointerdown',e=>{const rect=canvas.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);const cam=window.__veggieCamera;if(!cam||!started||finished)return;raycaster.setFromCamera(pointer,cam);const veggieHits=raycaster.intersectObjects(veggies.filter(v=>v.visible),true);if(veggieHits.length){let veggie=veggieHits[0].object;while(veggie.parent&&!veggies.includes(veggie))veggie=veggie.parent;if(veggies.includes(veggie)){target=new THREE.Vector3(veggie.position.x,0,veggie.position.z);say('Let’s find that '+veggie.userData.type.toLowerCase()+'!');return}}const ground=new THREE.Plane(new THREE.Vector3(0,1,0),0),hit=new THREE.Vector3();if(raycaster.ray.intersectPlane(ground,hit)){target=new THREE.Vector3(Math.max(-8,Math.min(8,hit.x)),0,Math.max(-8,Math.min(8,hit.z)));say('Here we go!')}})
  const snack=part(hero,sphere,orange,0,1.65,.78,1,1,1);snack.visible=false;
  const shadow=part(hero,new THREE.CircleGeometry(.6,24),new THREE.MeshBasicMaterial({color:'#326c43',transparent:true,opacity:.14,depthWrite:false}),0,.04,0,1,1,1);shadow.rotation.x=-Math.PI/2;
+ // A gentle destination marker shows little explorers where their tap will take them.
+ const destinationMarker=new THREE.Mesh(new THREE.RingGeometry(.3,.47,32),new THREE.MeshBasicMaterial({color:'#fff3b3',transparent:true,opacity:.8,depthWrite:false,side:THREE.DoubleSide}));destinationMarker.rotation.x=-Math.PI/2;destinationMarker.position.y=.08;destinationMarker.visible=false;scene.add(destinationMarker);
  function update(dt,time,reduced){if(!started||finished)return;
   let dx=move.x,dz=move.z;
   if(keys.has('ArrowLeft')||keys.has('KeyA'))dx-=1;if(keys.has('ArrowRight')||keys.has('KeyD'))dx+=1;
   if(keys.has('ArrowUp')||keys.has('KeyW'))dz-=1;if(keys.has('ArrowDown')||keys.has('KeyS'))dz+=1;
-  if(dx||dz)target=null;
+  if(dx||dz)target=null;destinationMarker.visible=Boolean(target);if(target){destinationMarker.position.x=target.x;destinationMarker.position.z=target.z;destinationMarker.scale.setScalar(reduced?1:1+Math.sin(time*4)*.12)}
   if(!dx&&!dz&&target){dx=target.x-hero.position.x;dz=target.z-hero.position.z;if(Math.hypot(dx,dz)<.2){target=null;dx=dz=0}}
   const length=Math.hypot(dx,dz);walking=length>.03;
   if(walking){const speed=3.5;const travel=Math.min(speed*Math.min(dt,.05),target?length:Infinity);hero.position.x+=dx/length*travel;hero.position.z+=dz/length*travel;hero.position.x=Math.max(-8,Math.min(8,hero.position.x));hero.position.z=Math.max(-8,Math.min(8,hero.position.z));hero.rotation.y=Math.atan2(dx,dz);stepTime+=dt*11;saveTimer+=dt;if(saveTimer>2){saveTimer=0;saveAdventure()}}
