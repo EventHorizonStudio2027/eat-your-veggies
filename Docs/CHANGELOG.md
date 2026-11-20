@@ -1,5 +1,14 @@
 # Development changelog
 
+## 2026-11-19 — Batch 28: new-adventure integrity, visual guidance, mobile efficiency
+
+- Fixed a cross-adventure state leak: changing the parent's vegetable choices now clears previous exploration secrets, while unchanged choices continue saved progress.
+- Added four color-coded 3D garden signposts to help preschool players visually distinguish destinations.
+- Reduced background CPU/GPU work by skipping 3D scene updates while the browser tab is hidden; reused a camera-follow vector rather than allocating one every frame.
+- UI improvement: gently pulsing the vegetables required for the active garden makes the next action easier to discover, with reduced-motion support.
+- Committed changes to GitHub; full deployed browser/mobile and CI verification are still outstanding.
+
+
 ## 2026-11-19 — Batch 27: lifecycle correctness and visible exploration
 - Fixed replay lifecycle: returning to parent setup now stops discovery interactions; replay clears previously found secrets.
 - Added explicit reset of repaired scenery between new adventures, while preserving collected discoveries on normal save/resume.
