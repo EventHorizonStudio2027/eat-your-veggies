@@ -1,11 +1,11 @@
 # Active issues — Eat Your Veggies
 
-Completed work is archived in Docs/CHANGELOG.md. Outstanding priorities restart at #1 here; permanent GitHub issue numbers do not change.
+Completed work is archived in Docs/CHANGELOG.md. Outstanding priorities restart at 1 in this document; GitHub issue numbers are permanent.
 
-1. **Live gameplay and deployment QA** — test parent setup, veggie choice, touch movement, pickup, munch, environment repair, win/replay, save/resume and restart on desktop and mobile. [GitHub #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
-2. **Professional character and environment art** — authored animation, 2.5D visual polish, frame-rate and toddler usability validation. [GitHub #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
-3. **Deeper exploration and rewards** — distinct world areas, playful interactions and progression beyond current short garden sequence.
-4. **Parent-only settings and accessibility** — adult gate, voice instructions, age-appropriate control testing.
-5. **Offline and release verification** — verify CDN dependency caching, device compatibility, child privacy and performance.
+1. **Live deployment and playthrough verification** — confirm parent setup, veggie choice, tap-to-walk, pickup, munch, restoration, victory, save/resume and restart on desktop and mobile. [GitHub #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
+2. **Professional 2.5D visual quality** — authored character/environment art, richer animations, sound and device performance. [GitHub #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
+3. **Distinct worlds and discovery rewards** — more areas, real puzzles and collectible surprises; currently four vegetable goals share a storybook forest.
+4. **Parent-only settings and preschool accessibility** — adult gate, voice guidance, child playtests and improved settings.
+5. **Offline and release readiness** — confirm third-party dependencies, offline caching, privacy and mobile compatibility.
 
-Only in-game veggie munching is required; no real-world eating is required.
+Only in-game veggie munching is required to advance. No real-world food consumption is required.
