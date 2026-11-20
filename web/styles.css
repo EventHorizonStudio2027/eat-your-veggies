@@ -129,3 +129,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Product focus phase: legacy sparkle quest and story controls remain in DOM for compatibility, but are not part of the shipped vegetable adventure. */
 .quest,.story,.companion,.welcome{display:none!important}
+
+/* Hide controls wired only to the retired sparkle quest; parent settings and sound remain available. */
+#read,#restart{display:none!important}
