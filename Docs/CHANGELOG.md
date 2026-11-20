@@ -1,13 +1,12 @@
 # Development changelog
 
-## 2026-11-19 — Batch 24: priority bug fixes and garden identity
-
-- Fixed major interface overlap: the legacy sparkle quest, story panel, companion panel and welcome panel no longer obstruct the toddler's vegetable adventure while playing. Gameplay HUD is hidden until a parent starts the game.
-- Fixed discovery notifications triggering before the parent starts: discoveries now require an active game state and stop during settings/victory.
-- Added four distinct 3D storybook garden landmark sculptures with stage-aware scaling and palette variations, giving each garden a clearer visual identity.
-- Added a GitHub Actions game-quality workflow to check JavaScript syntax, required DOM IDs, vegetable types and service worker cache entries on pushes and pull requests.
-- Tuned small-screen level card spacing and game-control placement to reclaim usable world space.
-- Changes committed to GitHub; live gameplay and CI results still require independent verification.
+## 2026-11-19 — Batch 25: navigation, persistent discoveries and magical motion
+- Fixed tap-to-walk overshoot by limiting travel distance to the target and capping long-frame movement steps.
+- Persisted six forest discoveries in local storage, avoiding duplicate discovery announcements after reload.
+- Full restart now clears saved discoveries as well as garden progress.
+- Added animated pastel butterflies to the four garden landmarks; active and previously restored gardens display them, with reduced-motion support.
+- UI improvement: added a clear finger-friendly tap-or-joystick instruction in the adventure HUD.
+- Changes committed to GitHub; live browser/device verification remains unresolved.
 
 ## Previous batches
-- Parent vegetable selection, toddler joystick and tap-to-walk, veggie pickup and munch-to-advance, four magical repairs, six discoveries, 2.5D follow camera, save/resume, victory/replay, garden journey UI and PWA shell.
+- Parent-selected vegetables, toddler movement, veggie munch-to-advance, world repairs, six discoveries, 2.5D follow camera, save/resume, victory/replay, four garden landmark sculptures, garden journey indicator, and GitHub Actions static validation.
