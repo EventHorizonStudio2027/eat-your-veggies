@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Batch 46: offline fallback, world performance and landmark clarity
+
+- Fixed service-worker handling of transient HTTP 404/500 errors: use the previously cached working asset when available; rotated offline cache to veggieverse-v8.
+- Reused a single geometry and base material for restoration fireflies instead of creating sixteen identical geometries.
+- Corrected reduced-motion behavior so flower and discovery rotations reset to a stationary pose immediately.
+- Added permanent, color-coded 3D pedestal landmarks at the four garden restoration sites to help young children recognize destinations.
+- Updated static CI checks for cache version, HTTP fallback, shared firefly geometry, landmark creation and reduced-motion rotation.
+- An independent final design polish follows this documentation update.
+- All source changes saved to GitHub; CI execution, public deployment and real-device gameplay remain unverified.
+
+
 ## 2026-11-20 — Batch 45: victory overlay, Sprig expression and garden color identity
 
 - Fixed the final garden celebration banner remaining visible over the victory dialog.
