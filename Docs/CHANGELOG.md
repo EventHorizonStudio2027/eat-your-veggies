@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Focus Phase Batch 49: core save/resume and garden transition correctness
+
+- Fixed chapter transitions so joystick/keyboard/tap movement is cleared before repositioning the player at the canonical spawn.
+- Ensured the newly active chapter has enough required vegetables available after transitioning, preventing a progression softlock.
+- Fixed restoration of an empty saved basket so the Munch button is disabled immediately.
+- Made the saved chapter authoritative for restored garden count, avoiding mismatched garden states after corrupted/inconsistent local saves.
+- Added static CI guards for these core-flow invariants.
+- Final independent interface polish follows documentation.
+- GitHub commits verified; browser gameplay and GitHub Actions run status not yet independently verified.
+
+
 ## 2026-11-20 — Focus Phase, Batch 48: five-function MVP and working-app discipline
 
 - Defined a strict five-function product contract in Docs/PRODUCT_SCOPE.md: parent setup, explore, collect/munch, restore gardens, save/replay; includes acceptance criteria and explicit non-goals.
