@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Focus Phase, Batch 48: five-function MVP and working-app discipline
+
+- Defined a strict five-function product contract in Docs/PRODUCT_SCOPE.md: parent setup, explore, collect/munch, restore gardens, save/replay; includes acceptance criteria and explicit non-goals.
+- Removed the unrelated sparkle quest, story carousel, welcome and companion panels from the visible game UI without breaking legacy DOM references.
+- Hid the obsolete read-story and sparkle-restart buttons; retained parent settings and sound.
+- Fixed fresh adventure spawn to match the canonical character spawn in web/main.js (-1.7, 0, 1).
+- Added static CI guards for focused UI scope and correct spawn.
+- Separate final visual polish committed after documentation.
+- Source committed to GitHub; browser/device tests and published Pages status still require independent verification.
+
+
 ## 2026-11-20 — Batch 47: particle lifecycle, restored landmark glow, and chapter UI
 
 - Fixed celebration particle cleanup: starting a new adventure now removes leftover transient particle meshes and clears the particle list; paused gameplay no longer starts a new celebration.
