@@ -45,6 +45,9 @@ jobs:
           assert 'stopMovement();hero.position.set(-1.7,0,1);ensureGoalAvailable();saveAdventure()' in js, 'Garden transition must clear movement and ensure required veggies'
           assert 'if(Array.isArray(previous.bag)&&bag.length===0){munch.disabled=true}' in js, 'Empty saved basket must disable munch'
           main=Path('web/main.js').read_text()
+          assert 'completedGardens=level;state.collected=' in js, 'Resume statistics must not be swallowed by a comment'
+          assert "window.addEventListener('veggie-collected',()=>chime())" in main, 'Collect sound must be connected to vegetable play'
+          assert "if(soundOn){chime()}" in main, 'Sound toggle must not narrate retired story'
           assert 'const sprigSmile=' in main and 'const sprigEyes=' in main, 'Sprig expressive face missing'
           assert 'sprigCheer=2.4' in main and 'sparkleBurst(sprig)' in main, 'Sprig garden-completion celebration missing'
           assert 'webglcontextlost' in main and 'webglcontextrestored' in main, 'WebGL recovery hooks missing'
