@@ -44,6 +44,10 @@ jobs:
           assert 'id="parent-gate"' in html and 'id="parent-gate-hold"' in html, 'Parent adult gate markup missing'
           assert 'beginGateHold' in js and 'openParentSettings' in js and 'wasPlayingBeforeGate' in js, 'Parent gate interaction lifecycle missing'
           assert 'pointercancel' in js and 'keyup' in js, 'Parent gate cancellation/keyboard handling missing'
+          world=Path('web/discovery-world.js').read_text()
+          assert 'const droplets=[]' in world and 'fountainAmount' in world, 'Fountain repair animation missing'
+          assert 'const partyLights=[]' in world and 'partyAmount' in world, 'Party lighting animation missing'
+          assert 'prop.base-.85' in world, 'Bridge rail repair animation missing'
           for name in ('Carrot','Broccoli','Tomato','Pea'):
               assert name in js, f'Missing veggie type: {name}'
           for path in ('web/main.js','web/veggie-adventure.js','web/discovery-world.js','web/storybook-world.js'):
