@@ -41,6 +41,9 @@ jobs:
           assert 'webglcontextlost' in main and 'webglcontextrestored' in main, 'WebGL recovery hooks missing'
           assert 'veggie-renderer-lost' in html and 'veggie-renderer-restored' in html, 'Renderer recovery UI missing'
           assert 'veggieverse-v5' in cache, 'Offline cache version not refreshed'
+          assert 'id="parent-gate"' in html and 'id="parent-gate-hold"' in html, 'Parent adult gate markup missing'
+          assert 'beginGateHold' in js and 'openParentSettings' in js and 'wasPlayingBeforeGate' in js, 'Parent gate interaction lifecycle missing'
+          assert 'pointercancel' in js and 'keyup' in js, 'Parent gate cancellation/keyboard handling missing'
           for name in ('Carrot','Broccoli','Tomato','Pea'):
               assert name in js, f'Missing veggie type: {name}'
           for path in ('web/main.js','web/veggie-adventure.js','web/discovery-world.js','web/storybook-world.js'):
