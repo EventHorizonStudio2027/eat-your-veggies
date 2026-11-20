@@ -1,11 +1,11 @@
 # Active issues — Eat Your Veggies
 
-Completed changes are archived in Docs/CHANGELOG.md. Remaining priorities are numbered from 1. GitHub issue IDs cannot be renumbered.
+Completed issues are archived in Docs/CHANGELOG.md. Outstanding work starts at issue 1 here; GitHub issue IDs remain permanent.
 
-1. **Verify live GitHub Pages gameplay on real devices** — parent choice, touch movement, collecting, munch priority, victory/replay, saving and garden repair. [GitHub issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
-2. **Professional visual quality and mobile performance** — replace simple procedural props with polished character and garden art, authored animations, sound and tested framerate. [GitHub issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
-3. **Distinct areas and richer rewards** — create separate explorable regions and meaningful discovery interactions, rather than a single shared forest.
-4. **Parent-only settings and toddler accessibility** — add adult gate, spoken prompts and usability testing.
-5. **Offline, persistence and release QA** — verify CDN availability, save/restore of world state and device/browser compatibility.
+1. **Live site and device QA** — verify the GitHub Pages deployment and full parent-to-victory playthrough, including save/resume, restored scenery, touch controls and browser backgrounding. The live URL could not be independently fetched in this session. [GitHub issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
+2. **Production-grade 2.5D graphics and animation** — replace procedural placeholder art with expressive, polished characters and distinct illustrated scenery. [GitHub issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
+3. **Meaningful exploration and multiple regions** — develop unique vegetable worlds, richer puzzles and discoveries.
+4. **Parent-only controls and preschool accessibility** — implement an adult gate, spoken game instructions and child usability tests.
+5. **Offline and release testing** — test engine dependency caching, performance, accessibility and child privacy.
 
-Progress requires in-game veggie munching only; no real-world eating is required.
+Progress requires only in-game munching; real-world eating is never required.
