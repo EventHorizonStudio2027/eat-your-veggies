@@ -1,12 +1,13 @@
 # Development changelog
 
-## 2026-11-19 — Batch 23: reliability and clear garden journey
-- Fixed saved-game scenery restoration: completed garden repairs are now reconstructed when resuming a saved adventure.
-- Prevented restoration from replaying victory particles during resume.
-- Fixed stuck movement when the browser loses focus or is backgrounded; current state is saved when hidden.
-- Added a compact garden journey indicator, dynamically generated from the parent's vegetable choices, with current and completed stages distinguished.
-- Styled journey milestones for desktop and mobile to improve navigation clarity without overwhelming the game world.
-- All changes committed to GitHub. The live site could not be independently fetched through the available web check, and end-to-end browser/mobile QA remains open.
+## 2026-11-19 — Batch 24: priority bug fixes and garden identity
+
+- Fixed major interface overlap: the legacy sparkle quest, story panel, companion panel and welcome panel no longer obstruct the toddler's vegetable adventure while playing. Gameplay HUD is hidden until a parent starts the game.
+- Fixed discovery notifications triggering before the parent starts: discoveries now require an active game state and stop during settings/victory.
+- Added four distinct 3D storybook garden landmark sculptures with stage-aware scaling and palette variations, giving each garden a clearer visual identity.
+- Added a GitHub Actions game-quality workflow to check JavaScript syntax, required DOM IDs, vegetable types and service worker cache entries on pushes and pull requests.
+- Tuned small-screen level card spacing and game-control placement to reclaim usable world space.
+- Changes committed to GitHub; live gameplay and CI results still require independent verification.
 
 ## Previous batches
-- Parent-selected vegetables, toddler joystick and tap-to-walk, in-game munch-to-advance, animated garden repairs, six discoveries, 2.5D camera, save/resume, victory/replay, child-friendly HUD and PWA shell.
+- Parent vegetable selection, toddler joystick and tap-to-walk, veggie pickup and munch-to-advance, four magical repairs, six discoveries, 2.5D follow camera, save/resume, victory/replay, garden journey UI and PWA shell.
