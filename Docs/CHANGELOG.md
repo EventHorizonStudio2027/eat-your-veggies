@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-19 — Batch 30: keyboard access, HUD clarity and stronger CI
+
+- Made the 3D game canvas keyboard-focusable with explicit arrow/WASD/Space instructions and a relationship to the live gameplay status.
+- Focus now moves into the game when the adventure starts and returns to the first parent vegetable checkbox when Parent Settings is opened.
+- Improved the objective/status pill's readability on small screens, refined translucent objective styling and added a clear keyboard focus ring.
+- Strengthened GitHub Actions static validation: detect duplicate HTML IDs, require keyboard canvas access and live status semantics, and verify game modules exist in the service-worker shell.
+- Corrected the duplicate-ID check to use a simple reliable attribute matcher.
+- Changes committed to GitHub. Workflow wrapper returned no pull-request runs for the latest push; CI execution and live device testing remain unverified.
+
+
 ## 2026-11-19 — Batch 29: accessible objectives, stable state and polish
 
 - Added assistive-technology progress semantics to the garden repair bar, including the correct dynamic goal count and spoken value text for each vegetable garden.
