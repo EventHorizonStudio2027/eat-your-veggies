@@ -58,7 +58,7 @@ const locations=[[-6,-5],[5,-5],[-5,5],[5,5],[0,-7],[7,1]];
  for(let i=0;i<9;i++){const a=i*Math.PI*2/9;const x=Math.cos(a)*3.4,z=Math.sin(a)*3.4;const stem=obj(box,colors.mint,x,.38,z,.12,.72,.12);const bloom=new THREE.Group();bloom.position.set(x,.8,z);scene.add(bloom);for(let j=0;j<5;j++){const t=j*Math.PI*2/5;obj(sphere,colors.pink,Math.cos(t)*.26,Math.sin(t)*.26,0,.24,.24,.16,bloom)}obj(sphere,colors.yellow,0,0,.14,.24,.24,.18,bloom);bloom.scale.setScalar(.1);petals.push(bloom);restoreObjects.push(stem)}
  // Restoration fireflies gather around the active garden and remain after repair.
  const restorationFireflies=[];for(let i=0;i<16;i++){const glow=new THREE.Mesh(new THREE.SphereGeometry(.1,8,6),new THREE.MeshBasicMaterial({color:i%3===0?'#fff3a4':'#e8ffb7',transparent:true,opacity:.8,depthWrite:false}));glow.visible=false;scene.add(glow);restorationFireflies.push({mesh:glow,phase:i*2.39996,radius:1.3+(i%4)*.28})}
- const restorationCenters={flowers:[0,0],bridge:[-4,0],fountain:[4,0],party:[0,5]};
+ const restorationCenters={flowers:[0,0],bridge:[-4,0],fountain:[4,0],party:[0,-5]};
  const restoration={progress:0,target:0};
  function setRestoration(progress){restoration.target=Math.max(0,Math.min(1,progress))}
 
