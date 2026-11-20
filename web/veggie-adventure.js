@@ -48,9 +48,10 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  const say=text=>{status.textContent=text;clearTimeout(say.timer);say.timer=setTimeout(()=>{status.textContent='Explore and find yummy veggies!'},2600)};
  function collect(v){if(!started||finished||!v||!v.visible)return;v.visible=false;bag.push(v.userData.type);state.collected++;counter.textContent=String(bag.length);munch.disabled=false;munch.textContent='😋 Munch!';say(v.userData.type===activeLevel().type?'Great! Munch this '+v.userData.type.toLowerCase()+' to grow!':'A '+v.userData.type.toLowerCase()+'! Look for '+activeLevel().type.toLowerCase()+'s too!');celebration=1.2;updateHud()}
  function updateHud(){munch.disabled=bag.length===0;$('#veggie-found').textContent=String(state.collected);$('#veggie-eaten').textContent=String(state.eaten)}
- munch.addEventListener('click',()=>{if(!started||finished||!bag.length)return;const type=bag.shift();state.eaten++;munching=.75;celebration=1.4;counter.textContent=String(bag.length);munch.textContent=bag.length?'😋 Munch!':'🥕 Find veggies';if(type===activeLevel().type){levelMunched++;refreshLevel();if(levelMunched>=activeLevel().need){advance()}else say('Nom nom! '+(activeLevel().need-levelMunched)+' more '+activeLevel().type.toLowerCase()+' to go!')}else say('Yum! Find a '+activeLevel().type.toLowerCase()+' to unlock the next garden!');updateHud();});
+ munch.addEventListener('click',()=>{if(!started||finished||!bag.length)return;const type=bag.shift();state.eaten++;munching=.75;snack.material=({Carrot:orange,Broccoli:green,Tomato:red,Pea:green})[type]||orange;snack.visible=true;celebration=1.4;counter.textContent=String(bag.length);munch.textContent=bag.length?'😋 Munch!':'🥕 Find veggies';if(type===activeLevel().type){levelMunched++;refreshLevel();if(levelMunched>=activeLevel().need){advance()}else say('Nom nom! '+(activeLevel().need-levelMunched)+' more '+activeLevel().type.toLowerCase()+' to go!')}else say('Yum! Find a '+activeLevel().type.toLowerCase()+' to unlock the next garden!');updateHud();});
  const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
  canvas.addEventListener('pointerdown',e=>{const rect=canvas.getBoundingClientRect();pointer.set((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1);const cam=window.__veggieCamera;if(!cam||!started||finished)return;raycaster.setFromCamera(pointer,cam);const ground=new THREE.Plane(new THREE.Vector3(0,1,0),0),hit=new THREE.Vector3();if(raycaster.ray.intersectPlane(ground,hit)){target=new THREE.Vector3(Math.max(-8,Math.min(8,hit.x)),0,Math.max(-8,Math.min(8,hit.z)));say('Here we go!')}})
+ const snack=part(hero,sphere,orange,0,1.65,.78,.22,.22,.22);snack.visible=false;
  const shadow=part(hero,new THREE.CircleGeometry(.6,24),new THREE.MeshBasicMaterial({color:'#326c43',transparent:true,opacity:.14,depthWrite:false}),0,.04,0,1,1,1);shadow.rotation.x=-Math.PI/2;
  function update(dt,time,reduced){if(!started||finished)return;
   let dx=move.x,dz=move.z;
@@ -64,7 +65,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   sprig.position.x+=(hero.position.x+1.5-sprig.position.x)*Math.min(1,dt*2);
   sprig.position.z+=(hero.position.z+.8-sprig.position.z)*Math.min(1,dt*2);
   for(const v of veggies){if(!v.visible)continue;if(!reduced){v.rotation.y+=dt*.25;v.position.y=Math.sin(time*2+v.position.x)*.075}if(Math.hypot(v.position.x-hero.position.x,v.position.z-hero.position.z)<1.05)collect(v)}
-  munching=Math.max(0,munching-dt);celebration=Math.max(0,celebration-dt);
+  munching=Math.max(0,munching-dt);snack.visible=munching>0;snack.scale.setScalar(Math.max(.01,munching/.75*.24));celebration=Math.max(0,celebration-dt);
   hero.scale.y=1+(munching?Math.sin(time*25)*.09:walking&&!reduced?Math.abs(Math.sin(stepTime))*.055:0);
   if(celebration>0&&!reduced)hero.rotation.z=Math.sin(time*16)*.06;else hero.rotation.z=0;
  }
