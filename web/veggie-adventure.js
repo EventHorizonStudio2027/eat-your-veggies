@@ -46,6 +46,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  window.addEventListener('blur',()=>{stopMovement();if(started)saveAdventure()});document.addEventListener('visibilitychange',()=>{if(document.hidden){stopMovement();if(started)saveAdventure()}});
  window.addEventListener('keydown',e=>{const gameplayFocus=e.target===document.body||e.target===canvas;if(!started||finished||!gameplayFocus)return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyW','KeyA','KeyS','KeyD','Space'].includes(e.code)){e.preventDefault();if(e.code==='Space'){if(!e.repeat)munch.click()}else keys.add(e.code)}});
  window.addEventListener('keyup',e=>keys.delete(e.code));
+ canvas.addEventListener('blur',()=>{keys.clear();release()});
  const munch=$('#munch'),counter=$('#veggie-count'),status=$('#play-status');
  const say=text=>{status.textContent=text;clearTimeout(say.timer);say.timer=setTimeout(()=>{status.textContent='Explore and find yummy veggies!'},3600)};
  function collect(v){if(!started||finished||!v||!v.visible)return;v.visible=false;window.dispatchEvent(new CustomEvent('veggie-collected',{detail:{type:v.userData.type,goal:v.userData.type===activeLevel().type}}));bag.push(v.userData.type);state.collected++;counter.textContent=String(bag.length);munch.disabled=false;munch.textContent='😋 Munch!';say(v.userData.type===activeLevel().type?'Great! Munch this '+v.userData.type.toLowerCase()+' to grow!':'A '+v.userData.type.toLowerCase()+'! Look for '+activeLevel().type.toLowerCase()+'s too!');celebration=1.2;updateHud();saveAdventure()}
