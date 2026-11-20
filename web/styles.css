@@ -73,3 +73,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 /* Focus is visible for keyboard players without changing the toddler touch-first layout. */
 #world:focus-visible{outline:4px solid #f6c86f;outline-offset:-6px}.playing .play-status{max-width:min(560px,calc(100vw - 36px));line-height:1.35;z-index:6;background:rgba(255,250,224,.94);border:2px solid rgba(255,255,255,.9)}.playing .level-banner{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 @media(max-width:650px){.playing .play-status{top:19%;font-size:clamp(13px,3.6vw,16px);padding:8px 13px}.playing .play-controls{gap:12px}.playing .play-bag button{min-width:160px;min-height:72px}}
+
+/* Recovery overlay keeps a lost graphics context understandable and actionable. */
+.loading:not(.hidden){z-index:30;background:rgba(235,249,238,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}.loading .retry{margin-top:14px;min-height:48px;padding:10px 24px;border:0;border-radius:999px;background:#f2a65a;color:#fff;font:700 16px inherit;box-shadow:0 4px 0 #d98542;cursor:pointer}.loading .retry:focus-visible{outline:3px solid #476e57;outline-offset:4px}
