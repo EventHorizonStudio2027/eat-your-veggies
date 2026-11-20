@@ -1,12 +1,12 @@
 # Development changelog
 
-## 2026-11-19 — Batch 22: critical gameplay and reward fixes
-- Fixed basket progression: when the child has picked up several veggie types, Munch prioritizes the currently required veggie rather than forcing the child to empty the basket in pickup order.
-- Fixed the shrinking vegetable snack animation so its size begins consistently and decreases during munching.
-- Fixed replay to clear stale adventure save data; cleared stale parent-setup validation errors after valid selection.
-- Repaired world persistence within a play session: finished flowers, bridge, fountain and party decorations remain restored when moving to later stages.
-- UI improvement: a warm animated Munch button clearly indicates when the next game action is available; reduced-motion users get a static alternative.
-- All changes committed to GitHub. Full live browser/mobile verification remains open.
+## 2026-11-19 — Batch 23: reliability and clear garden journey
+- Fixed saved-game scenery restoration: completed garden repairs are now reconstructed when resuming a saved adventure.
+- Prevented restoration from replaying victory particles during resume.
+- Fixed stuck movement when the browser loses focus or is backgrounded; current state is saved when hidden.
+- Added a compact garden journey indicator, dynamically generated from the parent's vegetable choices, with current and completed stages distinguished.
+- Styled journey milestones for desktop and mobile to improve navigation clarity without overwhelming the game world.
+- All changes committed to GitHub. The live site could not be independently fetched through the available web check, and end-to-end browser/mobile QA remains open.
 
 ## Previous batches
-- Parent-selected veggie goals, toddler movement, magical world repairs, six discoveries, 2.5D camera, victory/replay, save/resume, character gestures and offline shell.
+- Parent-selected vegetables, toddler joystick and tap-to-walk, in-game munch-to-advance, animated garden repairs, six discoveries, 2.5D camera, save/resume, victory/replay, child-friendly HUD and PWA shell.
