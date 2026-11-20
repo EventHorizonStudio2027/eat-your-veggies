@@ -44,6 +44,8 @@ jobs:
           assert 'id="parent-gate"' in html and 'id="parent-gate-hold"' in html, 'Parent adult gate markup missing'
           assert 'beginGateHold' in js and 'openParentSettings' in js and 'wasPlayingBeforeGate' in js, 'Parent gate interaction lifecycle missing'
           assert 'pointercancel' in js and 'keyup' in js, 'Parent gate cancellation/keyboard handling missing'
+          assert "e.key==='Tab'" in js and 'document.activeElement' in js, 'Adult dialog focus containment missing'
+          assert 'id="garden-celebration"' in html and 'announceGardenRepair' in js, 'Garden completion feedback missing'
           assert 'e.target===canvas' in js and "e.code==='Space'" in js, 'Canvas-focused keyboard controls missing'
           assert "--hold-progress" in js and "--hold-progress" in Path('web/styles.css').read_text(), 'Adult hold visual feedback missing'
           world=Path('web/discovery-world.js').read_text()
