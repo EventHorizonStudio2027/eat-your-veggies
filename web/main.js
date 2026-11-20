@@ -66,7 +66,7 @@ $('#find').addEventListener('click',()=>{const next=wonders.find(w=>w.visible);i
 $('#restart').addEventListener('click',()=>{
   const now=performance.now();
   if(now>restartArmedUntil){restartArmedUntil=now+5000;showToast('Tap restart again to start over');return}
-  restartArmedUntil=0;for(const w of wonders)w.visible=true;collected=0;step=0;celebrateUntil=0;
+  restartArmedUntil=0;location.reload();return;for(const w of wonders)w.visible=true;collected=0;step=0;celebrateUntil=0;
   $('#count').textContent='0 / 8';$('#progress').style.width='0%';$('#find').textContent='✦ Find a sparkle';document.querySelector('.quest')?.classList.remove('complete');document.querySelector('.companion')?.classList.remove('happy');
   saveProgress();renderStory();speakStory();showToast('A fresh forest adventure! ✦');
 });
