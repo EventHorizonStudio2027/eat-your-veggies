@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-20 — Batch 36: keyboard regression fix, stable animations and clear parent hold
+
+- Fixed a real gameplay regression: the canvas receives keyboard focus on start, but Space previously worked only with body focus. Arrow/WASD movement and Space-to-munch now work when the game canvas is focused; game shortcuts do not activate while interacting with setup or other controls.
+- Fixed long-session Pea Party balloon vertical drift by animating around each balloon's original height instead of accumulating position deltas every frame.
+- Added a visual fill meter directly inside the grown-up three-second hold button; releasing resets the fill.
+- Strengthened CI checks for canvas-focused keyboard handling, fixed-height balloon animation, and visual parent-gate progress.
+- UI improvement: the grown-up confirmation button now visibly fills as it is held, improving clarity without adding a separate progress widget.
+- Source committed to GitHub. GitHub Pages live verification was attempted but the runtime could not resolve the public hostname; device gameplay and workflow execution remain unverified.
+
+
 ## 2026-11-19 — Batch 35: distinctive garden restoration and safer adult gate
 
 - Parent checkpoint: cancel an in-progress hold on window blur, hidden tab, or Escape, preventing a hold from completing while the parent is away.
