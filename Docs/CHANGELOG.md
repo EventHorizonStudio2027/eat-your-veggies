@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-19 — Batch 33: device-aware rendering and graceful graphics recovery
+
+- Added device-aware renderer quality: antialiasing and pixel ratio are tuned using device memory, CPU core count and viewport size to reduce GPU load on modest phones/tablets.
+- Added WebGL context-loss/restoration listeners. If a device loses its graphics context, the game now displays a friendly recovery message and a clear reload action rather than silently leaving a blank canvas.
+- Polished the recovery overlay with a soft frosted-glass treatment and prominent, accessible retry button.
+- Bumped the service-worker cache to veggieverse-v5 so returning players receive the updated renderer and recovery UI.
+- Strengthened GitHub Actions static checks for WebGL recovery hooks, recovery UI wiring and the expected cache version.
+- UI improvement: recovery state now uses a calm, parent-readable overlay with a single obvious action, keeping technical errors away from toddler-facing copy.
+- GitHub commits succeeded. The workflow wrapper returned no pull-request runs for the main-branch commit; CI result and actual mobile/device behavior remain unverified.
+
+
 ## 2026-11-19 — Batch 32: preserve vegetable shapes, companion pickup reactions and accessibility
 
 - Fixed target-vegetable animation to scale from each model's authored base dimensions, preserving carrot/broccoli/tomato/pea proportions.
