@@ -34,6 +34,9 @@ jobs:
           assert not duplicates, f'Duplicate HTML ids: {duplicates}'
           assert 'tabindex="0"' in html and 'aria-describedby="play-status"' in html, 'Game canvas keyboard access missing'
           assert 'role="status"' in html and 'aria-live="polite"' in html, 'Live gameplay status missing'
+          assert 'role="progressbar"' in html, 'Garden progress semantics missing'
+          assert 'veggie-collected' in js and 'veggie-munched' in js, 'Vegetable interaction events missing'
+          assert 'veggie-world-reset' in js and 'veggie-discoveries-reset' in js, 'Adventure reset lifecycle missing'
           for name in ('Carrot','Broccoli','Tomato','Pea'):
               assert name in js, f'Missing veggie type: {name}'
           for path in ('web/main.js','web/veggie-adventure.js','web/discovery-world.js','web/storybook-world.js'):
