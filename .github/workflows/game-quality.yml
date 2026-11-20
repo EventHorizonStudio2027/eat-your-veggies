@@ -63,6 +63,9 @@ jobs:
           assert 'e.target===canvas' in js and "e.code==='Space'" in js, 'Canvas-focused keyboard controls missing'
           assert "--hold-progress" in js and "--hold-progress" in Path('web/styles.css').read_text(), 'Adult hold visual feedback missing'
           world=Path('web/discovery-world.js').read_text()
+          assert 'const restorationFireflies=[]' in world and 'restorationCenters=' in world, 'Restoration firefly world effect missing'
+          assert 'fly.mesh.visible=explorationEnabled&&amount>.05' in world, 'Fireflies must respect paused gameplay'
+          assert 'restoration.progress=0;for(const fly of restorationFireflies)' in world, 'New adventure must reset world restoration'
           assert 'const droplets=[]' in world and 'fountainAmount' in world, 'Fountain repair animation missing'
           assert 'const partyLights=[]' in world and 'partyAmount' in world, 'Party lighting animation missing'
           assert 'baseY:balloon.position.y' in world and 'prop.mesh.position.y=prop.baseY' in world, 'Party balloons must animate from a fixed base height'
