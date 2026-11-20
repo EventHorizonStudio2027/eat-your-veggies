@@ -1,7 +1,7 @@
 /* Cache the game shell and any successfully fetched 3D engine modules.
    First visit still needs internet; subsequent visits may work offline. */
-const CACHE='veggieverse-v2';
-const SHELL=['./','./index.html','./web/styles.css','./web/main.js','./web/storybook-world.js','./web/icon.svg','./manifest.webmanifest'];
+const CACHE='veggieverse-v3';
+const SHELL=['./','./index.html','./web/styles.css','./web/main.js','./web/storybook-world.js','./web/veggie-adventure.js','./web/discovery-world.js','./web/icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()));
 });
