@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-19 — Batch 31: preserve vegetable art, garden wayfinding and offline freshness
+
+- Fixed a visual regression in target-vegetable pulsing: pulse scaling now multiplies each model's authored base scale, preserving the distinct proportions of carrots, broccoli, tomatoes and peas.
+- Made destination signposts respond to the current garden: the active destination is larger and gently pulses, completed areas remain visually distinct, and reset restores the neutral state.
+- Corrected garden progress accessibility semantics by placing the progressbar role and live value on the visible progress track rather than its decorative fill child.
+- Bumped the service-worker cache version to v4 so existing installs fetch the latest shell and game modules rather than retaining the prior cache namespace.
+- UI improvement: stronger active-destination wayfinding makes the next garden more obvious without adding another text panel.
+- Changes committed to GitHub; CI execution, Pages deployment and real-device QA are still not independently verified.
+
+
 ## 2026-11-19 — Batch 30: keyboard access, HUD clarity and stronger CI
 
 - Made the 3D game canvas keyboard-focusable with explicit arrow/WASD/Space instructions and a relationship to the live gameplay status.
