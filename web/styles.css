@@ -132,3 +132,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Hide controls wired only to the retired sparkle quest; parent settings and sound remain available. */
 #read,#restart{display:none!important}
+
+/* Focus Phase final independent design touch: emphasize the one essential munch action. */
+.playing #munch:not(:disabled){background:linear-gradient(145deg,#fff6bb,#ffd985);color:#594521;font-weight:900;letter-spacing:.015em;text-shadow:0 1px 0 rgba(255,255,255,.65)}.playing #munch:disabled{filter:saturate(.55);opacity:.78}@media(prefers-reduced-motion:reduce){.playing #munch{animation:none!important;transition:none!important}}
