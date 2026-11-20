@@ -39,11 +39,11 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  const joystick=$('#joystick'),nub=$('#joystick-nub');
  let pointerId=null;
  function setStick(clientX,clientY){const b=joystick.getBoundingClientRect(),dx=clientX-(b.left+b.width/2),dy=clientY-(b.top+b.height/2),length=Math.hypot(dx,dy)||1,limit=b.width*.33,amount=Math.min(length,limit);move.x=dx/length*amount/limit;move.z=dy/length*amount/limit;nub.style.transform='translate('+move.x*limit+'px,'+move.z*limit+'px)'}
- function release(){move.x=move.z=0;pointerId=null;nub.style.transform='translate(0,0)'}function stopMovement(){release();keys.clear();target=null}
+ function release(){move.x=move.z=0;pointerId=null;nub.style.transform='translate(0,0)'}function stopMovement(){release();keys.clear();target=null;if(typeof destinationMarker!=='undefined')destinationMarker.visible=false}
  joystick.addEventListener('pointerdown',e=>{e.preventDefault();pointerId=e.pointerId;joystick.setPointerCapture(e.pointerId);setStick(e.clientX,e.clientY)});
  joystick.addEventListener('pointermove',e=>{if(pointerId===e.pointerId)setStick(e.clientX,e.clientY)});
  for(const event of ['pointerup','pointercancel','lostpointercapture'])joystick.addEventListener(event,release);
- window.addEventListener('blur',()=>{release();keys.clear();target=null;if(started)saveAdventure()});document.addEventListener('visibilitychange',()=>{if(document.hidden){release();keys.clear();target=null;if(started)saveAdventure()}});
+ window.addEventListener('blur',()=>{stopMovement();if(started)saveAdventure()});document.addEventListener('visibilitychange',()=>{if(document.hidden){stopMovement();if(started)saveAdventure()}});
  window.addEventListener('keydown',e=>{const gameplayFocus=e.target===document.body||e.target===canvas;if(!started||finished||!gameplayFocus)return;if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','KeyW','KeyA','KeyS','KeyD','Space'].includes(e.code)){e.preventDefault();if(e.code==='Space'){if(!e.repeat)munch.click()}else keys.add(e.code)}});
  window.addEventListener('keyup',e=>keys.delete(e.code));
  const munch=$('#munch'),counter=$('#veggie-count'),status=$('#play-status');
