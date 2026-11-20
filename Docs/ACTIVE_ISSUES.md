@@ -1,11 +1,11 @@
 # Active issues — Eat Your Veggies
 
-Completed issues are archived in Docs/CHANGELOG.md. Outstanding work starts at issue 1 here; GitHub issue IDs remain permanent.
+Completed improvements are archived in Docs/CHANGELOG.md. Outstanding priorities start at #1; GitHub issue IDs are permanent.
 
-1. **Live site and device QA** — verify the GitHub Pages deployment and full parent-to-victory playthrough, including save/resume, restored scenery, touch controls and browser backgrounding. The live URL could not be independently fetched in this session. [GitHub issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
-2. **Production-grade 2.5D graphics and animation** — replace procedural placeholder art with expressive, polished characters and distinct illustrated scenery. [GitHub issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
-3. **Meaningful exploration and multiple regions** — develop unique vegetable worlds, richer puzzles and discoveries.
-4. **Parent-only controls and preschool accessibility** — implement an adult gate, spoken game instructions and child usability tests.
-5. **Offline and release testing** — test engine dependency caching, performance, accessibility and child privacy.
+1. **Verify GitHub Pages and full device playthrough** — test parent setup, toddler movement, munch progression, garden scenery, victory/replay, saved games, and touch behavior. Automated static validation was added but is not a substitute for live browser testing. [GitHub issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
+2. **Premium art and animation** — replace procedural 3D placeholder assets with professional character and environment artwork; confirm mobile framerate. [GitHub issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
+3. **Distinct garden worlds and richer rewards** — four landmarks now establish visual identities, but deeper areas, exploration and puzzle interactions remain.
+4. **Parent-only controls and toddler accessibility** — adult gate, spoken instructions and preschool usability testing.
+5. **Offline and release QA** — test CDN dependency caching, accessibility, privacy and actual device compatibility.
 
-Progress requires only in-game munching; real-world eating is never required.
+Only in-game veggie munching is required to progress.
