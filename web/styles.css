@@ -102,3 +102,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Responsive chapter journey: readable milestones with minimal visual weight. */
 .playing .garden-journey{display:flex;align-items:center;justify-content:center;gap:clamp(6px,1.8vw,14px);flex-wrap:wrap}.playing .garden-step{display:inline-grid;place-items:center;min-width:36px;min-height:36px;border:2px solid rgba(255,255,255,.85);border-radius:14px;background:rgba(255,255,255,.68);box-shadow:0 3px 9px rgba(58,96,58,.12);font-size:20px}.playing .garden-step.current{background:#fff0bc;border-color:#fff9dc;box-shadow:0 0 0 3px rgba(255,221,119,.24),0 5px 14px rgba(96,90,51,.18)}.playing .garden-step.done{background:#dcf4ce;color:#387248}@media(max-width:480px){.playing .garden-step{min-width:32px;min-height:32px;font-size:18px;border-radius:11px}}
+
+/* Batch 42 final independent design touch: give the parent welcome panel a quiet storybook texture. */
+.parent-setup .parent-card{background-image:radial-gradient(circle at 12% 14%,rgba(255,225,150,.18) 0 3px,transparent 4px),radial-gradient(circle at 88% 78%,rgba(121,192,132,.12) 0 4px,transparent 5px);background-size:64px 64px,90px 90px;background-blend-mode:soft-light;box-shadow:0 18px 60px rgba(39,77,54,.19),inset 0 1px 0 rgba(255,255,255,.85)}
