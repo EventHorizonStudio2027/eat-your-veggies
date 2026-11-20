@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Batch 42: new-adventure reset, input handoff and milestone clarity
+
+- Reset the hero to the garden starting position and clear held inputs when a genuinely new adventure begins; saved adventures still restore their previous position.
+- Make tapping a vegetable or the ground override stale keyboard/joystick movement so the tap-to-walk marker and actual movement agree.
+- Clear held movement on game canvas blur, preventing unintended continued walking after keyboard focus changes.
+- UI improvement: refine the four chapter milestones with compact responsive spacing, clearer active-garden highlight and completed-garden contrast.
+- Extend static GitHub Actions assertions for new-game reset, input handoff and canvas blur behavior.
+- An additional final visual refinement is committed after documentation as the last design pass.
+- Source changes are committed to GitHub; live deployment, real-device playthrough and CI execution are still unverified.
+
+
 ## 2026-11-20 — Batch 41: tap-to-walk clarity, safe input lifecycle and targeted discovery
 
 - Added a subtle 3D destination ring to show where tap-to-walk will lead, with gentle motion and reduced-motion support.
