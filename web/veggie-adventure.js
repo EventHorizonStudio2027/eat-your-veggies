@@ -13,7 +13,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   if(type==='Tomato'){part(g,sphere,red,0,.57,0,.53,.49,.5);for(let i=0;i<5;i++){const leaf=part(g,sphere,dark,Math.cos(i*1.257)*.18,1.03,Math.sin(i*1.257)*.18,.21,.07,.13);leaf.rotation.y=i*1.257}}
   if(type==='Pea'){for(let i=-1;i<=1;i++)part(g,sphere,green,i*.31,.51,0,.32,.34,.32);part(g,sphere,dark,0,.3,-.19,.91,.2,.26)}
   for(const ex of [-.15,.15]){part(g,sphere,black,ex,.62,.42,.052,.072,.045);part(g,sphere,pink,ex*1.75,.45,.42,.09,.06,.04)}
-  g.userData={type};veggies.push(g);return g;
+  g.userData={type,baseScale:g.scale.clone()};veggies.push(g);return g;
  }
  const types=['Carrot','Broccoli','Tomato','Pea'];
  let chosenTypes=[...types];let started=false;let finished=false;let completedGardens=0;let saveTimer=0;const SAVE_KEY='veggieverse-adventure-v1';const setup=$('#parent-setup');
@@ -67,7 +67,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   // Keep the little companion nearby, without requiring player control.
   sprig.position.x+=(hero.position.x+1.5-sprig.position.x)*Math.min(1,dt*2);
   sprig.position.z+=(hero.position.z+.8-sprig.position.z)*Math.min(1,dt*2);
-  for(const v of veggies){if(!v.visible)continue;const isGoal=v.userData.type===activeLevel().type;v.scale.setScalar(isGoal&&!reduced?1+Math.sin(time*3+v.position.x)*.075:1);if(!reduced){v.rotation.y+=dt*.25;v.position.y=Math.sin(time*2+v.position.x)*.075}else v.position.y=0;if(Math.hypot(v.position.x-hero.position.x,v.position.z-hero.position.z)<1.35)collect(v)}
+  for(const v of veggies){if(!v.visible)continue;const isGoal=v.userData.type===activeLevel().type;v.scale.copy(v.userData.baseScale).multiplyScalar(isGoal&&!reduced?1+Math.sin(time*3+v.position.x)*.075:1);if(!reduced){v.rotation.y+=dt*.25;v.position.y=Math.sin(time*2+v.position.x)*.075}else v.position.y=0;if(Math.hypot(v.position.x-hero.position.x,v.position.z-hero.position.z)<1.35)collect(v)}
   munching=Math.max(0,munching-dt);snack.visible=munching>0;snack.scale.setScalar(Math.max(.01,munching/.75*.24));celebration=Math.max(0,celebration-dt);
   hero.scale.y=1+(munching?Math.sin(time*25)*.09:walking&&!reduced?Math.abs(Math.sin(stepTime))*.055:0);
   if(celebration>0&&!reduced)hero.rotation.z=Math.sin(time*16)*.06;else hero.rotation.z=0;
