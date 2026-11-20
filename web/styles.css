@@ -114,3 +114,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Batch 44 final extra design pass: a softer, more legible parent safety checkpoint. */
 .parent-gate-card{background-image:radial-gradient(circle at 90% 10%,rgba(255,237,165,.25),transparent 36%),radial-gradient(circle at 10% 90%,rgba(157,215,175,.17),transparent 40%);box-shadow:0 20px 65px rgba(29,61,42,.24),inset 0 1px 0 rgba(255,255,255,.9)}.parent-gate-card #parent-gate-title{letter-spacing:-.025em;text-wrap:balance}.parent-gate-card #parent-gate-progress{font-variant-numeric:tabular-nums}
+
+/* Batch 45 final extra design touch: give the victory moment a warmer storybook finish. */
+.victory-card{background-image:radial-gradient(circle at 50% 0%,rgba(255,232,159,.27),transparent 56%),radial-gradient(circle at 8% 88%,rgba(157,221,183,.15),transparent 40%);box-shadow:0 22px 75px rgba(37,75,51,.24),inset 0 1px 0 rgba(255,255,255,.9)}#victory-title{text-wrap:balance;letter-spacing:-.025em}#play-again:focus-visible{outline:3px solid #ffdf83;outline-offset:4px}
