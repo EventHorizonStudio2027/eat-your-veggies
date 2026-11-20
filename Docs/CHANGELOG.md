@@ -1,12 +1,12 @@
 # Development changelog
 
-## 2026-11-19 — Batch 17: parent-chosen veggies and storybook exploration
-- Added a polished grown-up onboarding screen before gameplay; parent chooses one or more vegetables from carrots, broccoli, tomatoes and peas. Selection persists locally on the device.
-- Updated the progression engine so only chosen vegetables appear and the munch-to-advance goals follow the parent-selected set. A minimum of one selection is required.
-- Added a layered 2.5D/isometric camera and storybook diorama with six discoveries: mushroom, cloud, wishing well, butterfly, treasure chest and flower.
-- Introduced garden problems to solve through in-game munching: sleepy flowers, broken sparkle bridge, colorless fountain and quiet party. New gardens shift the world's background palette.
-- Added a parent settings button, improved responsive parent UI and CI validation for the new discovery module.
-- These changes are committed but have not yet been independently end-to-end browser or mobile tested. Current problem resolutions are represented by text and stage transitions; environmental repair animations remain open.
+## 2026-11-19 — Batch 18: a real ending and magical world restoration
+- Completed selected vegetable stages now trigger a full-screen victory celebration instead of looping forever; replay returns to parent veggie selection.
+- Added a group of 3D storybook flowers that visibly bloom as correct vegetables are munched. Progress events connect the gameplay module to world art.
+- Added gentle floating idle animation to collectible vegetables.
+- Fixed the restart control so it resets the actual game rather than only the hidden legacy story quest.
+- Refined victory card and replay interface with reduced-motion support.
+- Changes committed to GitHub; live device/browser end-to-end verification remains outstanding.
 
-## Earlier batches
-- Free-roaming joystick, tap-to-move, 3D veggie pickups, Munch button, stage progress, pastel forest, PWA shell and optional narration.
+## Previous batches
+- Parent-selected vegetables, four themed progression goals, 2.5D camera, six world discoveries, toddler joystick, vegetable collection and munching, storybook forest and PWA shell.
