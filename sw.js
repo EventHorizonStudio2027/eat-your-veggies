@@ -1,6 +1,6 @@
 /* Cache the game shell and any successfully fetched 3D engine modules.
    First visit still needs internet; subsequent visits may work offline. */
-const CACHE='veggieverse-v5';
+const CACHE='veggieverse-v6';
 const SHELL=['./','./index.html','./web/styles.css','./web/main.js','./web/storybook-world.js','./web/veggie-adventure.js','./web/discovery-world.js','./web/icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()));
@@ -21,7 +21,9 @@ self.addEventListener('fetch',event=>{
       }
       return response;
     }).catch(()=>cached||Response.error());
-    // Fresh game code takes priority; cached copy is only an offline fallback.
-    return url.origin===self.location.origin ? request : (cached||request);
+    // Navigation and game code prefer fresh responses, but a slow connection must not hang an installed game.
+    if(url.origin!==self.location.origin)return cached||request;
+    if(!cached)return request;
+    return Promise.race([request,new Promise(resolve=>setTimeout(()=>resolve(cached),2500))]);
   }));
 });
