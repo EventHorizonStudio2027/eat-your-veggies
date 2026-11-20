@@ -44,9 +44,12 @@ jobs:
           assert 'id="parent-gate"' in html and 'id="parent-gate-hold"' in html, 'Parent adult gate markup missing'
           assert 'beginGateHold' in js and 'openParentSettings' in js and 'wasPlayingBeforeGate' in js, 'Parent gate interaction lifecycle missing'
           assert 'pointercancel' in js and 'keyup' in js, 'Parent gate cancellation/keyboard handling missing'
+          assert 'e.target===canvas' in js and "e.code==='Space'" in js, 'Canvas-focused keyboard controls missing'
+          assert "--hold-progress" in js and "--hold-progress" in Path('web/styles.css').read_text(), 'Adult hold visual feedback missing'
           world=Path('web/discovery-world.js').read_text()
           assert 'const droplets=[]' in world and 'fountainAmount' in world, 'Fountain repair animation missing'
           assert 'const partyLights=[]' in world and 'partyAmount' in world, 'Party lighting animation missing'
+          assert 'baseY:balloon.position.y' in world and 'prop.mesh.position.y=prop.baseY' in world, 'Party balloons must animate from a fixed base height'
           assert 'prop.base-.85' in world, 'Bridge rail repair animation missing'
           for name in ('Carrot','Broccoli','Tomato','Pea'):
               assert name in js, f'Missing veggie type: {name}'
