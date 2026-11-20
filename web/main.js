@@ -43,6 +43,10 @@ let step=saved?.step??0,collected=wonders.filter(w=>!w.visible).length,celebrate
 const $=s=>document.querySelector(s),raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();
 function showToast(message){const el=$('#toast');el.textContent=message;el.classList.add('show');clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>el.classList.remove('show'),1700)}
 function chime(){if(!soundOn)return;try{audioCtx??=new(window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.type='sine';o.frequency.setValueAtTime(620,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(930,audioCtx.currentTime+.18);g.gain.setValueAtTime(.035,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.32);o.connect(g).connect(audioCtx.destination);o.start();o.stop(audioCtx.currentTime+.33)}catch{}}
+// The sound toggle also provides feedback for the actual vegetable adventure.
+window.addEventListener('veggie-collected',()=>chime());
+window.addEventListener('veggie-munched',e=>{if(e.detail.correct)chime()});
+window.addEventListener('veggie-garden-complete',e=>{if(!e.detail.restored)chime()});
 function speakStory(force=false){
   if((!soundOn&&!force)||!('speechSynthesis' in window))return;
   try{
