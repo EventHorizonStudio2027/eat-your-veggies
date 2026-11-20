@@ -59,6 +59,8 @@ const locations=[[-6,-5],[5,-5],[-5,5],[5,5],[0,-7],[7,1]];
  // Restoration fireflies gather around the active garden and remain after repair.
  const restorationFireflies=[];const fireflyGeometry=new THREE.SphereGeometry(.1,8,6);const fireflyBaseMaterial=new THREE.MeshBasicMaterial({color:'#fff3a4',transparent:true,opacity:.8,depthWrite:false});for(let i=0;i<16;i++){const glow=new THREE.Mesh(fireflyGeometry,fireflyBaseMaterial);glow.visible=false;scene.add(glow);restorationFireflies.push({mesh:glow,phase:i*2.39996,radius:1.3+(i%4)*.28})}
  const restorationCenters={flowers:[0,0],bridge:[-4,0],fountain:[4,0],party:[0,-5]};
+ // Four permanent tiny storybook garden markers help children distinguish destinations.
+ const gardenMarkers=[];for(const [kind,[x,z]] of Object.entries(restorationCenters)){const marker=new THREE.Group();marker.position.set(x,0,z);scene.add(marker);const pedestal=obj(box,colors.cream,0,.08,0,.55,.16,.55,marker);pedestal.rotation.y=Math.PI/4;const markerColor=({flowers:colors.peach,bridge:colors.mint,fountain:colors.blue,party:colors.violet})[kind];obj(sphere,markerColor,0,.37,0,.2,.25,.2,marker);gardenMarkers.push({kind,marker})}
  const gardenColor={flowers:'#ffe4a0',bridge:'#b9f2b4',fountain:'#a4e5ff',party:'#e3c2ff'};
  const gardenGlowMats=Object.fromEntries(Object.entries(gardenColor).map(([kind,color])=>[kind,new THREE.MeshBasicMaterial({color,transparent:true,opacity:.8,depthWrite:false})]));
  // Ground-level halos make each destination unmistakable without introducing extra controls.
