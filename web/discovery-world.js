@@ -18,12 +18,23 @@ export function createDiscoveryWorld(THREE,scene,hero,notify){
  // Decorative layered pastel hills and stepping stones create an illustrated depth effect.
  for(let i=0;i<13;i++){const a=i*2.4,r=9+(i%3)*1.8;obj(sphere,i%2?colors.mint:colors.blue,Math.cos(a)*r,-.7,Math.sin(a)*r,2.8,1.4,2.4)}
  for(let i=0;i<15;i++){const z=-6+i*.8;obj(sphere,colors.cream,Math.sin(i*.7)*.5,.045,z,.36,.07,.3)}
+ // Four visible story problems: drooping flowers, a missing bridge, a sleepy fountain and a quiet party.
+ const stageProps=[];
+ const bridge=new THREE.Group();bridge.position.set(-4,0,0);scene.add(bridge);
+ for(let i=0;i<6;i++){const plank=obj(box,colors.wood,(i-2.5)*.52,.2,0,.47,.17,1.65,bridge);plank.position.y=-.65;stageProps.push({kind:'bridge',mesh:plank,base:.2,phase:i*.22})}
+ const fountain=new THREE.Group();fountain.position.set(4,0,0);scene.add(fountain);
+ obj(sphere,colors.cream,0,.28,0,1.1,.32,1.1,fountain);obj(sphere,colors.blue,0,.47,0,.82,.12,.82,fountain);
+ const water=obj(cone,colors.blue,0,1.12,0,.5,.95,.5,fountain);water.scale.y=.02;stageProps.push({kind:'fountain',mesh:water});
+ const party=new THREE.Group();party.position.set(0,0,-5);scene.add(party);
+ for(let i=0;i<5;i++){const a=i*1.257;const balloon=obj(sphere,[colors.pink,colors.peach,colors.yellow,colors.violet,colors.blue][i],Math.cos(a)*1.1,1.8+Math.sin(a)*.25,Math.sin(a)*.5,.3,.39,.28,party);balloon.scale.setScalar(.001);stageProps.push({kind:'party',mesh:balloon,original:[.3,.39,.28]})}
+ let stageKind='flowers';let stageProgress=0;
+ function setStage(type,progress){stageKind=({Carrot:'flowers',Broccoli:'bridge',Tomato:'fountain',Pea:'party'})[type]||'flowers';stageProgress=Math.max(0,Math.min(1,progress));setRestoration(stageKind==='flowers'?stageProgress:0)}
  let count=0;
  const restoreObjects=[];const petals=[];
  for(let i=0;i<9;i++){const a=i*Math.PI*2/9;const x=Math.cos(a)*3.4,z=Math.sin(a)*3.4;const stem=obj(box,colors.mint,x,.38,z,.12,.72,.12);const bloom=new THREE.Group();bloom.position.set(x,.8,z);scene.add(bloom);for(let j=0;j<5;j++){const t=j*Math.PI*2/5;obj(sphere,colors.pink,Math.cos(t)*.26,Math.sin(t)*.26,0,.24,.24,.16,bloom)}obj(sphere,colors.yellow,0,0,.14,.24,.24,.18,bloom);bloom.scale.setScalar(.1);petals.push(bloom);restoreObjects.push(stem)}
  const restoration={progress:0,target:0};
  function setRestoration(progress){restoration.target=Math.max(0,Math.min(1,progress))}
 
- function update(dt,t,reduced){restoration.progress+=(restoration.target-restoration.progress)*Math.min(1,dt*2.5);for(const bloom of petals){const scale=.12+restoration.progress*.88;bloom.scale.setScalar(scale);if(!reduced)bloom.rotation.y=Math.sin(t+bloom.position.x)*.13}for(const d of discoveries){if(!d.seen&&Math.hypot(d.g.position.x-hero.position.x,d.g.position.z-hero.position.z)<1.4){d.seen=true;count++;notify('✨ You found '+d.name+'! ('+count+'/6 surprises)')}if(!reduced)d.g.rotation.y=Math.sin(t*.6+d.g.position.x)*.06}}
- return {update,setRestoration};
+ function update(dt,t,reduced){for(const prop of stageProps){const on=prop.kind===stageKind;const fraction=on?stageProgress:0;if(prop.kind==='bridge')prop.mesh.position.y+=( (-.65+fraction*.85)-prop.mesh.position.y)*Math.min(1,dt*3);if(prop.kind==='fountain')prop.mesh.scale.y+=(Math.max(.02,fraction)-prop.mesh.scale.y)*Math.min(1,dt*3);if(prop.kind==='party'){const size=Math.max(.001,fraction);prop.mesh.scale.set(prop.original[0]*size,prop.original[1]*size,prop.original[2]*size);if(!reduced)prop.mesh.position.y+=Math.sin(t*2+prop.mesh.position.x)*dt*.05}}restoration.progress+=(restoration.target-restoration.progress)*Math.min(1,dt*2.5);for(const bloom of petals){const scale=.12+restoration.progress*.88;bloom.scale.setScalar(scale);if(!reduced)bloom.rotation.y=Math.sin(t+bloom.position.x)*.13}for(const d of discoveries){if(!d.seen&&Math.hypot(d.g.position.x-hero.position.x,d.g.position.z-hero.position.z)<1.4){d.seen=true;count++;notify('✨ You found '+d.name+'! ('+count+'/6 surprises)')}if(!reduced)d.g.rotation.y=Math.sin(t*.6+d.g.position.x)*.06}}
+ return {update,setRestoration,setStage};
 }
