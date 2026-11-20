@@ -1,11 +1,9 @@
-# Active issues — vegetable progression game
+# Active issues — parent-guided 2.5D toddler adventure
 
-Completed work is archived in Docs/CHANGELOG.md. Remaining work starts at 1.
+Completed work is archived in Docs/CHANGELOG.md. Outstanding work restarts at 1.
 
-1. **Verify munch-to-advance levels in live browser** — four vegetable goals implemented but not independently end-to-end tested on GitHub Pages or touch devices.
-2. **Improve stage identity and reward** — four levels currently share one forest; build distinct themed areas, gates, character animations and end-of-world celebration.
-3. **Refine toddler accessibility and difficulty** — test movement, food targeting, visual feedback, narration and pacing with parents/children.
-4. **Offline reliability and parent settings** — test PWA offline behavior, self-host dependencies and add adult-only settings.
-5. **Release QA** — check performance, privacy, accessibility and safe age-appropriate framing. Eating in game is required for level progression; real-world eating is never required.
-
-GitHub issues: [deployment QA #1](https://github.com/FatesPassage/eat-your-veggies/issues/1), [visual and usability #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
+1. **Live deployment and touch gameplay verification** — validate GitHub Pages deployment, parent selection, movement, vegetable pickup, munch requirements and stage progression on desktop/iOS/Android. GitHub [issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
+2. **Production-quality 2.5D art and animations** — authored character sprites/models, walk/eat/reaction cycles, distinct stages and richer environment art; current world uses procedural storybook props. GitHub [issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
+3. **Meaningful stage restoration and finish** — animate the broken bridge, flowers, fountain and party as they are fixed; introduce final victory and meaningful nonrepetitive progression. Current goals are text plus level transitions.
+4. **Parent setup security and accessibility** — parent choices are stored locally and editable from the settings button, but no adult gate is implemented. Add accessible voice prompts, parental controls and persistence of level progress.
+5. **Offline and release QA** — verify PWA caching, child privacy, mobile framerate and age-appropriate UX. In-game veggie eating is needed to progress; no real-world eating is required.
