@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Focus Phase Batch 50: save restoration, sound and focus fixes
+
+- Critical: removed an inline JavaScript comment that unintentionally swallowed the saved-game restoration statements for collected/eaten counters, basket, character position and restored garden events.
+- Wired the existing sound toggle to actual vegetable collection, correct munching and garden-completion events.
+- Stopped the sound toggle from narrating the hidden legacy sparkle story.
+- Fixed canvas blur to cancel tap-to-walk destinations as well as keyboard and joystick movement.
+- Added CI static guards for the resume regression and live gameplay sound wiring.
+- Final independent interface polish follows this documentation commit.
+- All source changes committed; live browser playthrough, device QA and GitHub Actions execution remain unverified.
+
+
 ## 2026-11-20 — Focus Phase Batch 49: core save/resume and garden transition correctness
 
 - Fixed chapter transitions so joystick/keyboard/tap movement is cleared before repositioning the player at the canonical spawn.
