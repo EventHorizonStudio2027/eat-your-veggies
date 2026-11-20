@@ -55,3 +55,10 @@
 
 /* A miniature illustrated route through the parent-selected gardens. */
 .garden-journey{display:flex;justify-content:center;align-items:center;gap:9px;margin:10px auto 8px}.garden-step{display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:#f0f0e4;border:2px solid #ffffff;color:#758b76;box-shadow:0 2px 4px #42634825;font-size:17px;opacity:.58}.garden-step.current{opacity:1;background:#fff2bd;outline:3px solid #f2c96d;outline-offset:1px;transform:scale(1.08)}.garden-step.done{opacity:1;background:#83c69b;color:#fff;font-size:19px;font-weight:900}@media(max-width:650px){.garden-journey{gap:7px;margin:7px auto 5px}.garden-step{width:27px;height:27px;font-size:15px}}
+
+/* The previous sparkle-quest UI must never cover the new toddler adventure. */
+.playing .quest,.playing .story,.playing .companion,.playing .welcome{display:none!important}
+.playing .play-hud{visibility:visible}
+body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
+.playing .topbar{z-index:8}
+@media(max-width:650px){.playing .level-banner{width:min(390px,calc(100vw - 24px));padding:9px 12px}.playing .level-banner strong{font-size:clamp(12px,3.4vw,16px)}.playing .garden-journey{margin:5px auto}.playing .play-controls{bottom:max(10px,env(safe-area-inset-bottom))}}
