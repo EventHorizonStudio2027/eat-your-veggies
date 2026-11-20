@@ -39,7 +39,7 @@ const locations=[[-6,-5],[5,-5],[-5,5],[5,5],[0,-7],[7,1]];
   const crown=obj(sphere,theme.petal,0,1.3,0,.52,.6,.48,group);obj(sphere,colors.cream,-.17,1.4,.42,.07,.09,.05,group);obj(sphere,colors.cream,.17,1.4,.42,.07,.09,.05,group);themed.push({type:theme.type,group,crown})}
  let stageKind='flowers';let stageProgress=0;const repaired=new Set();
  function finishStage(type){repaired.add(({Carrot:'flowers',Broccoli:'bridge',Tomato:'fountain',Pea:'party'})[type]);}
- function setStage(type,progress){stageKind=({Carrot:'flowers',Broccoli:'bridge',Tomato:'fountain',Pea:'party'})[type]||'flowers';stageProgress=Math.max(0,Math.min(1,progress));for(const t of themed)t.group.scale.setScalar(t.type===stageKind?1:repaired.has(t.type)?.82:.42);setRestoration(stageKind==='flowers'?stageProgress:repaired.has('flowers')?1:0)}
+ function setStage(type,progress){stageKind=({Carrot:'flowers',Broccoli:'bridge',Tomato:'fountain',Pea:'party'})[type]||'flowers';stageProgress=Math.max(0,Math.min(1,progress));for(const t of themed)t.group.scale.setScalar(t.type===stageKind?1:repaired.has(t.type) ? 0.82 : 0.42);setRestoration(stageKind==='flowers'?stageProgress:repaired.has('flowers')?1:0)}
  let count=0;
  const restoreObjects=[];const petals=[];
  for(let i=0;i<9;i++){const a=i*Math.PI*2/9;const x=Math.cos(a)*3.4,z=Math.sin(a)*3.4;const stem=obj(box,colors.mint,x,.38,z,.12,.72,.12);const bloom=new THREE.Group();bloom.position.set(x,.8,z);scene.add(bloom);for(let j=0;j<5;j++){const t=j*Math.PI*2/5;obj(sphere,colors.pink,Math.cos(t)*.26,Math.sin(t)*.26,0,.24,.24,.16,bloom)}obj(sphere,colors.yellow,0,0,.14,.24,.24,.18,bloom);bloom.scale.setScalar(.1);petals.push(bloom);restoreObjects.push(stem)}
