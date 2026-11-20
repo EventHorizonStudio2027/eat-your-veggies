@@ -64,7 +64,7 @@ $('#find').addEventListener('click',()=>{const next=wonders.find(w=>w.visible);i
 $('#restart').addEventListener('click',()=>{
   const now=performance.now();
   if(now>restartArmedUntil){restartArmedUntil=now+5000;showToast('Tap restart again to start over');return}
-  restartArmedUntil=0;try{localStorage.removeItem('veggieverse-adventure-v1');localStorage.removeItem(STORAGE_KEY)}catch{}location.reload();
+  restartArmedUntil=0;try{localStorage.removeItem('veggieverse-adventure-v1');localStorage.removeItem('veggieverse-discoveries-v1');localStorage.removeItem(STORAGE_KEY)}catch{}location.reload();
 });
 $('#read').addEventListener('click',()=>{if(!('speechSynthesis' in window)){showToast('Read aloud is not available here');return} speakStory(true)});
 $('#sound').addEventListener('click',()=>{soundOn=!soundOn;$('#sound').setAttribute('aria-pressed',String(soundOn));$('#sound').setAttribute('aria-label',soundOn?'Turn sound off':'Turn sound on');$('#sound').textContent=soundOn?'♫':'♪';if(soundOn){chime();speakStory()}else if('speechSynthesis' in window)window.speechSynthesis.cancel()});
