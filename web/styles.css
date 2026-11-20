@@ -105,3 +105,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Batch 42 final independent design touch: give the parent welcome panel a quiet storybook texture. */
 .parent-setup .parent-card{background-image:radial-gradient(circle at 12% 14%,rgba(255,225,150,.18) 0 3px,transparent 4px),radial-gradient(circle at 88% 78%,rgba(121,192,132,.12) 0 4px,transparent 5px);background-size:64px 64px,90px 90px;background-blend-mode:soft-light;box-shadow:0 18px 60px rgba(39,77,54,.19),inset 0 1px 0 rgba(255,255,255,.85)}
+
+/* Batch 43 interface polish: stronger legibility for the garden's next objective. */
+.playing #level-goal{max-width:48ch;margin-inline:auto;line-height:1.5;letter-spacing:.005em;text-wrap:balance;text-shadow:0 1px 0 rgba(255,255,255,.65)}.playing #level-count{font-variant-numeric:tabular-nums;font-weight:800;letter-spacing:.025em}
