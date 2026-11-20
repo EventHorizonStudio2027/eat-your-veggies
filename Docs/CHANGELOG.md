@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Batch 47: particle lifecycle, restored landmark glow, and chapter UI
+
+- Fixed celebration particle cleanup: starting a new adventure now removes leftover transient particle meshes and clears the particle list; paused gameplay no longer starts a new celebration.
+- Restored garden sculptures now receive a persistent soft emissive highlight that appears immediately on completion and resets for a new adventure.
+- Isolated each sculpture crown's material so the emissive effect cannot accidentally recolor other scenery sharing the garden palette.
+- Improved the in-game chapter banner and progress fill contrast, glass-like depth, and compact mobile fit.
+- Expanded CI static assertions for celebration cleanup, isolated crown materials and completion glow.
+- A separate extra final visual refinement is committed after this documentation update.
+- Source changes committed; real-browser gameplay, live Pages deployment and GitHub Actions execution are not independently verified.
+
+
 ## 2026-11-20 — Batch 46: offline fallback, world performance and landmark clarity
 
 - Fixed service-worker handling of transient HTTP 404/500 errors: use the previously cached working asset when available; rotated offline cache to veggieverse-v8.
