@@ -1,0 +1,37 @@
+name: Game code quality
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check web/main.js
+          node --check web/veggie-adventure.js
+          node --check web/discovery-world.js
+          node --check web/storybook-world.js
+          node --check sw.js
+      - name: Check required game elements and cache assets
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          html=Path('index.html').read_text()
+          js=Path('web/veggie-adventure.js').read_text()
+          cache=Path('sw.js').read_text()
+          ids=['parent-setup','start-adventure','parent-settings','world','munch','victory','play-again','garden-journey','level-fill','joystick']
+          for name in ids:
+              assert f'id="{name}"' in html, f'Missing game UI: {name}'
+          for name in ('Carrot','Broccoli','Tomato','Pea'):
+              assert name in js, f'Missing veggie type: {name}'
+          for path in ('web/main.js','web/veggie-adventure.js','web/discovery-world.js','web/storybook-world.js'):
+              assert Path(path).exists(), f'Missing module: {path}'
+              assert f"'./{path}'" in cache, f'Missing offline cache entry: {path}'
+          print('Static game integrity checks passed')
+          PY
