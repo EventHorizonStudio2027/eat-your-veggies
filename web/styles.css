@@ -141,3 +141,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Focus Phase Batch 50: final independent visual refinement of the real sound control. */
 .playing #sound[aria-pressed="true"]{background:linear-gradient(145deg,#fff5b8,#dff6ca);color:#315d3b;border-color:rgba(255,255,255,.88);box-shadow:0 4px 16px rgba(75,134,73,.2),inset 0 1px 0 #fff}.playing #sound:focus-visible{outline:3px solid #315d3b;outline-offset:3px}
+
+/* Focus Phase Batch 50 final design polish: make the real primary action comfortable on touch screens. */
+.playing #munch{min-height:52px;touch-action:manipulation;border-radius:18px}.playing #munch:not(:disabled):active{filter:brightness(.96);transform:translateY(1px)}@media(max-width:480px){.playing #munch{min-height:56px;padding-inline:16px}}
