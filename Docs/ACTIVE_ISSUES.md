@@ -1,11 +1,11 @@
 # Active issues — Eat Your Veggies
 
-Completed improvements are archived in Docs/CHANGELOG.md. Outstanding priorities start at #1; GitHub issue IDs are permanent.
+Completed work is archived in Docs/CHANGELOG.md. New outstanding priorities are numbered starting at 1; GitHub issue numbers are permanent.
 
-1. **Verify GitHub Pages and full device playthrough** — test parent setup, toddler movement, munch progression, garden scenery, victory/replay, saved games, and touch behavior. Automated static validation was added but is not a substitute for live browser testing. [GitHub issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
-2. **Premium art and animation** — replace procedural 3D placeholder assets with professional character and environment artwork; confirm mobile framerate. [GitHub issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
-3. **Distinct garden worlds and richer rewards** — four landmarks now establish visual identities, but deeper areas, exploration and puzzle interactions remain.
-4. **Parent-only controls and toddler accessibility** — adult gate, spoken instructions and preschool usability testing.
-5. **Offline and release QA** — test CDN dependency caching, accessibility, privacy and actual device compatibility.
+1. **Live deployment and device playthrough** — independently verify parent choices, movement, pickup, munch, garden repairs, save/resume, discoveries, victory and restart on GitHub Pages. [GitHub issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
+2. **Production-quality characters and environments** — upgrade procedural storybook models and butterfly props to polished 2.5D art, animation and optimized mobile performance. [GitHub issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
+3. **More meaningful distinct garden regions** — add world-specific puzzles, secrets and rewards beyond the current shared forest.
+4. **Parent-only settings and toddler accessibility** — adult gate, spoken instructions and child usability testing.
+5. **Offline and release QA** — verify Three.js CDN caching, privacy, mobile/browser support and the CI pipeline.
 
-Only in-game veggie munching is required to progress.
+Advancement depends only on in-game veggie munching; no real-world eating is required.
