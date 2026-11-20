@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-19 — Batch 35: distinctive garden restoration and safer adult gate
+
+- Parent checkpoint: cancel an in-progress hold on window blur, hidden tab, or Escape, preventing a hold from completing while the parent is away.
+- Tomato Town: added eight animated fountain droplets that appear and rise as restoration progresses, remaining active after the fountain is repaired.
+- Broccoli Grove: added six bridge posts and two long railings that rise alongside the bridge planks, creating a clearer, complete repair.
+- Pea Party: added a nine-light colorful garland that gradually illuminates as the party is restored; animation respects reduced-motion settings.
+- UI/accessibility: simplified adult hold countdown to whole seconds, avoiding excessive screen-reader live announcements.
+- CI: added checks for the three garden-specific repair animations. All source changes committed to GitHub; live deployment/device QA and GitHub Actions execution remain unverified.
+
+
 ## 2026-11-19 — Batch 34: parent-only checkpoint and safer toddler navigation
 
 - Added a dedicated grown-up checkpoint before parent settings can open. The adult must press and hold for three seconds; both pointer and keyboard input are supported.
