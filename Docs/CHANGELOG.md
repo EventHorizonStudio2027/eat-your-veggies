@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-20 — Batch 37: restoration delight and adult-dialog accessibility
+
+- Added keyboard focus containment in the adult confirmation dialog: Tab/Shift+Tab cycle between its two controls, while Escape cancels.
+- Added a brief, unique on-screen garden repair celebration for all four gardens (flowers, bridge, fountain, party) and automatically dismiss it.
+- Reset stale celebration banners when a new adventure starts, and made the banner respect reduced-motion preferences.
+- Improved interface use of space: celebration floats over the 3D world without permanently enlarging the HUD; corrected invalid adult button font shorthand.
+- Extended CI static checks for adult-dialog focus containment and garden completion feedback.
+- All source changes committed to GitHub. Public Pages hostname resolution failed from the container, so live gameplay and Actions run status remain unverified.
+
+
 ## 2026-11-20 — Batch 36: keyboard regression fix, stable animations and clear parent hold
 
 - Fixed a real gameplay regression: the canvas receives keyboard focus on start, but Space previously worked only with body focus. Arrow/WASD movement and Space-to-munch now work when the game canvas is focused; game shortcuts do not activate while interacting with setup or other controls.
