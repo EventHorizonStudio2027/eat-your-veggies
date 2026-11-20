@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-20 — Batch 41: tap-to-walk clarity, safe input lifecycle and targeted discovery
+
+- Added a subtle 3D destination ring to show where tap-to-walk will lead, with gentle motion and reduced-motion support.
+- Cleared destination indicators and movement state when opening parent controls, losing focus, backgrounding, winning or replaying.
+- Tightened vegetable tap targeting to only currently selected, visible vegetable types.
+- Extended static CI checks for the marker, targeting filter and victory movement reset.
+- Extra end-of-batch visual polish: see the follow-on final design commit for an additional tactile HUD refinement.
+- Source committed to GitHub. Actual browser gameplay, GitHub Actions results and mobile verification remain outstanding.
+
+
 ## 2026-11-20 — Batch 40: offline engine readiness, parent input safety and garden-themed UI
 
 - Pre-cache the exact Three.js 0.170.0 module during service-worker installation when online; failure is non-fatal so game shell installation still succeeds. Bumped offline cache to veggieverse-v7.
