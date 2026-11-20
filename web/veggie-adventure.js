@@ -33,7 +33,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
 
  for(let i=0;i<16;i++){const a=i*2.39996,r=3.2+(i%4)*1.35;makeVeggie(types[i%4],Math.cos(a)*r,Math.sin(a)*r)}
  const state={collected:0,eaten:0};
- const move={x:0,z:0};
+ const move={x:0,z:0};const temporary=new THREE.Vector3();
  const keys=new Set();
  const joystick=$('#joystick'),nub=$('#joystick-nub');
  let pointerId=null;
@@ -63,7 +63,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   // Keep the little companion nearby, without requiring player control.
   sprig.position.x+=(hero.position.x+1.5-sprig.position.x)*Math.min(1,dt*2);
   sprig.position.z+=(hero.position.z+.8-sprig.position.z)*Math.min(1,dt*2);
-  for(const v of veggies){if(!v.visible)continue;if(!reduced)v.rotation.y+=dt*.25;if(Math.hypot(v.position.x-hero.position.x,v.position.z-hero.position.z)<1.05)collect(v)}
+  for(const v of veggies){if(!v.visible)continue;if(!reduced){v.rotation.y+=dt*.25;v.position.y=Math.sin(time*2+v.position.x)*.075}if(Math.hypot(v.position.x-hero.position.x,v.position.z-hero.position.z)<1.05)collect(v)}
   munching=Math.max(0,munching-dt);celebration=Math.max(0,celebration-dt);
   hero.scale.y=1+(munching?Math.sin(time*25)*.09:walking&&!reduced?Math.abs(Math.sin(stepTime))*.055:0);
   if(celebration>0&&!reduced)hero.rotation.z=Math.sin(time*16)*.06;else hero.rotation.z=0;
