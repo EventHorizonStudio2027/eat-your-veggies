@@ -1,11 +1,11 @@
 # Active issues — Eat Your Veggies
 
-Completed issues are archived in Docs/CHANGELOG.md. Outstanding work is numbered from 1 here; GitHub issue IDs are permanent.
+Completed work is archived in Docs/CHANGELOG.md. Outstanding priorities restart at #1 here; permanent GitHub issue numbers do not change.
 
-1. **Live deployment and device verification** — test parent choices, joystick, touch-to-move, collection, munch, environmental restoration, victory and replay on actual desktop and mobile browsers. [GitHub #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
-2. **Professional 2.5D visual and animation pass** — replace procedural characters and simple props with production art, expressive animation, sound and responsive performance. [GitHub #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
-3. **More meaningful exploration and world variety** — build distinct areas, richer interactive puzzles and persistent rewards; existing repairs are simple animated props in the shared forest.
-4. **Parent controls and toddler accessibility** — add adult verification for settings, voice guidance, save/resume and child usability testing.
-5. **Offline and release quality** — confirm PWA reliability, child privacy, device performance and release readiness.
+1. **Live gameplay and deployment QA** — test parent setup, veggie choice, touch movement, pickup, munch, environment repair, win/replay, save/resume and restart on desktop and mobile. [GitHub #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
+2. **Professional character and environment art** — authored animation, 2.5D visual polish, frame-rate and toddler usability validation. [GitHub #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
+3. **Deeper exploration and rewards** — distinct world areas, playful interactions and progression beyond current short garden sequence.
+4. **Parent-only settings and accessibility** — adult gate, voice instructions, age-appropriate control testing.
+5. **Offline and release verification** — verify CDN dependency caching, device compatibility, child privacy and performance.
 
-Gameplay requires only **in-game** veggie munching; never require real-world food consumption.
+Only in-game veggie munching is required; no real-world eating is required.
