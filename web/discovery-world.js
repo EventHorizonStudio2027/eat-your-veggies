@@ -30,9 +30,16 @@ const locations=[[-6,-5],[5,-5],[-5,5],[5,5],[0,-7],[7,1]];
  const water=obj(cone,colors.blue,0,1.12,0,.5,.95,.5,fountain);water.scale.y=.02;stageProps.push({kind:'fountain',mesh:water});
  const party=new THREE.Group();party.position.set(0,0,-5);scene.add(party);
  for(let i=0;i<5;i++){const a=i*1.257;const balloon=obj(sphere,[colors.pink,colors.peach,colors.yellow,colors.violet,colors.blue][i],Math.cos(a)*1.1,1.8+Math.sin(a)*.25,Math.sin(a)*.5,.3,.39,.28,party);balloon.scale.setScalar(.001);stageProps.push({kind:'party',mesh:balloon,original:[.3,.39,.28]})}
+ // Four hand-arranged storybook garden landmarks add recognizable silhouettes.
+ const themed=[];
+ const themes=[{type:'flowers',x:-5,z:-2,petal:colors.peach},{type:'bridge',x:-4,z:3,petal:colors.mint},{type:'fountain',x:5,z:3,petal:colors.blue},{type:'party',x:4,z:-4,petal:colors.violet}];
+ for(const theme of themes){const group=new THREE.Group();group.position.set(theme.x,0,theme.z);scene.add(group);
+  obj(sphere,colors.cream,0,.14,0,1.5,.18,1.1,group);
+  for(let i=0;i<5;i++){const a=i*Math.PI*2/5;const x=Math.cos(a)*.95,z=Math.sin(a)*.65;obj(cone,theme.petal,x,.52,z,.23,.72,.23,group);obj(sphere,colors.yellow,x,1.0,z,.19,.19,.19,group)}
+  const crown=obj(sphere,theme.petal,0,1.3,0,.52,.6,.48,group);obj(sphere,colors.cream,-.17,1.4,.42,.07,.09,.05,group);obj(sphere,colors.cream,.17,1.4,.42,.07,.09,.05,group);themed.push({type:theme.type,group,crown})}
  let stageKind='flowers';let stageProgress=0;const repaired=new Set();
  function finishStage(type){repaired.add(({Carrot:'flowers',Broccoli:'bridge',Tomato:'fountain',Pea:'party'})[type]);}
- function setStage(type,progress){stageKind=({Carrot:'flowers',Broccoli:'bridge',Tomato:'fountain',Pea:'party'})[type]||'flowers';stageProgress=Math.max(0,Math.min(1,progress));setRestoration(stageKind==='flowers'?stageProgress:repaired.has('flowers')?1:0)}
+ function setStage(type,progress){stageKind=({Carrot:'flowers',Broccoli:'bridge',Tomato:'fountain',Pea:'party'})[type]||'flowers';stageProgress=Math.max(0,Math.min(1,progress));for(const t of themed)t.group.scale.setScalar(t.type===stageKind?1:repaired.has(t.type)?.82:.42);setRestoration(stageKind==='flowers'?stageProgress:repaired.has('flowers')?1:0)}
  let count=0;
  const restoreObjects=[];const petals=[];
  for(let i=0;i<9;i++){const a=i*Math.PI*2/9;const x=Math.cos(a)*3.4,z=Math.sin(a)*3.4;const stem=obj(box,colors.mint,x,.38,z,.12,.72,.12);const bloom=new THREE.Group();bloom.position.set(x,.8,z);scene.add(bloom);for(let j=0;j<5;j++){const t=j*Math.PI*2/5;obj(sphere,colors.pink,Math.cos(t)*.26,Math.sin(t)*.26,0,.24,.24,.16,bloom)}obj(sphere,colors.yellow,0,0,.14,.24,.24,.18,bloom);bloom.scale.setScalar(.1);petals.push(bloom);restoreObjects.push(stem)}
