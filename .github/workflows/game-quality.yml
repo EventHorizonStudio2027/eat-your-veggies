@@ -37,6 +37,10 @@ jobs:
           assert 'role="progressbar"' in html, 'Garden progress semantics missing'
           assert 'veggie-collected' in js and 'veggie-munched' in js, 'Vegetable interaction events missing'
           assert 'veggie-world-reset' in js and 'veggie-discoveries-reset' in js, 'Adventure reset lifecycle missing'
+          main=Path('web/main.js').read_text()
+          assert 'webglcontextlost' in main and 'webglcontextrestored' in main, 'WebGL recovery hooks missing'
+          assert 'veggie-renderer-lost' in html and 'veggie-renderer-restored' in html, 'Renderer recovery UI missing'
+          assert 'veggieverse-v5' in cache, 'Offline cache version not refreshed'
           for name in ('Carrot','Broccoli','Tomato','Pea'):
               assert name in js, f'Missing veggie type: {name}'
           for path in ('web/main.js','web/veggie-adventure.js','web/discovery-world.js','web/storybook-world.js'):
