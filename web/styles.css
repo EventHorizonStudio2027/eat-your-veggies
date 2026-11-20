@@ -93,3 +93,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Compact, readable gameplay guidance: one floating status chip instead of a wide panel. */
 .playing .play-status{max-width:min(86vw,460px);margin-inline:auto;padding:10px 18px;border-radius:999px;background:rgba(255,253,234,.92);border:1px solid rgba(255,255,255,.9);box-shadow:0 6px 22px rgba(48,83,52,.14);text-align:center;line-height:1.35;text-wrap:balance;backdrop-filter:blur(8px)}
+
+/* Each restored garden gets its own celebratory palette, without additional HUD clutter. */
+.garden-celebration[data-garden="carrot"]{background:linear-gradient(120deg,#fff0ca,#ffd8b6);border-color:#fff6df;color:#86532e}.garden-celebration[data-garden="broccoli"]{background:linear-gradient(120deg,#e5f9ce,#b9edca);border-color:#f1ffe4;color:#316a45}.garden-celebration[data-garden="tomato"]{background:linear-gradient(120deg,#ffe3d9,#ffd4e9);border-color:#fff2e7;color:#914b56}.garden-celebration[data-garden="pea"]{background:linear-gradient(120deg,#e5f5d0,#e3ddff);border-color:#f4ffec;color:#4e5c87}
