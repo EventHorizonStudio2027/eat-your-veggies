@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Batch 45: victory overlay, Sprig expression and garden color identity
+
+- Fixed the final garden celebration banner remaining visible over the victory dialog.
+- Prevented Sprig's cheerful eye accents from briefly flashing before the first animation frame.
+- Added a warm smile color change during Sprig's celebration reaction.
+- Made restoration fireflies match the current garden's distinct color identity; shared material instances avoid recoloring all fireflies each frame.
+- Expanded CI static checks for victory overlay cleanup and garden glow materials.
+- An extra final UI polish is committed after this documentation update.
+- Source saved to GitHub; public deployment, CI execution and browser QA remain unverified.
+
+
 ## 2026-11-20 — Batch 44: parent gate cleanup and world-aligned restoration markers
 
 - Fixed an overlooked adult-hold unlock path that left held keyboard inputs and the tap destination active when opening parent settings.
