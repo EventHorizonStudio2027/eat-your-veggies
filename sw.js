@@ -1,9 +1,10 @@
 /* Cache the game shell and any successfully fetched 3D engine modules.
    First visit still needs internet; subsequent visits may work offline. */
-const CACHE='veggieverse-v6';
+const CACHE='veggieverse-v7';
+const ENGINE='https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
 const SHELL=['./','./index.html','./web/styles.css','./web/main.js','./web/storybook-world.js','./web/veggie-adventure.js','./web/discovery-world.js','./web/icon.svg','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()));
+  event.waitUntil(caches.open(CACHE).then(async cache=>{await cache.addAll(SHELL);try{await cache.add(ENGINE)}catch(error){console.warn('3D engine offline prefetch unavailable',error)}}).then(()=>self.skipWaiting()));
 });
 self.addEventListener('activate',event=>{
   event.waitUntil(Promise.all([caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))),self.clients.claim()]));
