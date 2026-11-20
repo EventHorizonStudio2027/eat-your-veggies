@@ -52,3 +52,6 @@
 
 /* Make the next toddler action unmistakable and finger-friendly. */
 .play-bag #munch:not(:disabled){background:linear-gradient(180deg,#ffdd90,#ffb974);box-shadow:0 6px 0 #ce8b62,0 9px 22px #bd88534d;animation:munch-pulse 2.2s ease-in-out infinite}.play-bag #munch:disabled{opacity:.7;animation:none}.play-bag #munch:focus-visible{outline:4px solid #7653ae;outline-offset:4px}@keyframes munch-pulse{50%{transform:translateY(-3px);box-shadow:0 9px 0 #ce8b62,0 12px 25px #bd88534d}}@media(prefers-reduced-motion:reduce){.play-bag #munch:not(:disabled){animation:none}}
+
+/* A miniature illustrated route through the parent-selected gardens. */
+.garden-journey{display:flex;justify-content:center;align-items:center;gap:9px;margin:10px auto 8px}.garden-step{display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:#f0f0e4;border:2px solid #ffffff;color:#758b76;box-shadow:0 2px 4px #42634825;font-size:17px;opacity:.58}.garden-step.current{opacity:1;background:#fff2bd;outline:3px solid #f2c96d;outline-offset:1px;transform:scale(1.08)}.garden-step.done{opacity:1;background:#83c69b;color:#fff;font-size:19px;font-weight:900}@media(max-width:650px){.garden-journey{gap:7px;margin:7px auto 5px}.garden-step{width:27px;height:27px;font-size:15px}}
