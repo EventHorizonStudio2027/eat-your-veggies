@@ -69,3 +69,7 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Exploration reward stays subordinate to the main vegetable objective. */
 .play-score .discovery-score{background:#f1eaffeb;color:#6b5993;border-color:#fff9ff}.play-score .discovery-score b{color:#8467ba;font-size:clamp(14px,1.8vw,20px)}@media(max-width:650px){.playing .play-score{flex-wrap:wrap;justify-content:flex-end;max-width:min(340px,calc(100vw - 24px))}.playing .play-score .discovery-score{font-size:11px}}
+
+/* Focus is visible for keyboard players without changing the toddler touch-first layout. */
+#world:focus-visible{outline:4px solid #f6c86f;outline-offset:-6px}.playing .play-status{max-width:min(560px,calc(100vw - 36px));line-height:1.35;z-index:6;background:rgba(255,250,224,.94);border:2px solid rgba(255,255,255,.9)}.playing .level-banner{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+@media(max-width:650px){.playing .play-status{top:19%;font-size:clamp(13px,3.6vw,16px);padding:8px 13px}.playing .play-controls{gap:12px}.playing .play-bag button{min-width:160px;min-height:72px}}
