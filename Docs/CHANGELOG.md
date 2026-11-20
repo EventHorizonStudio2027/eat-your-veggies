@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-20 — Focus Phase Batch 50: defensive save/resume validation
+
+- Sanitized saved collection and munch counters to finite, nonnegative whole numbers rather than accepting corrupted values.
+- Bounded restored basket size by the actual number of vegetable collectibles.
+- Validated saved player coordinates independently before applying them; invalid coordinates now preserve the canonical spawn instead of teleporting to origin.
+- Clamped the remaining required vegetable count to a nonnegative value.
+- Added CI static checks protecting save sanitization and garden goal calculations.
+- Extra final design polish follows this documentation commit.
+- GitHub source commits confirmed; full live browser gameplay and CI execution remain unverified.
+
+
 ## 2026-11-20 — Focus Phase Batch 50: save restoration, sound and focus fixes
 
 - Critical: removed an inline JavaScript comment that unintentionally swallowed the saved-game restoration statements for collected/eaten counters, basket, character position and restored garden events.
