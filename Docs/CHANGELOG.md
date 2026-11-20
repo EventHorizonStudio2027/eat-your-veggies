@@ -1,5 +1,17 @@
 # Development changelog
 
+## 2026-11-19 — Batch 34: parent-only checkpoint and safer toddler navigation
+
+- Added a dedicated grown-up checkpoint before parent settings can open. The adult must press and hold for three seconds; both pointer and keyboard input are supported.
+- Pauses the adventure behind the checkpoint, saves current progress before opening it, and resumes safely if the adult cancels.
+- Added cancellation handling for pointer release/cancel and keyboard key release so a child cannot accidentally complete a partial hold.
+- Added a calm, high-contrast frosted checkpoint with one prominent hold action and a clear back button.
+- Strengthened GitHub Actions static checks for parent-gate markup, hold lifecycle, keyboard and cancellation paths.
+- Corrected button font declarations to valid CSS font shorthand.
+- Interface improvement: parent settings now feel like a distinct, protected adult space instead of a normal in-game button.
+- Changes committed to GitHub. CI execution and live deployment/device QA are not independently verified; the public Pages URL could not be inspected through the available browser fetch.
+
+
 ## 2026-11-19 — Batch 33: device-aware rendering and graceful graphics recovery
 
 - Added device-aware renderer quality: antialiasing and pixel ratio are tuned using device memory, CPU core count and viewport size to reduce GPU load on modest phones/tablets.
