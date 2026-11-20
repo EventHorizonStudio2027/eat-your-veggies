@@ -27,7 +27,7 @@ for(const x of [-.2,.2]){mesh(sphere,mat('#fffdf4'),x,1.06,.46,.14,.16,.07,sprig
 for(const x of [-.55,.55])mesh(sphere,light,x,.86,0,.25,.16,.2,sprig);
 // Sprig's mouth grows into a delighted grin when a child makes progress.
 const sprigSmile=mesh(sphere,mat('#6c493c'),0,.77,.555,.19,.038,.026,sprig);
-const sprigEyes=[];for(const x of [-.2,.2])sprigEyes.push(mesh(sphere,mat('#fffdf4'),x,1.07,.572,.13,.045,.025,sprig));
+const sprigEyes=[];for(const x of [-.2,.2]){const eye=mesh(sphere,mat('#fffdf4'),x,1.07,.572,.13,.045,.025,sprig);eye.visible=false;sprigEyes.push(eye)}
 let sprigCheer=0;window.addEventListener('veggie-collected',e=>{sprigCheer=e.detail.goal?1.05:.45});window.addEventListener('veggie-munched',e=>{sprigCheer=e.detail.correct?1.4:.7});
 const adventure=createVeggieAdventure(THREE,scene,hero,sprig,canvas);
 const discoveries=createDiscoveryWorld(THREE,scene,hero,(message)=>{const status=document.querySelector('#play-status');if(status)status.textContent=message});window.__veggieCamera=camera;window.addEventListener('veggie-world-reset',()=>discoveries.resetWorld());window.addEventListener('veggie-discoveries-reset',()=>discoveries.resetDiscoveries());window.addEventListener('veggie-play-state',e=>discoveries.setExplorationEnabled(e.detail.playing));window.addEventListener('veggie-restoration',e=>discoveries.setStage(e.detail.type,e.detail.progress));window.addEventListener('veggie-garden-complete',e=>{discoveries.finishStage(e.detail.type);sprigCheer=2.4;if(!e.detail.restored&&!reducedMotion.matches){sparkleBurst(sprig);discoveries.celebrate()}});
