@@ -26,8 +26,14 @@ jobs:
           js=Path('web/veggie-adventure.js').read_text()
           cache=Path('sw.js').read_text()
           ids=['parent-setup','start-adventure','parent-settings','world','munch','victory','play-again','garden-journey','level-fill','joystick']
+          import re
           for name in ids:
               assert f'id="{name}"' in html, f'Missing game UI: {name}'
+          found=re.findall(r'\\bid="([^"]+)"', html)
+          duplicates=sorted({name for name in found if found.count(name)>1})
+          assert not duplicates, f'Duplicate HTML ids: {duplicates}'
+          assert 'tabindex="0"' in html and 'aria-describedby="play-status"' in html, 'Game canvas keyboard access missing'
+          assert 'role="status"' in html and 'aria-live="polite"' in html, 'Live gameplay status missing'
           for name in ('Carrot','Broccoli','Tomato','Pea'):
               assert name in js, f'Missing veggie type: {name}'
           for path in ('web/main.js','web/veggie-adventure.js','web/discovery-world.js','web/storybook-world.js'):
