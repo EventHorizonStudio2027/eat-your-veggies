@@ -19,6 +19,11 @@ export function createDiscoveryWorld(THREE,scene,hero,notify){
  for(let i=0;i<13;i++){const a=i*2.4,r=9+(i%3)*1.8;obj(sphere,i%2?colors.mint:colors.blue,Math.cos(a)*r,-.7,Math.sin(a)*r,2.8,1.4,2.4)}
  for(let i=0;i<15;i++){const z=-6+i*.8;obj(sphere,colors.cream,Math.sin(i*.7)*.5,.045,z,.36,.07,.3)}
  let count=0;
- function update(dt,t,reduced){for(const d of discoveries){if(!d.seen&&Math.hypot(d.g.position.x-hero.position.x,d.g.position.z-hero.position.z)<1.4){d.seen=true;count++;notify('✨ You found '+d.name+'! ('+count+'/6 surprises)')}if(!reduced)d.g.rotation.y=Math.sin(t*.6+d.g.position.x)*.06}}
- return {update};
+ const restoreObjects=[];const petals=[];
+ for(let i=0;i<9;i++){const a=i*Math.PI*2/9;const x=Math.cos(a)*3.4,z=Math.sin(a)*3.4;const stem=obj(box,colors.mint,x,.38,z,.12,.72,.12);const bloom=new THREE.Group();bloom.position.set(x,.8,z);scene.add(bloom);for(let j=0;j<5;j++){const t=j*Math.PI*2/5;obj(sphere,colors.pink,Math.cos(t)*.26,Math.sin(t)*.26,0,.24,.24,.16,bloom)}obj(sphere,colors.yellow,0,0,.14,.24,.24,.18,bloom);bloom.scale.setScalar(.1);petals.push(bloom);restoreObjects.push(stem)}
+ const restoration={progress:0,target:0};
+ function setRestoration(progress){restoration.target=Math.max(0,Math.min(1,progress))}
+
+ function update(dt,t,reduced){restoration.progress+=(restoration.target-restoration.progress)*Math.min(1,dt*2.5);for(const bloom of petals){const scale=.12+restoration.progress*.88;bloom.scale.setScalar(scale);if(!reduced)bloom.rotation.y=Math.sin(t+bloom.position.x)*.13}for(const d of discoveries){if(!d.seen&&Math.hypot(d.g.position.x-hero.position.x,d.g.position.z-hero.position.z)<1.4){d.seen=true;count++;notify('✨ You found '+d.name+'! ('+count+'/6 surprises)')}if(!reduced)d.g.rotation.y=Math.sin(t*.6+d.g.position.x)*.06}}
+ return {update,setRestoration};
 }
