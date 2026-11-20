@@ -1,12 +1,12 @@
 # Development changelog
 
-## 2026-11-19 — Batch 16: munch to advance
-- Introduced four sequential vegetable level objectives: Carrot Patch (2 carrots), Broccoli Grove (3 broccoli), Tomato Town (3 tomatoes), Pea Party (4 peas).
-- Progression now requires the in-game hero to collect and munch the level's target vegetable. Picking up alone does not advance.
-- Added a prominent level goal card, live munch counter and progress meter.
-- Added automatic vegetable restocking and next-level unlock celebration, including reduced-motion support.
-- Preserved free movement, optional real-world food exploration, basket, Munch button and companion follow.
-- This is an implemented first progression loop; live browser and mobile playtesting are outstanding.
+## 2026-11-19 — Batch 17: parent-chosen veggies and storybook exploration
+- Added a polished grown-up onboarding screen before gameplay; parent chooses one or more vegetables from carrots, broccoli, tomatoes and peas. Selection persists locally on the device.
+- Updated the progression engine so only chosen vegetables appear and the munch-to-advance goals follow the parent-selected set. A minimum of one selection is required.
+- Added a layered 2.5D/isometric camera and storybook diorama with six discoveries: mushroom, cloud, wishing well, butterfly, treasure chest and flower.
+- Introduced garden problems to solve through in-game munching: sleepy flowers, broken sparkle bridge, colorless fountain and quiet party. New gardens shift the world's background palette.
+- Added a parent settings button, improved responsive parent UI and CI validation for the new discovery module.
+- These changes are committed but have not yet been independently end-to-end browser or mobile tested. Current problem resolutions are represented by text and stage transitions; environmental repair animations remain open.
 
-## Previous batches
-- Free-roaming joystick, tap-to-move, 3D vegetable pickups, Munch action, storybook forest, responsive UI, PWA shell, narrated story and local story save.
+## Earlier batches
+- Free-roaming joystick, tap-to-move, 3D veggie pickups, Munch button, stage progress, pastel forest, PWA shell and optional narration.
