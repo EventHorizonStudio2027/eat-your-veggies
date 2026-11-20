@@ -123,3 +123,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Batch 47: calm, compact chapter progress that stays legible over the 3D world. */
 .playing .level-banner{border:1px solid rgba(255,255,255,.8);box-shadow:0 8px 28px rgba(40,80,54,.14);backdrop-filter:blur(10px)}.playing #level-fill{background:linear-gradient(90deg,#7ccf91,#b3e88d 58%,#f4e59b);box-shadow:0 1px 6px rgba(83,164,91,.18)}@media(max-width:520px){.playing .level-banner{max-width:calc(100vw - 20px);margin-inline:auto}}
+
+/* Batch 47 extra final design pass: warm, tactile level progression with accessible stillness. */
+.playing .garden-step.current{outline:2px solid rgba(255,255,255,.8);outline-offset:2px;filter:drop-shadow(0 3px 4px rgba(93,135,67,.16))}.playing .garden-step.done{color:#2c6844;text-shadow:0 1px 0 rgba(255,255,255,.75)}@media(prefers-reduced-motion:reduce){.playing .garden-step.current{animation:none;transition:none}}
