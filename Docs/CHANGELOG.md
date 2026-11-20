@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-20 — Batch 40: offline engine readiness, parent input safety and garden-themed UI
+
+- Pre-cache the exact Three.js 0.170.0 module during service-worker installation when online; failure is non-fatal so game shell installation still succeeds. Bumped offline cache to veggieverse-v7.
+- Clear keyboard and tap-to-walk movement state when pausing for parent controls, preventing unexpected movement after canceling the adult gate.
+- Tag each completed garden's celebration with its vegetable type and give Carrot, Broccoli, Tomato and Pea their own coordinated, readable pastel palette.
+- Extended static GitHub Actions checks for offline engine prefetch, parent input reset and themed celebration.
+- Confirmed via GitHub issue fetch that permanent issues #1 and #2 remain open. The public GitHub Pages hostname still cannot be resolved from this runtime, so deployment, browser QA and workflow execution remain unverified.
+- Interface improvement: garden-specific celebration colors communicate each completed chapter without adding permanent controls or occupying extra space.
+
+
 ## 2026-11-20 — Batch 39: expressive Sprig and more rewarding garden completion
 
 - Added a reactive 3D smile and delighted eye accents to Sprig when the child collects or munches vegetables.
