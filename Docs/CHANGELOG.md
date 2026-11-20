@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-19 — Batch 29: accessible objectives, stable state and polish
+
+- Added assistive-technology progress semantics to the garden repair bar, including the correct dynamic goal count and spoken value text for each vegetable garden.
+- Added an accessible label and polite announcement behavior to the Munch action.
+- Added a final parent-selection safety improvement: saved exploration secrets reset when the parent changes the vegetable selection, while the same selection resumes its saved journey.
+- Added four color-coded garden signposts as wayfinding landmarks, improving the sense of place without adding text-heavy UI.
+- Improved rendering efficiency by pausing scene updates while the page is hidden and reusing the camera-follow vector.
+- Interface improvement: the currently required vegetable now gently pulses, directing toddlers toward the next useful action; respects reduced-motion preference.
+- GitHub commits succeeded. No pull-request workflow runs were returned for the latest commit; this does not establish push CI success. Live browser and device testing remain open.
+
+
 ## 2026-11-19 — Batch 28: new-adventure integrity, visual guidance, mobile efficiency
 
 - Fixed a cross-adventure state leak: changing the parent's vegetable choices now clears previous exploration secrets, while unchanged choices continue saved progress.
