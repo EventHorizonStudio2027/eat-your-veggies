@@ -1,5 +1,15 @@
 # Development changelog
 
+## 2026-11-20 — Batch 38: anti-softlock gameplay, offline responsiveness and accessible completion
+
+- Added a goal-vegetable availability guard: after munching or loading a saved adventure, the game respawns enough missing goal vegetables to finish the current garden, avoiding a toddler-facing progression softlock.
+- Updated service-worker network-first shell caching to fall back to an available cached copy after 2.5 seconds on a slow network, rather than waiting indefinitely; bumped cache to veggieverse-v6.
+- Moved keyboard focus to the victory heading when the game ends, and back to the parent setup when replaying.
+- UI improvement: garden restoration progress now uses a clearer pastel gradient, stronger track contrast and a subtle glow, without consuming more screen space; reduced-motion support retained.
+- Expanded static CI assertions for the softlock guard, offline fallback, cache version and victory focus.
+- All changes committed to main. Static assertions were authored but GitHub Actions execution and browser/device gameplay have not been independently verified.
+
+
 ## 2026-11-20 — Batch 37: restoration delight and adult-dialog accessibility
 
 - Added keyboard focus containment in the adult confirmation dialog: Tab/Shift+Tab cycle between its two controls, while Escape cancels.
