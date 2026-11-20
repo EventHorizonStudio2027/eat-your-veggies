@@ -1,12 +1,12 @@
 # Development changelog
 
-## 2026-11-19 — Batch 21: toddler interaction and magical celebrations
+## 2026-11-19 — Batch 22: critical gameplay and reward fixes
+- Fixed basket progression: when the child has picked up several veggie types, Munch prioritizes the currently required veggie rather than forcing the child to empty the basket in pickup order.
+- Fixed the shrinking vegetable snack animation so its size begins consistently and decreases during munching.
+- Fixed replay to clear stale adventure save data; cleared stale parent-setup validation errors after valid selection.
+- Repaired world persistence within a play session: finished flowers, bridge, fountain and party decorations remain restored when moving to later stages.
+- UI improvement: a warm animated Munch button clearly indicates when the next game action is available; reduced-motion users get a static alternative.
+- All changes committed to GitHub. Full live browser/mobile verification remains open.
 
-- Added tap-a-veggie path targeting so a child can tap a visible vegetable to walk toward it, in addition to ground taps and joystick.
-- Added garden-complete events and a golden sparkle burst around the hero when the final required veggie is munched.
-- Increased the automatic pickup radius to 1.35 world units and lengthened encouraging status messages for easier toddler interaction.
-- Added an accessible progressbar role and live progress values to the main veggie objective meter.
-- Updated issue tracker and archived completed improvements. Live deployment and touch-device testing remain unverified.
-
-## Earlier batches
-- Parent-selected veggies, garden munch goals, 2.5D camera, world repairs, discovery props, victory/replay, save/resume, expressive arms and offline shell caching.
+## Previous batches
+- Parent-selected veggie goals, toddler movement, magical world repairs, six discoveries, 2.5D camera, victory/replay, save/resume, character gestures and offline shell.
