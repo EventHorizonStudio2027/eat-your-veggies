@@ -1,5 +1,17 @@
 # Development changelog
 
+## 2026-11-20 — Batch 43: garden restoration fireflies and reset reliability
+
+- Added sixteen lightweight 3D restoration fireflies around the active garden; the effect grows with the chapter's repair progress and honors reduced-motion preferences.
+- Reset bloom progress and hide restoration fireflies when starting a new adventure, preventing visual carryover.
+- Hide the fireflies when exploration is paused, including while parent controls are open.
+- Updated successful munch feedback to explicitly connect progress with the garden waking up.
+- Interface improvement: improved objective line spacing, text wrapping and tabular progress numerals for readability.
+- Expanded CI static checks for world restoration effects, pause state and fresh-world reset.
+- One extra final visual change follows this documentation commit.
+- Source committed to GitHub; browser playthrough and GitHub Actions results remain unverified.
+
+
 ## 2026-11-20 — Batch 42: new-adventure reset, input handoff and milestone clarity
 
 - Reset the hero to the garden starting position and clear held inputs when a genuinely new adventure begins; saved adventures still restore their previous position.
