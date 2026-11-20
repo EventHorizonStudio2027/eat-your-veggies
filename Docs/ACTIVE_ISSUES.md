@@ -1,9 +1,11 @@
-# Active issues — parent-guided 2.5D toddler adventure
+# Active issues — Eat Your Veggies
 
-Completed improvements are archived in Docs/CHANGELOG.md. Outstanding work starts at 1.
+Completed issues are archived in Docs/CHANGELOG.md. Outstanding work is numbered from 1 here; GitHub issue IDs are permanent.
 
-1. **Verify live gameplay and deployment** — test parent selection, joystick, tap movement, munch progress, flowers blooming, victory, restart and replay on desktop/iOS/Android. GitHub [issue #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
-2. **Premium character art and animations** — replace procedural placeholder character art with authored animation cycles and richer 2.5D world art. GitHub [issue #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
-3. **Distinct world repairs and meaningful discoveries** — flowers now bloom with progress; still need animated bridge, fountain, party, deeper exploration and additional levels.
-4. **Parent controls and child accessibility** — parent veggie choices are stored locally; adult gate, voice instructions and tested accessible controls remain.
-5. **Offline/release QA** — verify PWA, privacy, performance, no real-world eating requirement and preschool playtests.
+1. **Live deployment and device verification** — test parent choices, joystick, touch-to-move, collection, munch, environmental restoration, victory and replay on actual desktop and mobile browsers. [GitHub #1](https://github.com/FatesPassage/eat-your-veggies/issues/1).
+2. **Professional 2.5D visual and animation pass** — replace procedural characters and simple props with production art, expressive animation, sound and responsive performance. [GitHub #2](https://github.com/FatesPassage/eat-your-veggies/issues/2).
+3. **More meaningful exploration and world variety** — build distinct areas, richer interactive puzzles and persistent rewards; existing repairs are simple animated props in the shared forest.
+4. **Parent controls and toddler accessibility** — add adult verification for settings, voice guidance, save/resume and child usability testing.
+5. **Offline and release quality** — confirm PWA reliability, child privacy, device performance and release readiness.
+
+Gameplay requires only **in-game** veggie munching; never require real-world food consumption.
