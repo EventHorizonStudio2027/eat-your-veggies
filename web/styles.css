@@ -191,3 +191,8 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 .playing .level-banner{background:linear-gradient(145deg,rgba(255,255,250,.96),rgba(238,250,232,.94));border-color:rgba(255,255,255,.92);color:#285d43}
 .playing .level-banner strong{text-wrap:balance;letter-spacing:-.012em}
 @media(prefers-reduced-transparency:reduce){.playing .level-banner{background:#fffdf4;backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+/* Gameplay usability: the movement pad feels tactile without crowding the world. */
+.playing #joystick{touch-action:none;user-select:none;-webkit-user-select:none}
+.playing #joystick:active{filter:brightness(1.045)}
+.playing #joystick:focus-visible{outline:3px solid #287e5d;outline-offset:4px}
