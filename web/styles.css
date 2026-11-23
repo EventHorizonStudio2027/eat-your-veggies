@@ -186,3 +186,8 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 /* Interaction polish: protect the playfield on short phones and landscape screens. */
 @media(max-height:600px){.playing .level-banner{top:calc(env(safe-area-inset-top) + 46px);max-height:68px;padding:4px 10px}.playing .level-banner>span:first-child{font-size:9px}.playing .level-banner strong{margin:1px 0;font-size:11px}.playing .level-banner .level-track{margin:3px 0 1px;height:5px}}
 @media(max-width:390px){.playing .level-banner{width:min(285px,calc(100vw - 24px))}.playing .level-banner strong{font-size:11px}}
+
+/* Final visual pass: gentle parchment texture and better contrast on the compact goal. */
+.playing .level-banner{background:linear-gradient(145deg,rgba(255,255,250,.96),rgba(238,250,232,.94));border-color:rgba(255,255,255,.92);color:#285d43}
+.playing .level-banner strong{text-wrap:balance;letter-spacing:-.012em}
+@media(prefers-reduced-transparency:reduce){.playing .level-banner{background:#fffdf4;backdrop-filter:none;-webkit-backdrop-filter:none}}
