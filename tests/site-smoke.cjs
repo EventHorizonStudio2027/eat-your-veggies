@@ -53,7 +53,7 @@ assert.match(models,/function applyChoices\(\)\{clearTimeout\(say\.timer\)/,'Sta
 assert.match(styles,/reserve the playable center/,'Mobile center-clearing HUD refinement missing');
 console.log('PASS: primary pointer, canvas bounds, notice reset and mobile HUD guards');
 
-assert.match(models,/e\.button>0\)return/,'Auxiliary mouse clicks must not navigate');
+assert.match(models,/e\.button>0\|\|pointerId!==null\)return/,'Auxiliary mouse clicks must not navigate');
 assert.match(models,/try\{joystick\.setPointerCapture\(e\.pointerId\)\}catch/,'Pointer capture failures must not strand joystick input');
 assert.match(styles,/Correct conflicting top\/bottom anchors/,'Mobile score anchors must be explicitly corrected');
 assert.match(styles,/\.playing \.play-score\{top:auto;bottom:/,'Mobile score must use bottom positioning');
