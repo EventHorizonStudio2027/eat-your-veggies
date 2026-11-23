@@ -72,7 +72,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  let pointerId=null;
  function setStick(clientX,clientY){const b=joystick.getBoundingClientRect(),dx=clientX-(b.left+b.width/2),dy=clientY-(b.top+b.height/2),length=Math.hypot(dx,dy)||1,limit=b.width*.33,amount=Math.min(length,limit);move.x=dx/length*amount/limit;move.z=dy/length*amount/limit;nub.style.transform='translate('+move.x*limit+'px,'+move.z*limit+'px)'}
  function release(){move.x=move.z=0;pointerId=null;nub.style.transform='translate(0,0)'}function stopMovement(){release();keys.clear();target=null;if(typeof destinationMarker!=='undefined')destinationMarker.visible=false}
- joystick.addEventListener('pointerdown',e=>{if(!started||finished)return;e.preventDefault();pointerId=e.pointerId;joystick.setPointerCapture(e.pointerId);setStick(e.clientX,e.clientY)});
+ joystick.addEventListener('pointerdown',e=>{if(!started||finished||pointerId!==null)return;e.preventDefault();pointerId=e.pointerId;joystick.setPointerCapture(e.pointerId);setStick(e.clientX,e.clientY)});
  joystick.addEventListener('pointermove',e=>{if(started&&!finished&&pointerId===e.pointerId)setStick(e.clientX,e.clientY)});
  for(const event of ['pointerup','pointercancel','lostpointercapture'])joystick.addEventListener(event,e=>{if(e.pointerId===pointerId)release()});
  window.addEventListener('blur',()=>{stopMovement();if(started)saveAdventure()});document.addEventListener('visibilitychange',()=>{if(document.hidden){stopMovement();if(started)saveAdventure()}});
@@ -95,8 +95,8 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   let dx=move.x,dz=move.z;
   if(keys.has('ArrowLeft')||keys.has('KeyA'))dx-=1;if(keys.has('ArrowRight')||keys.has('KeyD'))dx+=1;
   if(keys.has('ArrowUp')||keys.has('KeyW'))dz-=1;if(keys.has('ArrowDown')||keys.has('KeyS'))dz+=1;
-  if(dx||dz)target=null;destinationMarker.visible=Boolean(target);if(target){destinationMarker.position.x=target.x;destinationMarker.position.z=target.z;destinationMarker.scale.setScalar(reduced?1:1+Math.sin(time*4)*.12)}
-  if(!dx&&!dz&&target){dx=target.x-hero.position.x;dz=target.z-hero.position.z;if(Math.hypot(dx,dz)<.2){target=null;dx=dz=0}}
+  if(dx||dz){target=null;destinationMarker.visible=false}destinationMarker.visible=Boolean(target);if(target){destinationMarker.position.x=target.x;destinationMarker.position.z=target.z;destinationMarker.scale.setScalar(reduced?1:1+Math.sin(time*4)*.12)}
+  if(!dx&&!dz&&target){dx=target.x-hero.position.x;dz=target.z-hero.position.z;if(Math.hypot(dx,dz)<.2){target=null;destinationMarker.visible=false;dx=dz=0}}
   const length=Math.hypot(dx,dz);walking=length>.03;
   if(walking){const speed=3.5;const travel=Math.min(speed*Math.min(dt,.05),target?length:Infinity);hero.position.x+=dx/length*travel;hero.position.z+=dz/length*travel;hero.position.x=Math.max(-8,Math.min(8,hero.position.x));hero.position.z=Math.max(-8,Math.min(8,hero.position.z));hero.rotation.y=Math.atan2(dx,dz);stepTime+=dt*11;saveTimer+=dt;if(saveTimer>2){saveTimer=0;saveAdventure()}}
   // Keep the little companion nearby, without requiring player control.
