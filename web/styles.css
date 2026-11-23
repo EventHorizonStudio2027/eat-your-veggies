@@ -150,3 +150,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Focus Phase Batch 52: keep the adult-only selection screen calm and readable. */
 #parent-error:not(:empty){padding:8px 12px;border-radius:12px;background:rgba(255,237,218,.92);color:#793d2e;font-weight:750;box-shadow:inset 0 0 0 1px rgba(151,76,52,.16)}
+
+/* Focus Phase Batch 52 separate final design touch: friendly, obvious success state. */
+#victory:not([hidden]) #victory-title{color:#246b49;text-shadow:0 2px 0 rgba(255,255,255,.82);letter-spacing:-.025em}#victory:not([hidden]) #play-again{min-height:52px;border-radius:18px;box-shadow:0 6px 18px rgba(46,114,75,.18)}#victory:not([hidden]) #play-again:focus-visible{outline:3px solid #276a4a;outline-offset:4px}
