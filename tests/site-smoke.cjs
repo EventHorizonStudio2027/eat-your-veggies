@@ -20,3 +20,9 @@ assert.match(styles,/Gameplay-first HUD/,'Compact gameplay HUD styles missing');
 assert.match(models,/broccoliFloret/,'Broccoli crown geometry missing');
 assert.match(models,/tomatoLeaf/,'Tomato calyx geometry missing');
 console.log('PASS: all four veggie types have dedicated 3D geometry and gameplay HUD override exists');
+
+assert.match(models,/addEventListener\('pagehide'/,'Adventure must save on page exit');
+assert.match(models,/visibilitychange/,'Adventure must save when app is backgrounded');
+assert.match(models,/Math\.min\(9999/,'Restored counters must be bounded');
+assert.match(styles,/max-height:600px/,'Short landscape screens need a compact HUD');
+console.log('PASS: exit persistence, bounded restore and small-screen HUD safeguards');
