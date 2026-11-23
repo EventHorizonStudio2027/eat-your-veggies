@@ -40,3 +40,9 @@ assert.match(styles,/Gameplay unobstructed:/,'Nonblocking notification layout mi
 assert.match(styles,/\.playing \.play-status\{top:auto/,'Gameplay status must leave the central screen');
 assert.match(styles,/\.garden-celebration:not\(\[hidden\]\)/,'Garden celebration must be compact and edge-aligned');
 console.log('PASS: nonblocking gameplay notification layout guards');
+
+assert.match(sw,/veggieverse-v10/,'Updated offline cache version required');
+assert.match(models,/status\.classList\.add\('notice-active'\)/,'Feedback must explicitly activate');
+assert.match(models,/status\.classList\.remove\('notice-active'\)/,'Feedback must dismiss');
+assert.match(styles,/\.playing \.play-status:not\(\.notice-active\)/,'Idle feedback must not obstruct game');
+console.log('PASS: v10 cache and auto-dismissing feedback checks');
