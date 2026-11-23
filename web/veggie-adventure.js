@@ -8,11 +8,41 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  function part(parent,geometry,mat,x,y,z,sx=1,sy=1,sz=1){const o=new THREE.Mesh(geometry,mat);o.position.set(x,y,z);o.scale.set(sx,sy,sz);parent.add(o);return o}
  function makeVeggie(type,x,z){
   const g=new THREE.Group();g.position.set(x,0,z);scene.add(g);
-  if(type==='Carrot'){part(g,cone,orange,0,.57,0,.9,1,.9).rotation.z=Math.PI;for(let i=-1;i<=1;i++)part(g,sphere,green,i*.16,1.13,0,.13,.35,.13).rotation.z=i*.4}
-  if(type==='Broccoli'){part(g,stem,cream,0,.4,0);for(const [a,b,c] of [[0,1.02,0],[-.34,.88,0],[.34,.88,0],[0,.9,-.28]])part(g,sphere,green,a,b,c,.39,.35,.38)}
-  if(type==='Tomato'){part(g,sphere,red,0,.57,0,.53,.49,.5);for(let i=0;i<5;i++){const leaf=part(g,sphere,dark,Math.cos(i*1.257)*.18,1.03,Math.sin(i*1.257)*.18,.21,.07,.13);leaf.rotation.y=i*1.257}}
-  if(type==='Pea'){for(let i=-1;i<=1;i++)part(g,sphere,green,i*.31,.51,0,.32,.34,.32);part(g,sphere,dark,0,.3,-.19,.91,.2,.26)}
-  for(const ex of [-.15,.15]){part(g,sphere,black,ex,.62,.42,.052,.072,.045);part(g,sphere,pink,ex*1.75,.45,.42,.09,.06,.04)}
+  // Distinct botanical silhouettes, not generic colored spheres with cartoon faces.
+  const carrotSkin=material('#e87924'),carrotLines=material('#b85b1c'),broccoliStem=material('#91b65b'),broccoliFloret=material('#347e3b'),tomatoSkin=material('#d94332'),tomatoLeaf=material('#347a37'),podSkin=material('#6ca84c'),peaSkin=material('#89c75c');
+  if(type==='Carrot'){
+   // Broad shoulder at the crown, tapered point at the soil.
+   const root=part(g,new THREE.ConeGeometry(.39,1.28,14,5),carrotSkin,0,.68,0);
+   root.rotation.z=Math.PI;
+   for(let i=0;i<7;i++){
+    const y=.3+i*.12,r=.39*(1-Math.abs(y-.7)/.75);
+    const mark=part(g,new THREE.CylinderGeometry(.012,.012,.08,5),carrotLines,Math.sin(i*2.4)*r,y,Math.cos(i*2.4)*r,.65,1,1);
+    mark.rotation.z=.9;
+   }
+   for(let i=0;i<6;i++){
+    const leaf=part(g,new THREE.SphereGeometry(1,10,8),i%2?green:dark,Math.sin(i*2.399)*.13,1.47,Math.cos(i*2.399)*.13,.065,.37,.085);
+    leaf.rotation.z=Math.sin(i*2.399)*.48;leaf.rotation.x=Math.cos(i*2.399)*.48;
+   }
+  }
+  if(type==='Broccoli'){
+   part(g,new THREE.CylinderGeometry(.19,.25,.8,10),broccoliStem,0,.41,0);
+   for(const [x,y,z,r] of [[0,1.14,0,.34],[-.32,1.04,0,.3],[.32,1.04,0,.3],[0,1.05,-.3,.29],[0,1.05,.3,.29],[-.23,1.26,-.2,.25],[.24,1.27,.2,.25]]){
+    part(g,sphere,broccoliFloret,x,y,z,r,r*.85,r);
+    for(let j=0;j<8;j++){const angle=j*Math.PI*.75;part(g,sphere,j%3?green:dark,x+Math.cos(angle)*r*.63,y+r*.53,z+Math.sin(angle)*r*.63,.105,.095,.105)}
+   }
+  }
+  if(type==='Tomato'){
+   part(g,new THREE.SphereGeometry(1,24,16),tomatoSkin,0,.57,0,.53,.47,.52);
+   for(let i=0;i<5;i++){const a=i*Math.PI*2/5;const leaf=part(g,new THREE.ConeGeometry(.12,.43,5),tomatoLeaf,Math.cos(a)*.15,1.04,Math.sin(a)*.15);leaf.rotation.z=Math.PI/2;leaf.rotation.y=a}
+   part(g,new THREE.CylinderGeometry(.045,.065,.21,7),dark,0,1.12,0);
+  }
+  if(type==='Pea'){
+   // A recognizable green pod with a seam and small rounded peas inside.
+   const pod=part(g,new THREE.SphereGeometry(1,20,12),podSkin,0,.54,0,.91,.28,.3);
+   pod.rotation.z=-.1;
+   for(let i=-2;i<=2;i++)part(g,sphere,peaSkin,i*.28,.69,.15,.15,.155,.15);
+   part(g,new THREE.CylinderGeometry(.025,.035,.3,7),dark,.91,.59,0).rotation.z=-.9;
+  }
   g.userData={type,baseScale:g.scale.clone()};veggies.push(g);return g;
  }
  const types=['Carrot','Broccoli','Tomato','Pea'];
