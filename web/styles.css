@@ -159,3 +159,7 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Batch 52 final independent design touch: soft tactile progress rail, no extra animation. */
 .playing .level-track{border:1px solid rgba(255,255,255,.8);box-shadow:inset 0 2px 4px rgba(52,101,70,.13),0 1px 0 rgba(255,255,255,.85);border-radius:999px;overflow:hidden}
+
+/* Deployment reliability: clear focus indication on the 3D play surface. */
+#world:focus-visible{outline:4px solid #237e60;outline-offset:-6px;border-radius:12px}
+@media(max-width:520px){#world:focus-visible{outline-width:3px;outline-offset:-4px}}
