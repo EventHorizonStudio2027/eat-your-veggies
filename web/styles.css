@@ -163,3 +163,8 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 /* Deployment reliability: clear focus indication on the 3D play surface. */
 #world:focus-visible{outline:4px solid #237e60;outline-offset:-6px;border-radius:12px}
 @media(max-width:520px){#world:focus-visible{outline-width:3px;outline-offset:-4px}}
+
+/* Separate final visual polish: calmer, more readable recovery action. */
+#loading:not(.hidden) #retry:not([hidden]){min-height:48px;border-radius:16px;box-shadow:0 5px 16px rgba(34,92,68,.18);font-weight:800;letter-spacing:.01em}
+#loading:not(.hidden) #retry:focus-visible{outline:3px solid #216b51;outline-offset:4px}
+@media(prefers-reduced-motion:reduce){#loading #retry{transition:none!important}}
