@@ -48,3 +48,8 @@ Completed in source: joystick ignores presses outside active gameplay; unrelated
 
 ## Gameplay transition and touch pass — 2026-11-23
 Completed in source (awaiting browser verification): ignore secondary pointer touches on the 3D canvas; guard zero-size canvas raycasts; clear transient notices on start/replay/victory; reclaim mobile space by hiding secondary discovery counter during play; add static regression guards. Active issues #1–#5 remain open because runtime and device verification have not occurred.
+
+## Mobile HUD and pointer reliability — 2026-11-23
+- Corrected conflicting mobile top/bottom anchors on the score panel and moved active status notices away from the controls.
+- Ignored auxiliary mouse buttons in canvas tap-to-move; recovered joystick state when pointer capture fails.
+- Added source regression checks. **Not yet runtime verified:** live page accessibility, browser interaction, mobile appearance, CI execution. Public page could not be independently reached by the available web check; user should confirm Pages is enabled if inaccessible.
