@@ -53,3 +53,9 @@ Completed in source (awaiting browser verification): ignore secondary pointer to
 - Corrected conflicting mobile top/bottom anchors on the score panel and moved active status notices away from the controls.
 - Ignored auxiliary mouse buttons in canvas tap-to-move; recovered joystick state when pointer capture fails.
 - Added source regression checks. **Not yet runtime verified:** live page accessibility, browser interaction, mobile appearance, CI execution. Public page could not be independently reached by the available web check; user should confirm Pages is enabled if inaccessible.
+
+## Interaction guard and CI consistency — 2026-11-23
+- Corrected static test assertions that were stale after auxiliary-button pointer guards were added; these could fail validation despite correct source.
+- Prevented tap-to-move on the canvas from overriding an actively held joystick.
+- Hid redundant score chips on narrow screens so they cannot obstruct the Munch control; added regression assertions.
+- **Verification still open:** local repository clone unavailable due network resolution, and no successful GitHub Actions/browser run was independently observed. These are source fixes, not proof of runtime success.
