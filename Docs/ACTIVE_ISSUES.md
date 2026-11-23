@@ -29,3 +29,9 @@ Verification gap: commits and code checks exist, but real browser execution, Git
 
 ## Joystick and HUD interaction pass — 2026-11-23
 Completed in source: joystick ignores presses outside active gameplay; unrelated pointer release events no longer cancel the active joystick; delayed gameplay status text no longer overwrites parent-settings state; static regression assertions added; joystick touch/focus affordance refined. Browser/device execution still requires verification. Active issues #1–#5 remain open.
+
+## Touch and navigation cleanup — 2026-11-23
+- Fixed active joystick pointer ownership: a second finger no longer takes control away from the first.
+- Clear the tap-to-move destination ring immediately upon arrival or manual movement.
+- Added source-level regression assertions; mobile score chips now occupy less space.
+- Still unresolved: executable real-browser regression tests, successful published deployment verification, and real-device controls. These changes are committed but not proven in a live game session.
