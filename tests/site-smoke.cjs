@@ -35,3 +35,8 @@ console.log('PASS: joystick ownership and inactive-state feedback guards');
 assert.match(models,/pointerId!==null\)return/,'Second finger must not steal joystick');
 assert.match(models,/target=null;destinationMarker\.visible=false;dx=dz=0/,'Destination marker must disappear on arrival');
 console.log('PASS: multi-touch ownership and arrival marker cleanup guards');
+
+assert.match(styles,/Gameplay unobstructed:/,'Nonblocking notification layout missing');
+assert.match(styles,/\.playing \.play-status\{top:auto/,'Gameplay status must leave the central screen');
+assert.match(styles,/\.garden-celebration:not\(\[hidden\]\)/,'Garden celebration must be compact and edge-aligned');
+console.log('PASS: nonblocking gameplay notification layout guards');
