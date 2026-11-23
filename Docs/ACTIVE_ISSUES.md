@@ -9,3 +9,10 @@ Completed work is archived in Docs/CHANGELOG.md. Outstanding priorities restart 
 5. **Offline and release readiness** — verify service-worker v9 activation, Three.js caching, WebGL recovery and GitHub Actions/Pages status.
 
 See Docs/PRODUCT_SCOPE.md. No real-world eating is required.
+
+## Deployment and reliability pass — 2026-11-23
+- Correct Pages setting is **GitHub Actions**, not Deploy from a branch; deployment workflow exists at `.github/workflows/deploy-pages.yml`.
+- Workflow now triggers when `sw.js`, `manifest.webmanifest`, or `tests/**` changes, and runs dependency-free static entry/asset smoke checks before publishing.
+- Keyboard focus visibility on the game canvas improved.
+- **Not verified:** GitHub Actions result, live public site, mobile play, and WebGL execution. Static smoke checks are not a substitute for browser gameplay testing.
+- **User input needed if Pages is not enabled:** select Settings → Pages → Source → GitHub Actions; report any GitHub Pages authorization or environment approval error.
