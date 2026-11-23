@@ -204,3 +204,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Small-screen gameplay: reduce visual weight of secondary score chips. */
 @media(max-width:520px){.playing .play-score{gap:4px;max-width:calc(100vw - 24px)}.playing .play-score span{padding:4px 6px;border-radius:11px;font-size:10px}.playing .play-score b{font-variant-numeric:tabular-nums}}
+
+/* Separate final polish: make progress text calm and crisp over the 3D scene. */
+.playing .level-banner #level-count{color:#376b4b;font-weight:800;letter-spacing:.015em;font-variant-numeric:tabular-nums;text-shadow:0 1px 0 rgba(255,255,255,.75)}
