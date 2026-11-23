@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-23 — Focus Phase Batch 52: victory and parent setup interaction reliability
+
+- Victory now removes the active gameplay body class before presenting the finished state, preventing stale HUD styling.
+- Invalid parent setup now moves keyboard focus back to the vegetable selection fieldset.
+- Parent-only hold cancels when the hold button loses focus, closing a keyboard interaction edge case.
+- Added static CI checks for these interaction guarantees.
+- Interface: parent validation error now has an accessible, high-contrast inline surface.
+- Separate final visual polish is committed after documentation.
+- GitHub commits confirmed; published browser and CI execution are not yet independently verified.
+
+
 ## 2026-11-23 — Focus Phase Batch 51: enforce parent vegetable choices and save validity
 
 - Restored garden progress is now a finite, clamped whole-number count, rejecting invalid fractional and nonnumeric saved progress.
