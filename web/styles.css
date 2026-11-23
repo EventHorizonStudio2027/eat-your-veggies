@@ -224,3 +224,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 .playing .play-status.notice-active{opacity:1;visibility:visible}
 .playing .play-status{transition:opacity .18s ease,visibility .18s ease}
 @media(prefers-reduced-motion:reduce){.playing .play-status{transition:none}}
+
+/* Separate final visual polish: unobtrusive, high-contrast guidance typography. */
+.playing .play-status.notice-active{font-weight:750;color:#225c40;border-color:rgba(255,255,255,.95);box-shadow:0 3px 12px rgba(28,75,48,.12);text-wrap:pretty}
