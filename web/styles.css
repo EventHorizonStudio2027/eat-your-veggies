@@ -144,3 +144,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Focus Phase Batch 50 final design polish: make the real primary action comfortable on touch screens. */
 .playing #munch{min-height:52px;touch-action:manipulation;border-radius:18px}.playing #munch:not(:disabled):active{filter:brightness(.96);transform:translateY(1px)}@media(max-width:480px){.playing #munch{min-height:56px;padding-inline:16px}}
+
+/* Focus Phase Batch 51 final independent polish: clear parent-selected vegetable cards. */
+.parent-setup .veggie-picker label:has(input:checked){outline:2px solid rgba(69,145,92,.66);outline-offset:2px;box-shadow:0 5px 16px rgba(58,128,77,.14)}.parent-setup .veggie-picker label:focus-within{outline:3px solid #327a54;outline-offset:3px}@media(prefers-reduced-motion:reduce){.parent-setup .veggie-picker label{transition:none!important}}
