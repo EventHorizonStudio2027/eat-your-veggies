@@ -35,3 +35,8 @@ Completed in source: joystick ignores presses outside active gameplay; unrelated
 - Clear the tap-to-move destination ring immediately upon arrival or manual movement.
 - Added source-level regression assertions; mobile score chips now occupy less space.
 - Still unresolved: executable real-browser regression tests, successful published deployment verification, and real-device controls. These changes are committed but not proven in a live game session.
+
+## Gameplay popups — 2026-11-23
+- User-reported: gameplay overlays obstruct the central playfield.
+- Implemented: reposition persistent status, transient toast, and garden celebration to peripheral compact layouts; mobile and short-landscape overrides added.
+- Added static regression assertions. Still needs real mobile/desktop visual verification and user confirmation; do not mark resolved until observed in a deployed game.
