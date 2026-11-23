@@ -147,3 +147,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Focus Phase Batch 51 final independent polish: clear parent-selected vegetable cards. */
 .parent-setup .veggie-picker label:has(input:checked){outline:2px solid rgba(69,145,92,.66);outline-offset:2px;box-shadow:0 5px 16px rgba(58,128,77,.14)}.parent-setup .veggie-picker label:focus-within{outline:3px solid #327a54;outline-offset:3px}@media(prefers-reduced-motion:reduce){.parent-setup .veggie-picker label{transition:none!important}}
+
+/* Focus Phase Batch 52: keep the adult-only selection screen calm and readable. */
+#parent-error:not(:empty){padding:8px 12px;border-radius:12px;background:rgba(255,237,218,.92);color:#793d2e;font-weight:750;box-shadow:inset 0 0 0 1px rgba(151,76,52,.16)}
