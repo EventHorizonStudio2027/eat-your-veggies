@@ -13,3 +13,10 @@ for(const file of assets.filter(x=>x.startsWith('web/')||x==='manifest.webmanife
 const manifest=JSON.parse(read('manifest.webmanifest'));
 assert.equal(manifest.start_url,'./','Manifest must use project-relative start URL');
 console.log('PASS: 3D entry, required assets, service worker and relative manifest paths');
+
+const models=read('web/veggie-adventure.js'),styles=read('web/styles.css');
+for(const vegetable of ['Carrot','Broccoli','Tomato','Pea'])assert.ok(models.includes("type==='"+vegetable+"'"),'Missing 3D model for '+vegetable);
+assert.match(styles,/Gameplay-first HUD/,'Compact gameplay HUD styles missing');
+assert.match(models,/broccoliFloret/,'Broccoli crown geometry missing');
+assert.match(models,/tomatoLeaf/,'Tomato calyx geometry missing');
+console.log('PASS: all four veggie types have dedicated 3D geometry and gameplay HUD override exists');
