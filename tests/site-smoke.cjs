@@ -1,0 +1,15 @@
+const fs=require('node:fs');
+const assert=require('node:assert/strict');
+const read=p=>fs.readFileSync(p,'utf8');
+const html=read('index.html'),main=read('web/main.js'),sw=read('sw.js');
+const assets=['index.html','web/styles.css','web/main.js','web/storybook-world.js','web/veggie-adventure.js','web/discovery-world.js','web/icon.svg','manifest.webmanifest','sw.js'];
+for(const file of assets)assert.ok(fs.statSync(file).size>0,'Missing or empty: '+file);
+assert.match(html,/<canvas[^>]+id=["']world["']/i,'3D canvas must exist');
+assert.match(html,/type=["']module["']\s+src=["']\.\/web\/main\.js["']/i,'Main module must load');
+assert.match(main,/new THREE\.WebGLRenderer/,'3D renderer must initialize');
+assert.match(sw,/addEventListener\(['"]install['"]/,'Offline install handler missing');
+assert.match(sw,/addEventListener\(['"]fetch['"]/,'Offline fetch handler missing');
+for(const file of assets.filter(x=>x.startsWith('web/')||x==='manifest.webmanifest'))assert.ok(html.includes(file)||main.includes(file)||sw.includes(file),'Unreferenced asset: '+file);
+const manifest=JSON.parse(read('manifest.webmanifest'));
+assert.equal(manifest.start_url,'./','Manifest must use project-relative start URL');
+console.log('PASS: 3D entry, required assets, service worker and relative manifest paths');
