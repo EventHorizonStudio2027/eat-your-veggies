@@ -26,3 +26,6 @@ Completed this iteration (separate from the numbered open issues):
 - Add static smoke assertions for persistence and HUD safeguards; finish with a softer, higher-contrast garden goal panel.
 
 Verification gap: commits and code checks exist, but real browser execution, GitHub Actions success, deployment and device QA are not yet confirmed. Open issues #1–#5 remain active until verified.
+
+## Joystick and HUD interaction pass — 2026-11-23
+Completed in source: joystick ignores presses outside active gameplay; unrelated pointer release events no longer cancel the active joystick; delayed gameplay status text no longer overwrites parent-settings state; static regression assertions added; joystick touch/focus affordance refined. Browser/device execution still requires verification. Active issues #1–#5 remain open.
