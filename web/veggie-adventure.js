@@ -72,7 +72,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  let pointerId=null;
  function setStick(clientX,clientY){const b=joystick.getBoundingClientRect(),dx=clientX-(b.left+b.width/2),dy=clientY-(b.top+b.height/2),length=Math.hypot(dx,dy)||1,limit=b.width*.33,amount=Math.min(length,limit);move.x=dx/length*amount/limit;move.z=dy/length*amount/limit;nub.style.transform='translate('+move.x*limit+'px,'+move.z*limit+'px)'}
  function release(){move.x=move.z=0;pointerId=null;nub.style.transform='translate(0,0)'}function stopMovement(){release();keys.clear();target=null;if(typeof destinationMarker!=='undefined')destinationMarker.visible=false}
- joystick.addEventListener('pointerdown',e=>{if(!started||finished||pointerId!==null)return;e.preventDefault();pointerId=e.pointerId;joystick.setPointerCapture(e.pointerId);setStick(e.clientX,e.clientY)});
+ joystick.addEventListener('pointerdown',e=>{if(!started||finished||pointerId!==null)return;e.preventDefault();pointerId=e.pointerId;try{joystick.setPointerCapture(e.pointerId)}catch{pointerId=null;return}setStick(e.clientX,e.clientY)});
  joystick.addEventListener('pointermove',e=>{if(started&&!finished&&pointerId===e.pointerId)setStick(e.clientX,e.clientY)});
  for(const event of ['pointerup','pointercancel','lostpointercapture'])joystick.addEventListener(event,e=>{if(e.pointerId===pointerId)release()});
  window.addEventListener('blur',()=>{stopMovement();if(started)saveAdventure()});document.addEventListener('visibilitychange',()=>{if(document.hidden){stopMovement();if(started)saveAdventure()}});
