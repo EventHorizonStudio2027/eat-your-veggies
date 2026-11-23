@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-23 — Focus Phase Batch 52: consistent garden transitions and cache refresh
+
+- Prevented restock from writing an intermediate saved-game snapshot before the new chapter is initialized.
+- Garden goal availability now counts only currently selected vegetable types, matching collection rules.
+- Bumped the service-worker shell cache to veggieverse-v9 so updated gameplay assets are re-cached when the new worker activates.
+- Extended static CI assertions for transition persistence, selected vegetables, and cache version.
+- Refined garden objective wrapping on narrow screens; removed risky CSS layout containment after review.
+- Separate final interface design touch follows the documentation commits.
+- GitHub commits confirmed. No claim of live browser/device QA or CI execution.
+
+
 ## 2026-11-23 — Focus Phase Batch 52: victory and parent setup interaction reliability
 
 - Victory now removes the active gameplay body class before presenting the finished state, preventing stale HUD styling.
