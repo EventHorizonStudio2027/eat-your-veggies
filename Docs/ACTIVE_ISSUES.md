@@ -45,3 +45,6 @@ Completed in source: joystick ignores presses outside active gameplay; unrelated
 - Idle guidance no longer remains onscreen indefinitely: active messages dismiss after 2.6 seconds; opening parent settings dismisses them immediately.
 - Service worker shell cache bumped to v10 to replace older UI styles on refresh/revisit.
 - Static assertions added for notification visibility and cache version. Not yet browser-tested; visual QA and deployment verification remain open.
+
+## Gameplay transition and touch pass — 2026-11-23
+Completed in source (awaiting browser verification): ignore secondary pointer touches on the 3D canvas; guard zero-size canvas raycasts; clear transient notices on start/replay/victory; reclaim mobile space by hiding secondary discovery counter during play; add static regression guards. Active issues #1–#5 remain open because runtime and device verification have not occurred.
