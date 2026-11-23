@@ -16,3 +16,13 @@ See Docs/PRODUCT_SCOPE.md. No real-world eating is required.
 - Keyboard focus visibility on the game canvas improved.
 - **Not verified:** GitHub Actions result, live public site, mobile play, and WebGL execution. Static smoke checks are not a substitute for browser gameplay testing.
 - **User input needed if Pages is not enabled:** select Settings → Pages → Source → GitHub Actions; report any GitHub Pages authorization or environment approval error.
+
+## Interaction reliability pass — 2026-11-23
+Completed this iteration (separate from the numbered open issues):
+- Save current adventure when the page is backgrounded or closed, not only on collection/munch.
+- Bound restored counters and validate restored basket items.
+- Correct the tomato's calyx leaf orientation for a more recognizable silhouette.
+- Reduce the garden goal panel on short/landscape and narrow screens.
+- Add static smoke assertions for persistence and HUD safeguards; finish with a softer, higher-contrast garden goal panel.
+
+Verification gap: commits and code checks exist, but real browser execution, GitHub Actions success, deployment and device QA are not yet confirmed. Open issues #1–#5 remain active until verified.
