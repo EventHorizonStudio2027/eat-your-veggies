@@ -214,3 +214,7 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 .playing .garden-celebration,.garden-celebration:not([hidden]){top:calc(env(safe-area-inset-top) + 132px);left:auto;right:12px;transform:none;width:min(235px,40vw);max-width:calc(100vw - 24px);padding:8px 12px;border-radius:14px;font-size:13px;line-height:1.3;box-shadow:0 4px 14px rgba(45,83,57,.18);animation:none}
 @media(max-width:650px){.playing .play-status{right:10px;bottom:calc(env(safe-area-inset-bottom) + 112px);max-width:min(170px,42vw);font-size:11px}.playing .toast{bottom:calc(env(safe-area-inset-bottom) + 145px);max-width:55vw;font-size:12px}.garden-celebration:not([hidden]){top:calc(env(safe-area-inset-top) + 108px);right:8px;width:min(190px,45vw);font-size:12px}}
 @media(max-height:520px){.playing .play-status{display:none}.playing .toast{bottom:calc(env(safe-area-inset-bottom) + 85px)}.garden-celebration:not([hidden]){top:calc(env(safe-area-inset-top) + 52px)}}
+
+/* Final separate visual polish: quiet translucent notice typography. */
+.playing .play-status{color:#285d43;letter-spacing:.005em;text-wrap:balance;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@media(prefers-reduced-transparency:reduce){.playing .play-status{background:#fffdf1;backdrop-filter:none;-webkit-backdrop-filter:none}}
