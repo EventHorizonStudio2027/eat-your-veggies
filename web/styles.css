@@ -245,3 +245,7 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Gameplay-first compact phones: avoid score pills overlapping the munch control. */
 @media(max-width:520px){.playing .play-score{display:none}.playing .play-status.notice-active{bottom:calc(env(safe-area-inset-bottom) + 185px)}}
+
+/* Final independent design polish: quieter control focus without losing accessibility. */
+.playing #munch:focus-visible{outline:3px solid #286b4d;outline-offset:4px;box-shadow:0 0 0 7px rgba(255,253,237,.85),0 7px 20px rgba(39,86,56,.17)}
+@media(prefers-reduced-motion:reduce){.playing #munch:focus-visible{transition:none}}
