@@ -47,7 +47,7 @@ assert.match(models,/status\.classList\.remove\('notice-active'\)/,'Feedback mus
 assert.match(styles,/\.playing \.play-status:not\(\.notice-active\)/,'Idle feedback must not obstruct game');
 console.log('PASS: v10 cache and auto-dismissing feedback checks');
 
-assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\)return/,'Secondary touches must not issue movement commands');
+assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\|\|e\.button>0\)return/,'Secondary touches and auxiliary clicks must not issue movement commands');
 assert.match(models,/if\(!rect\.width\|\|!rect\.height\)return/,'Zero-sized canvas must not create invalid raycasts');
 assert.match(models,/function applyChoices\(\)\{clearTimeout\(say\.timer\)/,'Starting play must clear old notices');
 assert.match(styles,/reserve the playable center/,'Mobile center-clearing HUD refinement missing');
