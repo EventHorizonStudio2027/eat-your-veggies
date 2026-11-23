@@ -1,5 +1,16 @@
 # Development changelog
 
+## 2026-11-23 — Focus Phase Batch 51: enforce parent vegetable choices and save validity
+
+- Restored garden progress is now a finite, clamped whole-number count, rejecting invalid fractional and nonnumeric saved progress.
+- Direct collection rejects vegetables not included in the parent's current choices.
+- Proximity pickup also excludes unselected vegetables, even if an object has a stale visible flag.
+- Munching validates the basket item before awarding progress, guarding against invalid items.
+- Expanded CI source assertions for saved progress and parent-selected veggie enforcement.
+- Final separate interface touch follows this documentation update.
+- GitHub code commits confirmed; live browser gameplay and CI execution remain unverified.
+
+
 ## 2026-11-20 — Focus Phase Batch 50: defensive save/resume validation
 
 - Sanitized saved collection and munch counters to finite, nonnegative whole numbers rather than accepting corrupted values.
