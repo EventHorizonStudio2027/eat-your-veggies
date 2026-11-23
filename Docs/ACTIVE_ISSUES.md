@@ -40,3 +40,8 @@ Completed in source: joystick ignores presses outside active gameplay; unrelated
 - User-reported: gameplay overlays obstruct the central playfield.
 - Implemented: reposition persistent status, transient toast, and garden celebration to peripheral compact layouts; mobile and short-landscape overrides added.
 - Added static regression assertions. Still needs real mobile/desktop visual verification and user confirmation; do not mark resolved until observed in a deployed game.
+
+## Gameplay popup follow-up — 2026-11-23
+- Idle guidance no longer remains onscreen indefinitely: active messages dismiss after 2.6 seconds; opening parent settings dismisses them immediately.
+- Service worker shell cache bumped to v10 to replace older UI styles on refresh/revisit.
+- Static assertions added for notification visibility and cache version. Not yet browser-tested; visual QA and deployment verification remain open.
