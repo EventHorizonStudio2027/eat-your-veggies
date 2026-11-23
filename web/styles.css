@@ -235,3 +235,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 .playing .play-bag{background:linear-gradient(155deg,rgba(255,253,242,.94),rgba(238,248,229,.9));border-radius:20px;box-shadow:0 7px 22px rgba(39,83,50,.13)}
 .playing #veggie-count{font-variant-numeric:tabular-nums;color:#286c45;font-weight:900}
 @media(prefers-reduced-transparency:reduce){.playing .play-bag{background:#fffdf1}}
+
+/* Correct conflicting top/bottom anchors: keep counters peripheral on phones. */
+@media(max-width:650px){.playing .play-score{top:auto;bottom:calc(env(safe-area-inset-bottom) + 110px);align-items:flex-end;z-index:2}.playing .play-score span{max-width:100%;box-sizing:border-box;white-space:nowrap}.playing .play-status.notice-active{bottom:calc(env(safe-area-inset-bottom) + 190px);right:8px}}
