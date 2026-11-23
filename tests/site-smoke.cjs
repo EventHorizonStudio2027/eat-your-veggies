@@ -31,3 +31,7 @@ assert.match(models,/if\(!started\|\|finished\)return;e\.preventDefault\(\);poin
 assert.match(models,/e\.pointerId===pointerId\)release\(\)/,'Only active joystick pointer may release movement');
 assert.match(models,/if\(started&&!finished\)status\.textContent=/,'Delayed gameplay prompts must respect play state');
 console.log('PASS: joystick ownership and inactive-state feedback guards');
+
+assert.match(models,/pointerId!==null\)return/,'Second finger must not steal joystick');
+assert.match(models,/target=null;destinationMarker\.visible=false;dx=dz=0/,'Destination marker must disappear on arrival');
+console.log('PASS: multi-touch ownership and arrival marker cleanup guards');
