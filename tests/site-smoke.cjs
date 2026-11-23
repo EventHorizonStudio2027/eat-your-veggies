@@ -47,7 +47,7 @@ assert.match(models,/status\.classList\.remove\('notice-active'\)/,'Feedback mus
 assert.match(styles,/\.playing \.play-status:not\(\.notice-active\)/,'Idle feedback must not obstruct game');
 console.log('PASS: v10 cache and auto-dismissing feedback checks');
 
-assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\|\|e\.button>0\)return/,'Secondary touches and auxiliary clicks must not issue movement commands');
+assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\|\|e\.button>0\|\|pointerId!==null\)return/,'Secondary touches and auxiliary clicks must not issue movement commands');
 assert.match(models,/if\(!rect\.width\|\|!rect\.height\)return/,'Zero-sized canvas must not create invalid raycasts');
 assert.match(models,/function applyChoices\(\)\{clearTimeout\(say\.timer\)/,'Starting play must clear old notices');
 assert.match(styles,/reserve the playable center/,'Mobile center-clearing HUD refinement missing');
@@ -58,3 +58,7 @@ assert.match(models,/try\{joystick\.setPointerCapture\(e\.pointerId\)\}catch/,'P
 assert.match(styles,/Correct conflicting top\/bottom anchors/,'Mobile score anchors must be explicitly corrected');
 assert.match(styles,/\.playing \.play-score\{top:auto;bottom:/,'Mobile score must use bottom positioning');
 console.log('PASS: auxiliary-click safety, pointer capture recovery, and score positioning');
+
+assert.match(models,/pointerId!==null\)return;const rect=canvas/,'Canvas tap must not override an active joystick gesture');
+assert.match(styles,/\.playing \.play-score\{display:none\}/,'Compact phone layout must not obscure Munch controls');
+console.log('PASS: joystick/canvas gesture isolation and compact-phone controls');
