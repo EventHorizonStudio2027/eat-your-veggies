@@ -218,3 +218,9 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 /* Final separate visual polish: quiet translucent notice typography. */
 .playing .play-status{color:#285d43;letter-spacing:.005em;text-wrap:balance;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 @media(prefers-reduced-transparency:reduce){.playing .play-status{background:#fffdf1;backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+/* Nonblocking guidance: only show temporary notifications when gameplay has news. */
+.playing .play-status:not(.notice-active){opacity:0;visibility:hidden}
+.playing .play-status.notice-active{opacity:1;visibility:visible}
+.playing .play-status{transition:opacity .18s ease,visibility .18s ease}
+@media(prefers-reduced-motion:reduce){.playing .play-status{transition:none}}
