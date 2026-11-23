@@ -242,3 +242,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 /* Final independent visual polish: crisp, low-noise mobile score pills. */
 @media(max-width:650px){.playing .play-score span{background:rgba(255,253,243,.91);color:#2c6848;font-weight:750;letter-spacing:-.01em;border-color:rgba(255,255,255,.92);box-shadow:0 3px 12px rgba(31,79,49,.12)}.playing .play-score b{color:#a8532d;font-variant-numeric:tabular-nums}}
 @media(prefers-reduced-transparency:reduce){.playing .play-score span{background:#fffdf3}}
+
+/* Gameplay-first compact phones: avoid score pills overlapping the munch control. */
+@media(max-width:520px){.playing .play-score{display:none}.playing .play-status.notice-active{bottom:calc(env(safe-area-inset-bottom) + 185px)}}
