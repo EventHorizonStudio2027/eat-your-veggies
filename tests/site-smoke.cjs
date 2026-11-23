@@ -26,3 +26,8 @@ assert.match(models,/visibilitychange/,'Adventure must save when app is backgrou
 assert.match(models,/Math\.min\(9999/,'Restored counters must be bounded');
 assert.match(styles,/max-height:600px/,'Short landscape screens need a compact HUD');
 console.log('PASS: exit persistence, bounded restore and small-screen HUD safeguards');
+
+assert.match(models,/if\(!started\|\|finished\)return;e\.preventDefault\(\);pointerId=e\.pointerId/,'Joystick must ignore inactive game state');
+assert.match(models,/e\.pointerId===pointerId\)release\(\)/,'Only active joystick pointer may release movement');
+assert.match(models,/if\(started&&!finished\)status\.textContent=/,'Delayed gameplay prompts must respect play state');
+console.log('PASS: joystick ownership and inactive-state feedback guards');
