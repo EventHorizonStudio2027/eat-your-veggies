@@ -168,3 +168,13 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 #loading:not(.hidden) #retry:not([hidden]){min-height:48px;border-radius:16px;box-shadow:0 5px 16px rgba(34,92,68,.18);font-weight:800;letter-spacing:.01em}
 #loading:not(.hidden) #retry:focus-visible{outline:3px solid #216b51;outline-offset:4px}
 @media(prefers-reduced-motion:reduce){#loading #retry{transition:none!important}}
+
+/* Gameplay-first HUD: keep the garden goal readable without covering the world. */
+.playing .level-banner{box-sizing:border-box;top:calc(env(safe-area-inset-top) + 65px);left:50%;right:auto;transform:translateX(-50%);width:min(420px,calc(100vw - 24px));max-height:112px;padding:8px 14px;border-radius:17px;box-shadow:0 5px 18px rgba(32,75,50,.15)}
+.playing .level-banner>span:first-child{font-size:10px;letter-spacing:.07em}
+.playing .level-banner strong{font-size:clamp(12px,1.1vw + 9px,15px);line-height:1.15;margin:3px 0}
+.playing .level-banner .garden-journey{display:none}
+.playing .level-banner .level-track{height:6px;margin:5px 0 2px}
+.playing .level-banner>span:last-child{font-size:10px}
+@media(max-width:650px){.playing .level-banner{top:calc(env(safe-area-inset-top) + 58px);max-height:94px;padding:6px 10px;width:min(350px,calc(100vw - 20px));border-radius:13px}.playing .level-banner strong{font-size:12px;line-height:1.15}}
+@media(max-height:560px){.playing .level-banner{top:calc(env(safe-area-inset-top) + 48px);padding:4px 9px}.playing .level-banner>span:last-child{display:none}}
