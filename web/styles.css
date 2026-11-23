@@ -230,3 +230,8 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Interface refinement: reserve the playable center for character and veggies. */
 @media(max-width:650px){.playing .play-score{left:auto;right:8px;bottom:calc(env(safe-area-inset-bottom) + 102px);max-width:48vw}.playing .play-score .discovery-score{display:none}.playing .play-score span{border-width:1px;box-shadow:0 2px 7px rgba(45,85,52,.13)}}
+
+/* Final separate design polish: readable, quiet basket count for young players. */
+.playing .play-bag{background:linear-gradient(155deg,rgba(255,253,242,.94),rgba(238,248,229,.9));border-radius:20px;box-shadow:0 7px 22px rgba(39,83,50,.13)}
+.playing #veggie-count{font-variant-numeric:tabular-nums;color:#286c45;font-weight:900}
+@media(prefers-reduced-transparency:reduce){.playing .play-bag{background:#fffdf1}}
