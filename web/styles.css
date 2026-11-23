@@ -227,3 +227,6 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 /* Separate final visual polish: unobtrusive, high-contrast guidance typography. */
 .playing .play-status.notice-active{font-weight:750;color:#225c40;border-color:rgba(255,255,255,.95);box-shadow:0 3px 12px rgba(28,75,48,.12);text-wrap:pretty}
+
+/* Interface refinement: reserve the playable center for character and veggies. */
+@media(max-width:650px){.playing .play-score{left:auto;right:8px;bottom:calc(env(safe-area-inset-bottom) + 102px);max-width:48vw}.playing .play-score .discovery-score{display:none}.playing .play-score span{border-width:1px;box-shadow:0 2px 7px rgba(45,85,52,.13)}}
