@@ -33,7 +33,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   }
   if(type==='Tomato'){
    part(g,new THREE.SphereGeometry(1,24,16),tomatoSkin,0,.57,0,.53,.47,.52);
-   for(let i=0;i<5;i++){const a=i*Math.PI*2/5;const leaf=part(g,new THREE.ConeGeometry(.12,.43,5),tomatoLeaf,Math.cos(a)*.15,1.04,Math.sin(a)*.15);leaf.rotation.z=Math.PI/2;leaf.rotation.y=a}
+   for(let i=0;i<5;i++){const a=i*Math.PI*2/5;const leaf=part(g,sphere,tomatoLeaf,Math.cos(a)*.2,1.03,Math.sin(a)*.2,.24,.055,.075);leaf.rotation.y=-a;leaf.rotation.z=Math.cos(a)*.24;leaf.rotation.x=-Math.sin(a)*.24}
    part(g,new THREE.CylinderGeometry(.045,.065,.21,7),dark,0,1.12,0);
   }
   if(type==='Pea'){
