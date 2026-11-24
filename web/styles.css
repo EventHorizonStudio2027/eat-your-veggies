@@ -260,3 +260,23 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
   .playing .topbar .icon-button{height:36px}
   .playing .level-banner{top:calc(env(safe-area-inset-top) + 43px)}
 }
+
+.explorer-photo{display:grid;gap:6px;padding:10px 12px;border-radius:15px;background:#eff7e9;text-align:left;font-size:13px}
+.explorer-photo label{font-weight:800}
+.explorer-photo input{max-width:100%;font:inherit}
+#explorer-photo-error:empty{display:none}
+#explorer-photo-selected:not([hidden]){display:flex;align-items:center;gap:10px}
+#explorer-photo-preview{width:42px;height:42px;border-radius:9px;object-fit:cover}
+.veggie-demo{width:min(390px,calc(100% - 24px));max-height:calc(100% - 24px);padding:16px;border:2px solid white;border-radius:24px;background:#fffdf2;color:#285d43;text-align:center}
+.veggie-demo::backdrop{background:#233c3280}
+#veggie-demo-photo{display:block;width:68px;height:68px;margin:auto;border-radius:16px;object-fit:cover}
+.veggie-demo h2{margin:8px 0;font:600 23px Fredoka,system-ui,sans-serif}
+.veggie-demo p{margin:8px 0 12px;line-height:1.4}
+.veggie-demo-scene{display:flex;justify-content:center;gap:4px;font-size:42px;overflow:hidden}
+.veggie-demo button,.explorer-photo button{padding:6px 12px;border:1px solid #9cc6a6;border-radius:12px;background:#fff;color:#285d43;font-weight:700}
+.veggie-demo button{min-height:44px}
+#veggie-demo-continue{background:#d7efce}
+@media(prefers-reduced-motion:no-preference){
+  .demo-bite{animation:demo-bite 1.5s ease-in-out}
+  @keyframes demo-bite{0%,100%{transform:none;opacity:1}60%{transform:translateX(35px) scale(.55);opacity:1}70%,90%{transform:translateX(35px) scale(.3);opacity:0}}
+}
