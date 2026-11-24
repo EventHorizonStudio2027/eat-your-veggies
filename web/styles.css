@@ -220,7 +220,7 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 @media(prefers-reduced-transparency:reduce){.playing .play-status{background:#fffdf1;backdrop-filter:none;-webkit-backdrop-filter:none}}
 
 /* Nonblocking guidance: only show temporary notifications when gameplay has news. */
-.playing .play-status:not(.notice-active){opacity:0;visibility:hidden}
+.playing .play-status:not(.notice-active){opacity:0;visibility:hidden;transition:none}
 .playing .play-status.notice-active{opacity:1;visibility:visible}
 .playing .play-status{transition:opacity .18s ease,visibility .18s ease}
 @media(prefers-reduced-motion:reduce){.playing .play-status{transition:none}}
@@ -249,3 +249,14 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 /* Final independent design polish: quieter control focus without losing accessibility. */
 .playing #munch:focus-visible{outline:3px solid #286b4d;outline-offset:4px;box-shadow:0 0 0 7px rgba(255,253,237,.85),0 7px 20px rgba(39,86,56,.17)}
 @media(prefers-reduced-motion:reduce){.playing #munch:focus-visible{transition:none}}
+
+/* Keep the area and goal close to the top without covering the header controls. */
+.playing .topbar{top:calc(env(safe-area-inset-top) + 5px)}
+.playing .level-banner{top:calc(env(safe-area-inset-top) + 51px)}
+@media(min-width:781px){
+  .playing .level-banner{top:calc(env(safe-area-inset-top) + 8px);width:min(390px,38vw)}
+}
+@media(max-width:780px) and (max-height:600px){
+  .playing .topbar .icon-button{height:36px}
+  .playing .level-banner{top:calc(env(safe-area-inset-top) + 43px)}
+}

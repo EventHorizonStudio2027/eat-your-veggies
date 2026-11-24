@@ -27,7 +27,7 @@ assert.match(models,/Math\.min\(9999/,'Restored counters must be bounded');
 assert.match(styles,/max-height:600px/,'Short landscape screens need a compact HUD');
 console.log('PASS: exit persistence, bounded restore and small-screen HUD safeguards');
 
-assert.match(models,/if\(!started\|\|finished\)return;e\.preventDefault\(\);pointerId=e\.pointerId/,'Joystick must ignore inactive game state');
+assert.match(models,/if\(!started\|\|finished\|\|pointerId!==null\)return;e\.preventDefault\(\);pointerId=e\.pointerId/,'Joystick must ignore inactive game state');
 assert.match(models,/e\.pointerId===pointerId\)release\(\)/,'Only active joystick pointer may release movement');
 assert.match(models,/if\(started&&!finished\)status\.textContent=/,'Delayed gameplay prompts must respect play state');
 console.log('PASS: joystick ownership and inactive-state feedback guards');
@@ -41,11 +41,11 @@ assert.match(styles,/\.playing \.play-status\{top:auto/,'Gameplay status must le
 assert.match(styles,/\.garden-celebration:not\(\[hidden\]\)/,'Garden celebration must be compact and edge-aligned');
 console.log('PASS: nonblocking gameplay notification layout guards');
 
-assert.match(sw,/veggieverse-v10/,'Updated offline cache version required');
+assert.match(sw,/veggieverse-v11/,'Updated offline cache version required');
 assert.match(models,/status\.classList\.add\('notice-active'\)/,'Feedback must explicitly activate');
 assert.match(models,/status\.classList\.remove\('notice-active'\)/,'Feedback must dismiss');
 assert.match(styles,/\.playing \.play-status:not\(\.notice-active\)/,'Idle feedback must not obstruct game');
-console.log('PASS: v10 cache and auto-dismissing feedback checks');
+console.log('PASS: v11 cache and auto-dismissing feedback checks');
 
 assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\|\|e\.button>0\|\|pointerId!==null\)return/,'Secondary touches and auxiliary clicks must not issue movement commands');
 assert.match(models,/if\(!rect\.width\|\|!rect\.height\)return/,'Zero-sized canvas must not create invalid raycasts');
@@ -62,3 +62,6 @@ console.log('PASS: auxiliary-click safety, pointer capture recovery, and score p
 assert.match(models,/pointerId!==null\)return;const rect=canvas/,'Canvas tap must not override an active joystick gesture');
 assert.match(styles,/\.playing \.play-score\{display:none\}/,'Compact phone layout must not obscure Munch controls');
 console.log('PASS: joystick/canvas gesture isolation and compact-phone controls');
+
+assert.doesNotMatch(models, /say\('Here we go!'\)/, 'Ground movement must not open a notice');
+assert.match(models, /intersectPlane\(ground,hit\).*dismissNotice\(\)/, 'Ground movement must dismiss active notices');
