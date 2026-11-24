@@ -4,11 +4,11 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#d8f3e5"><meta name="description" content="A cozy, magical adventure for little explorers.">
 <title>Eat Your Veggies · The Wonder Forest</title>
-<link rel="stylesheet" href="./web/styles.css"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./web/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./web/styles.css"><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./web/brand/favicon.png" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="./web/brand/apple-touch-icon.png">
 </head>
 <body>
 <main id="app"><section id="parent-gate" class="parent-gate" hidden role="dialog" aria-modal="true" aria-labelledby="parent-gate-title"><div class="parent-gate-card"><span aria-hidden="true">🔒</span><h2 id="parent-gate-title">Grown-ups only</h2><p>Press and hold the button for 3 seconds to open parent settings.</p><button id="parent-gate-hold" type="button">Hold to continue</button><button id="parent-gate-cancel" type="button" class="parent-gate-cancel">Back to adventure</button><p id="parent-gate-progress" class="parent-gate-progress" role="status" aria-live="polite">Parent check ready</p></div></section>
-<section id="parent-setup" class="parent-setup" role="dialog" aria-modal="true" aria-labelledby="parent-title"><div class="parent-card"><div class="welcome-veggies" aria-hidden="true">🥕 🥦 🍅</div><h1 id="parent-title">Eat Your <em>Veggies!</em></h1><fieldset class="veggie-picker"><legend>Pick your veggies</legend><label><input type="checkbox" value="Carrot" checked><span>🥕<strong>Carrots</strong></span></label><label><input type="checkbox" value="Broccoli" checked><span>🥦<strong>Broccoli</strong></span></label><label><input type="checkbox" value="Tomato" checked><span>🍅<strong>Tomatoes</strong></span></label><label><input type="checkbox" value="Pea" checked><span>🫛<strong>Peas</strong></span></label></fieldset>
+<section id="parent-setup" class="parent-setup" role="dialog" aria-modal="true" aria-labelledby="parent-title"><div class="parent-card"><h1 id="parent-title"><img class="title-logo" src="./web/brand/title.webp" alt="Eat Your Veggies!"></h1><fieldset class="veggie-picker"><legend>Pick your veggies</legend><label><input type="checkbox" value="Carrot" checked><span>🥕<strong>Carrots</strong></span></label><label><input type="checkbox" value="Broccoli" checked><span>🥦<strong>Broccoli</strong></span></label><label><input type="checkbox" value="Tomato" checked><span>🍅<strong>Tomatoes</strong></span></label><label><input type="checkbox" value="Pea" checked><span>🫛<strong>Peas</strong></span></label></fieldset>
 <p id="parent-error" class="parent-error" aria-live="polite"></p>
 <button id="start-adventure" type="button" class="start-adventure">✨ Start exploring!</button></div></section>
 <dialog id="explorer-photo" class="explorer-photo" aria-labelledby="explorer-photo-title" aria-describedby="explorer-photo-note">
@@ -35,9 +35,9 @@
   <button id="veggie-demo-continue" type="button" autofocus>Keep playing</button>
 </dialog>
 <canvas id="world" tabindex="0" aria-label="3D forest adventure. Use arrow keys or WASD to move, Space to munch, or tap the world to walk." aria-describedby="play-status"></canvas>
-<div class="sky-wash" aria-hidden="true"></div><div id="loading" class="loading" role="status" aria-live="polite"><span class="loading-flower">✿</span><strong>Growing your adventure…</strong><small>Just a little moment!</small><button id="retry" class="retry" hidden>Try again ↻</button></div>
+<div class="sky-wash" aria-hidden="true"></div><div id="loading" class="loading" role="status" aria-live="polite"><img class="loading-flower loading-mascot" src="./web/brand/mascot.webp" alt=""><strong>Growing your adventure…</strong><small>Just a little moment!</small><button id="retry" class="retry" hidden>Try again ↻</button></div>
 <header class="topbar">
- <div class="brand"><span class="brand-mark" aria-hidden="true">✿</span><div><strong>eat your veggies<span class="brand-period">.</span></strong><small>A LITTLE BIG ADVENTURE</small></div></div>
+ <div class="brand"><img class="header-logo" src="./web/brand/header.webp" alt="Eat Your Veggies!"></div>
  <div class="top-actions"><button id="parent-settings" class="icon-button" aria-label="Parent settings" title="Parent settings">⚙</button><button id="read" class="icon-button" aria-label="Read the story aloud" title="Read aloud">▸</button><button id="restart" class="icon-button" aria-label="Start a new adventure" title="Start over">↺</button><button id="sound" class="icon-button" aria-label="Turn sound on" aria-pressed="false" title="Sound">♫</button></div>
 </header>
 <section class="welcome" aria-label="Current adventure">

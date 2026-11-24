@@ -1,8 +1,8 @@
 /* Cache the game shell and any successfully fetched 3D engine modules.
    First visit still needs internet; subsequent visits may work offline. */
-const CACHE='veggieverse-v13';
+const CACHE='veggieverse-v14';
 const ENGINE='https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
-const SHELL=['./','./index.html','./web/styles.css','./web/main.js','./web/storybook-world.js','./web/veggie-adventure.js','./web/discovery-world.js','./web/icon.svg','./manifest.webmanifest'];
+const SHELL=['./','./index.html','./web/styles.css','./web/main.js','./web/storybook-world.js','./web/veggie-adventure.js','./web/discovery-world.js','./web/brand/app-icon-192.png','./web/brand/apple-touch-icon.png','./web/brand/eat-your-veggies-app-icon.png','./web/brand/favicon.png','./web/brand/header.webp','./web/brand/mascot.webp','./web/brand/title.webp','./manifest.webmanifest'];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(async cache=>{await cache.addAll(SHELL);try{await cache.add(ENGINE)}catch(error){console.warn('3D engine offline prefetch unavailable',error)}}).then(()=>self.skipWaiting()));
 });
