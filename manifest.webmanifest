@@ -1,6 +1,6 @@
 {
-  "name": "Eat Your Veggies — Wonder Forest",
-  "short_name": "Veggieverse",
+  "name": "Eat Your Veggies \u2014 Wonder Forest",
+  "short_name": "Eat Your Veggies",
   "description": "A gentle magical adventure for little explorers",
   "start_url": "./",
   "scope": "./",
@@ -9,10 +9,16 @@
   "theme_color": "#d7f5d9",
   "icons": [
     {
-      "src": "./web/icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "./web/brand/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./web/brand/eat-your-veggies-app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }

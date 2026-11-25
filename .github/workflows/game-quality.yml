@@ -43,7 +43,7 @@ jobs:
           assert 'veggie-world-reset' in js and 'veggie-discoveries-reset' in js, 'Adventure reset lifecycle missing'
           assert 'completedGardens=level;' in js, 'Saved chapter and restored garden count must agree'
           assert "document.body.classList.remove('playing');window.dispatchEvent(new CustomEvent('veggie-play-state'" in js, 'Victory must exit active play styling'
-          assert "setup.querySelector('input[type=checkbox]')?.focus({preventScroll:true});return}" in js, 'Invalid parent setup must restore keyboard focus'
+          assert "setup.querySelector('input[type=checkbox]')?.focus({preventScroll:true});return []}" in js, 'Invalid parent setup must restore keyboard focus'
           assert "gateHold?.addEventListener('blur',stopGateHold)" in js, 'Adult hold must cancel on focus loss'
           assert 'Number.isFinite(Number(previous.found))' in js and 'Number.isFinite(Number(previous.eaten))' in js, 'Saved counters must reject invalid numbers'
           assert 'Number.isFinite(Number(previous.levelMunched))' in js, 'Saved garden progress must reject invalid values'
@@ -53,7 +53,7 @@ jobs:
           assert 'Math.max(0,activeLevel().need-levelMunched)' in js, 'Remaining garden goal must not be negative'
           assert "munch.textContent='🥕 Find veggies';updateHud()}function ensureGoalAvailable()" in js, 'Restock must not save incomplete chapter transition'
           assert 'v.visible&&chosenTypes.includes(v.userData.type)&&v.userData.type===type' in js, 'Availability must respect parent selections'
-          assert "const CACHE='veggieverse-v15'" in cache, 'Release cache must be refreshed'
+          assert "const CACHE='veggieverse-v16'" in cache, 'Release cache must be refreshed'
           assert 'stopMovement();hero.position.set(-1.7,0,1);ensureGoalAvailable();saveAdventure()' in js, 'Garden transition must clear movement and ensure required veggies'
           assert 'if(Array.isArray(previous.bag)&&bag.length===0){munch.disabled=true}' in js, 'Empty saved basket must disable munch'
           main=Path('web/main.js').read_text()

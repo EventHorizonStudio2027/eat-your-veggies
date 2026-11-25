@@ -2,7 +2,7 @@ const fs=require('node:fs');
 const assert=require('node:assert/strict');
 const read=p=>fs.readFileSync(p,'utf8');
 const html=read('index.html'),main=read('web/main.js'),sw=read('sw.js');
-const assets=['index.html','web/styles.css','web/main.js','web/storybook-world.js','web/veggie-adventure.js','web/discovery-world.js','web/icon.svg','manifest.webmanifest','sw.js'];
+const assets=['index.html','web/styles.css','web/main.js','web/storybook-world.js','web/veggie-adventure.js','web/discovery-world.js','web/brand/app-icon-192.png','apple-touch-icon.png','web/brand/eat-your-veggies-app-icon.png','web/brand/favicon.png','web/brand/header.webp','web/brand/mascot.webp','web/brand/title.webp','manifest.webmanifest','sw.js'];
 for(const file of assets)assert.ok(fs.statSync(file).size>0,'Missing or empty: '+file);
 assert.match(html,/<canvas[^>]+id=["']world["']/i,'3D canvas must exist');
 assert.match(html,/type=["']module["']\s+src=["']\.\/web\/main\.js["']/i,'Main module must load');
@@ -41,11 +41,11 @@ assert.match(styles,/\.playing \.play-status\{top:auto/,'Gameplay status must le
 assert.match(styles,/\.garden-celebration:not\(\[hidden\]\)/,'Garden celebration must be compact and edge-aligned');
 console.log('PASS: nonblocking gameplay notification layout guards');
 
-assert.match(sw,/veggieverse-v15/,'Updated offline cache version required');
+assert.match(sw,/veggieverse-v16/,'Updated offline cache version required');
 assert.match(models,/status\.classList\.add\('notice-active'\)/,'Feedback must explicitly activate');
 assert.match(models,/status\.classList\.remove\('notice-active'\)/,'Feedback must dismiss');
 assert.match(styles,/\.playing \.play-status:not\(\.notice-active\)/,'Idle feedback must not obstruct game');
-console.log('PASS: v15 cache and auto-dismissing feedback checks');
+console.log('PASS: v16 cache and auto-dismissing feedback checks');
 
 assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\|\|e\.button>0\|\|pointerId!==null\)return/,'Secondary touches and auxiliary clicks must not issue movement commands');
 assert.match(models,/if\(!rect\.width\|\|!rect\.height\)return/,'Zero-sized canvas must not create invalid raycasts');
@@ -62,6 +62,9 @@ console.log('PASS: auxiliary-click safety, pointer capture recovery, and score p
 assert.match(models,/pointerId!==null\)return;const rect=canvas/,'Canvas tap must not override an active joystick gesture');
 assert.match(styles,/\.playing \.play-score\{display:none\}/,'Compact phone layout must not obscure Munch controls');
 console.log('PASS: joystick/canvas gesture isolation and compact-phone controls');
+
+assert.doesNotMatch(models, /say\('Here we go!'\)/, 'Ground movement must not open a notice');
+assert.match(models, /intersectPlane\(ground,hit\).*dismissNotice\(\)/, 'Ground movement must dismiss active notices');
 
 assert.match(html, /<link rel="apple-touch-icon" sizes="180x180" href="\.\/apple-touch-icon\.png">/);
 const appleIcon = fs.readFileSync('apple-touch-icon.png');

@@ -44,7 +44,13 @@ jobs:
           test -s web/veggie-adventure.js
           test -s web/discovery-world.js
           test -s manifest.webmanifest
-          test -s web/icon.svg
+          test -s web/brand/app-icon-192.png
+          test -s apple-touch-icon.png
+          test -s web/brand/eat-your-veggies-app-icon.png
+          test -s web/brand/favicon.png
+          test -s web/brand/header.webp
+          test -s web/brand/mascot.webp
+          test -s web/brand/title.webp
   deploy:
     needs: validate
     environment:
