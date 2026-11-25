@@ -6,6 +6,23 @@
  const photoInput=$('#explorer-photo-input');
  const gameStatus=$('#explorer-game-status');
  const setup=$('#parent-setup');
+ const retry=$('#explorer-game-retry');
+ let pendingStart=null;
+ retry.addEventListener('click',()=>location.reload());
+ function showLoadStatus(){
+  const stalled=!$('#retry').hidden;
+  gameStatus.textContent=stalled
+   ? 'The 3D garden could not start. You can retry here.'
+   : 'Growing your garden…';
+  gameStatus.hidden=false;
+  retry.hidden=!stalled;
+ }
+ window.addEventListener('veggie-load-stalled',()=>{
+  if(photoPrompt.open&&pendingStart!==null)showLoadStatus();
+ });
+ window.addEventListener('veggie-game-ready',()=>{
+  if(pendingStart!==null)startGame(pendingStart);
+ });
  startButton.addEventListener('click',()=>{
   if(!setup.querySelector('input[type=checkbox]:checked')){
    $('#parent-error').textContent='Choose at least one veggie to begin.';
@@ -14,17 +31,17 @@
   }
   $('#parent-error').textContent='';
   gameStatus.hidden=true;
+  retry.hidden=true;
   if(!photoPrompt.open)photoPrompt.showModal();
  });
  function startGame(usePhoto){
   if(!photoPrompt.open)return;
   if(!$('#loading').classList.contains('hidden')){
-   gameStatus.textContent=$('#retry').hidden
-    ? 'The garden is still loading. Try Play again in a moment.'
-    : 'The 3D garden could not start. Reopen the game to try again.';
-   gameStatus.hidden=false;
+   pendingStart=usePhoto;
+   showLoadStatus();
    return;
   }
+  pendingStart=null;
   if(!usePhoto)removePhoto();
   photoPrompt.close();
   window.dispatchEvent(new CustomEvent('veggie-start-request',{detail:photoUrl}));
@@ -34,6 +51,7 @@
   if(photoUrl&&!photoPlay.disabled)startGame(true);
  });
  photoPrompt.addEventListener('cancel',()=>{
+  pendingStart=null;
   photoSelection++;
   photoPlay.disabled=false;
   photoInput.value='';
@@ -44,6 +62,7 @@
  let photoUrl='';
  let photoSelection=0;
  function removePhoto(){
+  if(pendingStart===true)pendingStart=null;
   photoSelection++;
   if(photoUrl)URL.revokeObjectURL(photoUrl);
   photoUrl='';
@@ -62,6 +81,7 @@
   const file=photoInput.files[0];
   if(!file)return;
   const selection=++photoSelection;
+  if(pendingStart===true)pendingStart=null;
   photoPlay.disabled=true;
   photoError.textContent='';
   const candidate=URL.createObjectURL(file);

@@ -41,11 +41,11 @@ assert.match(styles,/\.playing \.play-status\{top:auto/,'Gameplay status must le
 assert.match(styles,/\.garden-celebration:not\(\[hidden\]\)/,'Garden celebration must be compact and edge-aligned');
 console.log('PASS: nonblocking gameplay notification layout guards');
 
-assert.match(sw,/veggieverse-v18/,'Updated offline cache version required');
+assert.match(sw,/veggieverse-v19/,'Updated offline cache version required');
 assert.match(models,/status\.classList\.add\('notice-active'\)/,'Feedback must explicitly activate');
 assert.match(models,/status\.classList\.remove\('notice-active'\)/,'Feedback must dismiss');
 assert.match(styles,/\.playing \.play-status:not\(\.notice-active\)/,'Idle feedback must not obstruct game');
-console.log('PASS: v18 cache and auto-dismissing feedback checks');
+console.log('PASS: v19 cache and auto-dismissing feedback checks');
 
 assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\|\|e\.button>0\|\|pointerId!==null\)return/,'Secondary touches and auxiliary clicks must not issue movement commands');
 assert.match(models,/if\(!rect\.width\|\|!rect\.height\)return/,'Zero-sized canvas must not create invalid raycasts');
@@ -85,9 +85,10 @@ function node(id){
 }
 let gameReady=false;
 const starts=[];
+const gameEvents={};
 require('node:vm').runInNewContext(read('web/explorer-photo.js'),{
  document:{querySelector:node},
- window:{dispatchEvent:event=>starts.push(event)},
+ window:{dispatchEvent:event=>starts.push(event),addEventListener:(name,fn)=>{gameEvents[name]=fn}},
  CustomEvent:class{constructor(type,options){this.type=type;this.detail=options.detail}}
 });
 node('#start-adventure').handlers.click();
@@ -95,8 +96,11 @@ assert.equal(node('#explorer-photo').open,true,'Photo prompt must open even befo
 node('#explorer-photo-skip').handlers.click();
 assert.equal(starts.length,0,'The game cannot start before the renderer is ready');
 assert.equal(node('#explorer-game-status').hidden,false);
+node('#retry').hidden=false;
+gameEvents['veggie-load-stalled']();
+assert.equal(node('#explorer-game-retry').hidden,false);
 gameReady=true;
-node('#explorer-photo-skip').handlers.click();
+gameEvents['veggie-game-ready']();
 assert.equal(node('#explorer-photo').open,false);
 assert.equal(starts[0].type,'veggie-start-request');
 assert.equal(starts[0].detail,'');

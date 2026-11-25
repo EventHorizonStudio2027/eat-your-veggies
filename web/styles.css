@@ -310,3 +310,7 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
   .veggie-picker label strong{font-size:clamp(9px,2.7vw,12px);line-height:1.15}
 }
 #explorer-game-status{padding:8px;border-radius:10px;background:#fff1cf}
+
+#explorer-game-retry:not([hidden]){display:inline-block;min-height:44px;margin-bottom:4px;background:#e6f4d9}
+.explorer-photo input:focus-visible{outline:3px solid #377b51;outline-offset:3px}
+#explorer-game-status{color:#704716;border:1px solid #eed491}
