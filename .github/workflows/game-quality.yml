@@ -14,6 +14,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check web/main.js
+          node --check web/explorer-photo.js
           node --check web/veggie-adventure.js
           node --check web/discovery-world.js
           node --check web/storybook-world.js
@@ -53,7 +54,7 @@ jobs:
           assert 'Math.max(0,activeLevel().need-levelMunched)' in js, 'Remaining garden goal must not be negative'
           assert "munch.textContent='🥕 Find veggies';updateHud()}function ensureGoalAvailable()" in js, 'Restock must not save incomplete chapter transition'
           assert 'v.visible&&chosenTypes.includes(v.userData.type)&&v.userData.type===type' in js, 'Availability must respect parent selections'
-          assert "const CACHE='veggieverse-v17'" in cache, 'Release cache must be refreshed'
+          assert "const CACHE='veggieverse-v18'" in cache, 'Release cache must be refreshed'
           assert 'stopMovement();hero.position.set(-1.7,0,1);ensureGoalAvailable();saveAdventure()' in js, 'Garden transition must clear movement and ensure required veggies'
           assert 'if(Array.isArray(previous.bag)&&bag.length===0){munch.disabled=true}' in js, 'Empty saved basket must disable munch'
           main=Path('web/main.js').read_text()
@@ -105,7 +106,7 @@ jobs:
           assert 'prop.base-.85' in world, 'Bridge rail repair animation missing'
           for name in ('Carrot','Broccoli','Tomato','Pea'):
               assert name in js, f'Missing veggie type: {name}'
-          for path in ('web/main.js','web/veggie-adventure.js','web/discovery-world.js','web/storybook-world.js'):
+          for path in ('web/main.js','web/explorer-photo.js','web/veggie-adventure.js','web/discovery-world.js','web/storybook-world.js'):
               assert Path(path).exists(), f'Missing module: {path}'
               assert f"'./{path}'" in cache, f'Missing offline cache entry: {path}'
           print('Static game integrity checks passed')

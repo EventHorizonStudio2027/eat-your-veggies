@@ -8,7 +8,7 @@
 </head>
 <body>
 <main id="app"><section id="parent-gate" class="parent-gate" hidden role="dialog" aria-modal="true" aria-labelledby="parent-gate-title"><div class="parent-gate-card"><span aria-hidden="true">🔒</span><h2 id="parent-gate-title">Grown-ups only</h2><p>Press and hold the button for 3 seconds to open parent settings.</p><button id="parent-gate-hold" type="button">Hold to continue</button><button id="parent-gate-cancel" type="button" class="parent-gate-cancel">Back to adventure</button><p id="parent-gate-progress" class="parent-gate-progress" role="status" aria-live="polite">Parent check ready</p></div></section>
-<section id="parent-setup" class="parent-setup" role="dialog" aria-modal="true" aria-labelledby="parent-title"><div class="parent-card"><h1 id="parent-title"><img class="title-logo" src="./web/brand/title.webp" alt="Eat Your Veggies!"></h1><fieldset class="veggie-picker"><legend>Pick your veggies</legend><label><input type="checkbox" value="Carrot" checked><span>🥕<strong>Carrots</strong></span></label><label><input type="checkbox" value="Broccoli" checked><span>🥦<strong>Broccoli</strong></span></label><label><input type="checkbox" value="Tomato" checked><span>🍅<strong>Tomatoes</strong></span></label><label><input type="checkbox" value="Pea" checked><span>🫛<strong>Peas</strong></span></label></fieldset>
+<section id="parent-setup" class="parent-setup" role="dialog" aria-modal="true" aria-labelledby="parent-title"><div class="parent-card"><h1 id="parent-title"><img class="title-logo" src="./web/brand/title.webp" alt="Eat Your Veggies!"></h1><fieldset class="veggie-picker"><legend>Pick your veggies</legend><label><input type="checkbox" value="Carrot" checked><span>🥕<strong>Carrots</strong></span></label><label><input type="checkbox" value="Broccoli" checked><span>🥦<strong>Broccoli</strong></span></label><label><input type="checkbox" value="Tomato" checked><span>🍅<strong>Tomatoes</strong></span></label><label><input type="checkbox" value="Pea" checked><span>🫛<strong>Peas</strong></span></label><label><input type="checkbox" value="Corn"><span>🌽<strong>Corn</strong></span></label><label><input type="checkbox" value="Cucumber"><span>🥒<strong>Cucumbers</strong></span></label><label><input type="checkbox" value="Eggplant"><span>🍆<strong>Eggplants</strong></span></label><label><input type="checkbox" value="Bell Pepper"><span>🫑<strong>Bell peppers</strong></span></label></fieldset>
 <p id="parent-error" class="parent-error" aria-live="polite"></p>
 <button id="start-adventure" type="button" class="start-adventure">✨ Start exploring!</button></div></section>
 <dialog id="explorer-photo" class="explorer-photo" aria-labelledby="explorer-photo-title" aria-describedby="explorer-photo-note">
@@ -21,6 +21,7 @@
     <img id="explorer-photo-preview" alt="Selected explorer photo">
     <button id="explorer-photo-remove" type="button">Remove photo</button>
   </div>
+  <p id="explorer-game-status" role="status" hidden></p>
   <div class="photo-actions">
     <button id="explorer-photo-skip" type="button">Play without a photo</button>
     <button id="explorer-photo-play" type="button" hidden>Play with photo</button>
@@ -61,5 +62,5 @@
 window.addEventListener("load",()=>{if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js").catch(()=>{});});
 window.addEventListener("error",()=>{const box=document.querySelector("#loading");if(box&&!box.classList.contains("hidden")){box.querySelector("strong").textContent="The forest needs a moment";box.querySelector("small").textContent="Check your connection and try again.";document.querySelector("#retry").hidden=false;}});
 document.addEventListener("DOMContentLoaded",()=>{document.querySelector("#retry").addEventListener("click",()=>location.reload());window.addEventListener("veggie-renderer-lost",()=>{const box=document.querySelector("#loading");box.classList.remove("hidden");box.querySelector("strong").textContent="The forest needs to wake up";box.querySelector("small").textContent="Your adventure is safe. Tap below to try again.";document.querySelector("#retry").hidden=false});window.addEventListener("veggie-renderer-restored",()=>{const box=document.querySelector("#loading");box.classList.add("hidden")});setTimeout(()=>{const box=document.querySelector("#loading");if(box&&!box.classList.contains("hidden")){box.querySelector("strong").textContent="The forest is taking a little longer";box.querySelector("small").textContent="Please check your connection.";document.querySelector("#retry").hidden=false;}},12000)});
-</script><script type="module" src="./web/main.js"></script>
+</script><script src="./web/explorer-photo.js"></script><script type="module" src="./web/main.js"></script>
 </body></html>

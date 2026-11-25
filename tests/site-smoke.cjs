@@ -2,7 +2,7 @@ const fs=require('node:fs');
 const assert=require('node:assert/strict');
 const read=p=>fs.readFileSync(p,'utf8');
 const html=read('index.html'),main=read('web/main.js'),sw=read('sw.js');
-const assets=['index.html','web/styles.css','web/main.js','web/storybook-world.js','web/veggie-adventure.js','web/discovery-world.js','web/brand/app-icon-192.png','apple-touch-icon.png','web/brand/eat-your-veggies-app-icon.png','web/brand/favicon.png','web/brand/header.webp','web/brand/mascot.webp','web/brand/title.webp','manifest.webmanifest','sw.js'];
+const assets=['index.html','web/styles.css','web/main.js','web/explorer-photo.js','web/storybook-world.js','web/veggie-adventure.js','web/discovery-world.js','web/brand/app-icon-192.png','apple-touch-icon.png','web/brand/eat-your-veggies-app-icon.png','web/brand/favicon.png','web/brand/header.webp','web/brand/mascot.webp','web/brand/title.webp','manifest.webmanifest','sw.js'];
 for(const file of assets)assert.ok(fs.statSync(file).size>0,'Missing or empty: '+file);
 assert.match(html,/<canvas[^>]+id=["']world["']/i,'3D canvas must exist');
 assert.match(html,/type=["']module["']\s+src=["']\.\/web\/main\.js["']/i,'Main module must load');
@@ -15,11 +15,11 @@ assert.equal(manifest.start_url,'./','Manifest must use project-relative start U
 console.log('PASS: 3D entry, required assets, service worker and relative manifest paths');
 
 const models=read('web/veggie-adventure.js'),styles=read('web/styles.css');
-for(const vegetable of ['Carrot','Broccoli','Tomato','Pea'])assert.ok(models.includes("type==='"+vegetable+"'"),'Missing 3D model for '+vegetable);
+for(const vegetable of ['Carrot','Broccoli','Tomato','Pea','Corn','Cucumber','Eggplant','Bell Pepper'])assert.ok(models.includes("type==='"+vegetable+"'"),'Missing 3D model for '+vegetable);
 assert.match(styles,/Gameplay-first HUD/,'Compact gameplay HUD styles missing');
 assert.match(models,/broccoliFloret/,'Broccoli crown geometry missing');
 assert.match(models,/tomatoLeaf/,'Tomato calyx geometry missing');
-console.log('PASS: all four veggie types have dedicated 3D geometry and gameplay HUD override exists');
+console.log('PASS: all eight veggie types have dedicated 3D geometry and gameplay HUD override exists');
 
 assert.match(models,/addEventListener\('pagehide'/,'Adventure must save on page exit');
 assert.match(models,/visibilitychange/,'Adventure must save when app is backgrounded');
@@ -41,11 +41,11 @@ assert.match(styles,/\.playing \.play-status\{top:auto/,'Gameplay status must le
 assert.match(styles,/\.garden-celebration:not\(\[hidden\]\)/,'Garden celebration must be compact and edge-aligned');
 console.log('PASS: nonblocking gameplay notification layout guards');
 
-assert.match(sw,/veggieverse-v17/,'Updated offline cache version required');
+assert.match(sw,/veggieverse-v18/,'Updated offline cache version required');
 assert.match(models,/status\.classList\.add\('notice-active'\)/,'Feedback must explicitly activate');
 assert.match(models,/status\.classList\.remove\('notice-active'\)/,'Feedback must dismiss');
 assert.match(styles,/\.playing \.play-status:not\(\.notice-active\)/,'Idle feedback must not obstruct game');
-console.log('PASS: v17 cache and auto-dismissing feedback checks');
+console.log('PASS: v18 cache and auto-dismissing feedback checks');
 
 assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\|\|e\.button>0\|\|pointerId!==null\)return/,'Secondary touches and auxiliary clicks must not issue movement commands');
 assert.match(models,/if\(!rect\.width\|\|!rect\.height\)return/,'Zero-sized canvas must not create invalid raycasts');
@@ -71,3 +71,33 @@ const appleIcon = fs.readFileSync('apple-touch-icon.png');
 assert.equal(appleIcon.subarray(12, 16).toString(), 'IHDR');
 assert.deepEqual([appleIcon.readUInt32BE(16), appleIcon.readUInt32BE(20)], [180, 180]);
 assert.equal(manifest.display, 'standalone');
+
+assert.equal([...html.matchAll(/type="checkbox" value="[^"]+"/g)].length,8);
+const nodes=new Map();
+function node(id){
+ if(!nodes.has(id))nodes.set(id,{
+  handlers:{}, files:[], hidden:true,
+  addEventListener(name,callback){this.handlers[name]=callback},
+  showModal(){this.open=true}, close(){this.open=false}, removeAttribute(){},
+  classList:{contains:()=>gameReady}, querySelector:()=>({focus(){}})
+ });
+ return nodes.get(id);
+}
+let gameReady=false;
+const starts=[];
+require('node:vm').runInNewContext(read('web/explorer-photo.js'),{
+ document:{querySelector:node},
+ window:{dispatchEvent:event=>starts.push(event)},
+ CustomEvent:class{constructor(type,options){this.type=type;this.detail=options.detail}}
+});
+node('#start-adventure').handlers.click();
+assert.equal(node('#explorer-photo').open,true,'Photo prompt must open even before WebGL initializes');
+node('#explorer-photo-skip').handlers.click();
+assert.equal(starts.length,0,'The game cannot start before the renderer is ready');
+assert.equal(node('#explorer-game-status').hidden,false);
+gameReady=true;
+node('#explorer-photo-skip').handlers.click();
+assert.equal(node('#explorer-photo').open,false);
+assert.equal(starts[0].type,'veggie-start-request');
+assert.equal(starts[0].detail,'');
+console.log('PASS: photo prompt opens independently and skip starts the ready game');

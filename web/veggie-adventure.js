@@ -43,28 +43,63 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
    for(let i=-2;i<=2;i++)part(g,sphere,peaSkin,i*.28,.69,.15,.15,.155,.15);
    part(g,new THREE.CylinderGeometry(.025,.035,.3,7),dark,.91,.59,0).rotation.z=-.9;
   }
+  if(type==='Corn'){
+   const kernel=material('#ffd354');
+   part(g,sphere,material('#e5a52d'),0,.76,0,.30,.67,.30);
+   for(let row=0;row<5;row++)for(let col=0;col<7;col++){
+    const angle=col*Math.PI*2/7;
+    part(g,sphere,kernel,Math.cos(angle)*.25,.38+row*.18,Math.sin(angle)*.25,.095,.11,.095);
+   }
+   for(const side of [-1,1])part(g,sphere,green,side*.24,.45,0,.14,.48,.16).rotation.z=side*-.38;
+  }
+  if(type==='Cucumber'){
+   part(g,sphere,material('#42854b'),0,.34,0,.83,.28,.3).rotation.z=.12;
+   for(let i=0;i<7;i++)part(g,sphere,green,(i-3)*.2,.57+Math.cos(i)*.035,.07,.043,.038,.043);
+   part(g,sphere,dark,.78,.43,0,.12,.08,.08);
+  }
+  if(type==='Eggplant'){
+   part(g,sphere,material('#78428c'),0,.59,0,.46,.54,.43);
+   part(g,sphere,material('#86519c'),.15,.86,0,.33,.43,.33).rotation.z=-.26;
+   for(let i=0;i<4;i++){
+    const angle=i*Math.PI/2;
+    part(g,sphere,green,.23+Math.cos(angle)*.13,1.19,Math.sin(angle)*.13,.18,.06,.12).rotation.y=-angle;
+   }
+   part(g,sphere,dark,.23,1.29,0,.07,.16,.07).rotation.z=-.3;
+  }
+  if(type==='Bell Pepper'){
+   const pepper=material('#e65033');
+   for(let i=0;i<4;i++){
+    const angle=i*Math.PI/2;
+    part(g,sphere,pepper,Math.cos(angle)*.18,.54,Math.sin(angle)*.18,.3,.45,.3);
+   }
+   part(g,sphere,green,0,.99,0,.16,.10,.16);
+   part(g,sphere,dark,.03,1.12,0,.07,.17,.07).rotation.z=-.26;
+  }
+  g.visible=false;
   g.userData={type,baseScale:g.scale.clone()};veggies.push(g);return g;
  }
- const types=['Carrot','Broccoli','Tomato','Pea'];
+ const types=['Carrot','Broccoli','Tomato','Pea','Corn','Cucumber','Eggplant','Bell Pepper'];
  let chosenTypes=[...types];let started=false;let finished=false;let completedGardens=0;let saveTimer=0;const SAVE_KEY='veggieverse-adventure-v1';const setup=$('#parent-setup');
  function saveAdventure(){try{localStorage.setItem(SAVE_KEY,JSON.stringify({chosenTypes,level,levelMunched,completedGardens,found:state.collected,eaten:state.eaten,hero:[hero.position.x,hero.position.z],remaining:veggies.map((v,i)=>v.visible?i:null).filter(i=>i!==null),bag:[...bag]}))}catch{}}
  function selectedVeggies(){const selected=[...setup.querySelectorAll('input[type=checkbox]:checked')].map(el=>el.value).filter(v=>types.includes(v));if(!selected.length){$('#parent-error').textContent='Choose at least one veggie to begin.';setup.querySelector('input[type=checkbox]')?.focus({preventScroll:true});return []}$('#parent-error').textContent='';return selected;}
- function applyChoices(){clearTimeout(say.timer);status.classList.remove('notice-active');const selected=selectedVeggies();if(!selected.length)return;let previousChoice=null;try{previousChoice=JSON.parse(localStorage.getItem(SAVE_KEY)||'null')}catch{}if(previousChoice&&Array.isArray(previousChoice.chosenTypes)&&previousChoice.chosenTypes.join('|')!==selected.join('|'))window.dispatchEvent(new CustomEvent('veggie-discoveries-reset'));chosenTypes=selected;demonstratedVeggies.clear();finished=false;completedGardens=0;stopMovement();hero.position.set(-1.7,0,1);clearTimeout(celebrationTimer);const celebrationBanner=$('#garden-celebration');if(celebrationBanner)celebrationBanner.hidden=true;window.dispatchEvent(new CustomEvent('veggie-world-reset'));level=0;levelMunched=0;bag.length=0;state.collected=0;state.eaten=0;counter.textContent='0';for(const v of veggies)v.visible=chosenTypes.includes(v.userData.type);started=true;setup.hidden=true;let resumed=false;try{const previous=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(previous&&Array.isArray(previous.chosenTypes)&&previous.chosenTypes.join('|')===chosenTypes.join('|')&&Number.isInteger(previous.level)&&previous.level>=0&&previous.level<chosenTypes.length){level=previous.level;levelMunched=Number.isFinite(Number(previous.levelMunched))?Math.max(0,Math.min(activeLevel().need-1,Math.floor(Number(previous.levelMunched)))):0;completedGardens=level;state.collected=Number.isFinite(Number(previous.found))?Math.max(0,Math.min(9999,Math.floor(Number(previous.found)))):0;state.eaten=Number.isFinite(Number(previous.eaten))?Math.max(0,Math.min(9999,Math.floor(Number(previous.eaten)))):0;if(Array.isArray(previous.remaining)){const remaining=new Set(previous.remaining.filter(i=>Number.isInteger(i)&&i>=0&&i<veggies.length));for(let i=0;i<veggies.length;i++)veggies[i].visible=chosenTypes.includes(veggies[i].userData.type)&&remaining.has(i)}if(Array.isArray(previous.bag)){bag.push(...previous.bag.filter(v=>typeof v==='string'&&chosenTypes.includes(v)).slice(0,veggies.length));counter.textContent=String(bag.length);munch.textContent=bag.length?'😋 Munch!':'🥕 Find veggies'}if(Array.isArray(previous.bag)&&bag.length===0){munch.disabled=true}if(Array.isArray(previous.hero)&&previous.hero.length===2){const px=Number(previous.hero[0]),pz=Number(previous.hero[1]);if(Number.isFinite(px))hero.position.x=Math.max(-8,Math.min(8,px));if(Number.isFinite(pz))hero.position.z=Math.max(-8,Math.min(8,pz))}resumed=true;for(let i=0;i<completedGardens;i++)window.dispatchEvent(new CustomEvent('veggie-garden-complete',{detail:{type:chosenTypes[i],restored:true}}))}}catch{}saveAdventure();$('#victory')?.setAttribute('hidden','');document.body.classList.add('playing');window.dispatchEvent(new CustomEvent('veggie-play-state',{detail:{playing:true}}));refreshLevel();updateHud();ensureGoalAvailable();document.querySelector('#world')?.focus({preventScroll:true});say(resumed?'Welcome back!':'Tap a veggie!');try{localStorage.setItem('veggieverse-parent-choices',JSON.stringify(chosenTypes))}catch{}}
+ function applyChoices(){clearTimeout(say.timer);status.classList.remove('notice-active');const selected=selectedVeggies();if(!selected.length)return;let previousChoice=null;try{previousChoice=JSON.parse(localStorage.getItem(SAVE_KEY)||'null')}catch{}if(previousChoice&&Array.isArray(previousChoice.chosenTypes)&&previousChoice.chosenTypes.join('|')!==selected.join('|'))window.dispatchEvent(new CustomEvent('veggie-discoveries-reset'));chosenTypes=selected;sprig.visible=chosenTypes.includes('Broccoli');demonstratedVeggies.clear();finished=false;completedGardens=0;stopMovement();hero.position.set(-1.7,0,1);clearTimeout(celebrationTimer);const celebrationBanner=$('#garden-celebration');if(celebrationBanner)celebrationBanner.hidden=true;window.dispatchEvent(new CustomEvent('veggie-world-reset'));level=0;levelMunched=0;bag.length=0;state.collected=0;state.eaten=0;counter.textContent='0';for(const v of veggies)v.visible=chosenTypes.includes(v.userData.type);started=true;setup.hidden=true;let resumed=false;try{const previous=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(previous&&Array.isArray(previous.chosenTypes)&&previous.chosenTypes.join('|')===chosenTypes.join('|')&&Number.isInteger(previous.level)&&previous.level>=0&&previous.level<chosenTypes.length){level=previous.level;levelMunched=Number.isFinite(Number(previous.levelMunched))?Math.max(0,Math.min(activeLevel().need-1,Math.floor(Number(previous.levelMunched)))):0;completedGardens=level;state.collected=Number.isFinite(Number(previous.found))?Math.max(0,Math.min(9999,Math.floor(Number(previous.found)))):0;state.eaten=Number.isFinite(Number(previous.eaten))?Math.max(0,Math.min(9999,Math.floor(Number(previous.eaten)))):0;if(Array.isArray(previous.remaining)){const remaining=new Set(previous.remaining.filter(i=>Number.isInteger(i)&&i>=0&&i<veggies.length));for(let i=0;i<veggies.length;i++)veggies[i].visible=chosenTypes.includes(veggies[i].userData.type)&&remaining.has(i)}if(Array.isArray(previous.bag)){bag.push(...previous.bag.filter(v=>typeof v==='string'&&chosenTypes.includes(v)).slice(0,veggies.length));counter.textContent=String(bag.length);munch.textContent=bag.length?'😋 Munch!':'🥕 Find veggies'}if(Array.isArray(previous.bag)&&bag.length===0){munch.disabled=true}if(Array.isArray(previous.hero)&&previous.hero.length===2){const px=Number(previous.hero[0]),pz=Number(previous.hero[1]);if(Number.isFinite(px))hero.position.x=Math.max(-8,Math.min(8,px));if(Number.isFinite(pz))hero.position.z=Math.max(-8,Math.min(8,pz))}resumed=true;for(let i=0;i<completedGardens;i++)window.dispatchEvent(new CustomEvent('veggie-garden-complete',{detail:{type:chosenTypes[i],restored:true}}))}}catch{}saveAdventure();$('#victory')?.setAttribute('hidden','');document.body.classList.add('playing');window.dispatchEvent(new CustomEvent('veggie-play-state',{detail:{playing:true}}));refreshLevel();updateHud();ensureGoalAvailable();document.querySelector('#world')?.focus({preventScroll:true});say(resumed?'Welcome back!':'Tap a veggie!');try{localStorage.setItem('veggieverse-parent-choices',JSON.stringify(chosenTypes))}catch{}}
  document.addEventListener('visibilitychange',()=>{if(document.hidden&&started&&!finished)saveAdventure()});
  window.addEventListener('pagehide',()=>{if(started&&!finished)saveAdventure()});
  $('#play-again')?.addEventListener('click',()=>{clearTimeout(say.timer);status.classList.remove('notice-active');try{localStorage.removeItem(SAVE_KEY);localStorage.removeItem('veggieverse-discoveries-v1')}catch{}finished=false;stopMovement();$('#victory').hidden=true;setup.hidden=false;setup.querySelector('input[type=checkbox]')?.focus({preventScroll:true});document.body.classList.remove('playing');window.dispatchEvent(new CustomEvent('veggie-discoveries-reset'));window.dispatchEvent(new CustomEvent('veggie-play-state',{detail:{playing:false}}))});
  const parentGate=$('#parent-gate'),gateHold=$('#parent-gate-hold'),gateProgress=$('#parent-gate-progress');let gateTimer=null,gateStart=0,gateFrame=null,wasPlayingBeforeGate=false;function stopGateHold(){if(gateTimer){clearTimeout(gateTimer);gateTimer=null}if(gateFrame){cancelAnimationFrame(gateFrame);gateFrame=null}gateHold?.classList.remove('holding');gateHold?.style.setProperty('--hold-progress','0%');if(gateProgress)gateProgress.textContent='Parent check ready'}function openParentSettings(){clearTimeout(say.timer);status.classList.remove('notice-active');stopGateHold();if(parentGate)parentGate.hidden=true;if(started)saveAdventure();started=false;setup.hidden=false;document.body.classList.remove('playing');window.dispatchEvent(new CustomEvent('veggie-play-state',{detail:{playing:false}}));stopMovement();setup.querySelector('input[type=checkbox]')?.focus({preventScroll:true})}function beginGateHold(){if(!parentGate||parentGate.hidden||gateTimer)return;gateStart=performance.now();gateHold.classList.add('holding');const tick=()=>{const remaining=Math.max(0,3000-(performance.now()-gateStart));const message=remaining?'Keep holding… '+Math.ceil(remaining/1000)+' seconds':'Parent settings unlocked';if(gateProgress.textContent!==message)gateProgress.textContent=message;gateHold.style.setProperty('--hold-progress',String(Math.max(0,Math.min(100,(1-remaining/3000)*100)))+'%');if(remaining&&gateTimer)gateFrame=requestAnimationFrame(tick)};gateTimer=setTimeout(()=>{gateTimer=null;openParentSettings()},3000);tick()}gateHold?.addEventListener('pointerdown',e=>{e.preventDefault();gateHold.setPointerCapture?.(e.pointerId);beginGateHold()});['pointerup','pointercancel','lostpointercapture'].forEach(name=>gateHold?.addEventListener(name,stopGateHold));gateHold?.addEventListener('keydown',e=>{if(e.key===' '||e.key==='Enter'){e.preventDefault();if(!gateTimer)beginGateHold()}});gateHold?.addEventListener('keyup',e=>{if(e.key===' '||e.key==='Enter')stopGateHold()});gateHold?.addEventListener('blur',stopGateHold);window.addEventListener('blur',stopGateHold);document.addEventListener('visibilitychange',()=>{if(document.hidden)stopGateHold()});parentGate?.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();$('#parent-gate-cancel')?.click();return}if(e.key==='Tab'){const first=gateHold,last=$('#parent-gate-cancel');if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});$('#parent-gate-cancel')?.addEventListener('click',()=>{stopGateHold();parentGate.hidden=true;if(wasPlayingBeforeGate){started=true;document.body.classList.add('playing');window.dispatchEvent(new CustomEvent('veggie-play-state',{detail:{playing:true}}));document.querySelector('#world')?.focus({preventScroll:true})}else $('#parent-settings')?.focus()});$('#parent-settings').addEventListener('click',()=>{status.classList.remove('notice-active');clearTimeout(say.timer);wasPlayingBeforeGate=started;if(started)saveAdventure();started=false;document.body.classList.remove('playing');window.dispatchEvent(new CustomEvent('veggie-play-state',{detail:{playing:false}}));stopMovement();if(parentGate){parentGate.hidden=false;gateHold?.focus({preventScroll:true})}else openParentSettings()});
  try{const saved=JSON.parse(localStorage.getItem('veggieverse-parent-choices')||'null');if(Array.isArray(saved)&&saved.length){for(const input of setup.querySelectorAll('input[type=checkbox]'))input.checked=saved.includes(input.value)}}catch{}
 
- const levels=[{name:'CARROT PATCH',type:'Carrot',need:2,color:'#f7cf9b',problem:'The sleepy flowers need sunshine!'},{name:'BROCCOLI GROVE',type:'Broccoli',need:3,color:'#b9e7a5',problem:'The little bridge has lost its sparkle!'},{name:'TOMATO TOWN',type:'Tomato',need:3,color:'#ffc0b4',problem:'The rainbow fountain needs color!'},{name:'PEA PARTY',type:'Pea',need:4,color:'#c7eeb6',problem:'The garden party needs its music!'}];
+ const levels=[{name:'CARROT PATCH',type:'Carrot',need:2,color:'#f7cf9b',problem:'The sleepy flowers need sunshine!'},{name:'BROCCOLI GROVE',type:'Broccoli',need:3,color:'#b9e7a5',problem:'The little bridge has lost its sparkle!'},{name:'TOMATO TOWN',type:'Tomato',need:3,color:'#ffc0b4',problem:'The rainbow fountain needs color!'},{name:'PEA PARTY',type:'Pea',need:4,color:'#c7eeb6',problem:'The garden party needs its music!'},{name:'CORNFIELD',type:'Corn',need:2,color:'#f9e2a4'},{name:'CUCUMBER VINES',type:'Cucumber',need:2,color:'#c9edbd'},{name:'EGGPLANT HOLLOW',type:'Eggplant',need:2,color:'#dfcbea'},{name:'PEPPER PATCH',type:'Bell Pepper',need:2,color:'#ffd7ac'}];
  let level=0,levelMunched=0;const stageMat=new THREE.MeshStandardMaterial({color:levels[0].color,roughness:1});
  const gardenMarker=part(scene,new THREE.CylinderGeometry(1.25,1.25,.14,32),stageMat,0,.12,-2,1,1,1);gardenMarker.receiveShadow=true;
  function activeLevel(){return levels[types.indexOf(chosenTypes[level%chosenTypes.length])]}
- function refreshLevel(){const l=activeLevel();const icons={Carrot:'🥕',Broccoli:'🥦',Tomato:'🍅',Pea:'🫛'};const journey=$('#garden-journey');journey.replaceChildren(...chosenTypes.map((type,i)=>{const marker=document.createElement('span');marker.className='garden-step'+(i<completedGardens?' done':i===level?' current':'');marker.textContent=i<completedGardens?'✓':icons[type];marker.setAttribute('aria-label',type+' garden '+(i<completedGardens?'complete':i===level?'current':'upcoming'));return marker}));$('#level-label').textContent=({Carrot:'🥕',Broccoli:'🥦',Tomato:'🍅',Pea:'🫛'})[l.type]+' LEVEL '+(level+1)+' · '+l.name;$('#level-goal').textContent='Munch '+l.need+' '+l.type.toLowerCase()+(l.need>1?(l.type==='Tomato'?'es':'s'):'')+'!';$('#level-count').textContent=levelMunched+' / '+l.need;$('#level-fill').style.width=(levelMunched/l.need*100)+'%';$('#level-fill').setAttribute('aria-valuenow',String(levelMunched));$('#level-fill').setAttribute('aria-valuemax',String(l.need));const progressTrack=$('.level-track');progressTrack?.setAttribute('aria-valuemax',String(l.need));progressTrack?.setAttribute('aria-valuenow',String(levelMunched));progressTrack?.setAttribute('aria-valuetext',levelMunched+' of '+l.need+' vegetables munched');stageMat.color.set(l.color);window.dispatchEvent(new CustomEvent('veggie-restoration',{detail:{progress:levelMunched/l.need,type:l.type}}));scene.background.set(l.color);scene.fog?.color.set(l.color)}
+ function refreshLevel(){const l=activeLevel();const journey=$('#garden-journey');journey.replaceChildren(...chosenTypes.map((type,i)=>{const marker=document.createElement('span');marker.className='garden-step'+(i<completedGardens?' done':i===level?' current':'');marker.textContent=i<completedGardens?'✓':veggieIcons[type];marker.setAttribute('aria-label',type+' garden '+(i<completedGardens?'complete':i===level?'current':'upcoming'));return marker}));$('#level-label').textContent=veggieIcons[l.type]+' LEVEL '+(level+1)+' · '+l.name;$('#level-goal').textContent='Munch '+l.need+' '+l.type.toLowerCase()+(l.need>1?(l.type==='Corn'?'':l.type==='Tomato'?'es':'s'):'')+'!';$('#level-count').textContent=levelMunched+' / '+l.need;$('#level-fill').style.width=(levelMunched/l.need*100)+'%';$('#level-fill').setAttribute('aria-valuenow',String(levelMunched));$('#level-fill').setAttribute('aria-valuemax',String(l.need));const progressTrack=$('.level-track');progressTrack?.setAttribute('aria-valuemax',String(l.need));progressTrack?.setAttribute('aria-valuenow',String(levelMunched));progressTrack?.setAttribute('aria-valuetext',levelMunched+' of '+l.need+' vegetables munched');stageMat.color.set(l.color);window.dispatchEvent(new CustomEvent('veggie-restoration',{detail:{progress:levelMunched/l.need,type:l.type}}));scene.background.set(l.color);scene.fog?.color.set(l.color)}
  function restock(){for(const v of veggies){v.visible=chosenTypes.includes(v.userData.type)}bag.length=0;counter.textContent='0';munch.textContent='🥕 Find veggies';updateHud()}function ensureGoalAvailable(){if(!started||finished)return;const type=activeLevel().type;const needed=Math.max(0,activeLevel().need-levelMunched);const available=bag.filter(item=>item===type).length+veggies.filter(v=>v.visible&&chosenTypes.includes(v.userData.type)&&v.userData.type===type).length;if(available>=needed)return;let restored=0;for(const v of veggies){if(v.userData.type===type&&!v.visible&&restored<needed-available){v.visible=true;restored++}}if(restored){say('🌱 More '+type.toLowerCase()+'s have sprouted!');saveAdventure()}}
  let celebrationTimer=null;function announceGardenRepair(type){const message=({Carrot:'🌼 The sleepy flowers are blooming!',Broccoli:'🌉 The woodland bridge is fixed!',Tomato:'⛲ The rainbow fountain is flowing!',Pea:'🎈 The garden party is glowing!'})[type]||'✨ You helped the garden!';const banner=$('#garden-celebration');if(!banner)return;clearTimeout(celebrationTimer);banner.textContent=message;banner.dataset.garden=type.toLowerCase();banner.hidden=false;celebrationTimer=setTimeout(()=>{banner.hidden=true},3300)}function advance(){announceGardenRepair(activeLevel().type);completedGardens++;celebration=2.5;window.dispatchEvent(new CustomEvent('veggie-garden-complete',{detail:{type:activeLevel().type}}));document.querySelector('.level-banner')?.classList.remove('level-unlock');void document.querySelector('.level-banner')?.offsetWidth;document.querySelector('.level-banner')?.classList.add('level-unlock');if(completedGardens>=chosenTypes.length){clearTimeout(say.timer);status.classList.remove('notice-active');clearTimeout(celebrationTimer);const finalBanner=$('#garden-celebration');if(finalBanner)finalBanner.hidden=true;try{localStorage.removeItem(SAVE_KEY)}catch{}finished=true;started=false;stopMovement();document.body.classList.remove('playing');window.dispatchEvent(new CustomEvent('veggie-play-state',{detail:{playing:false}}));$('#victory').hidden=false;$('#victory-title').textContent='You saved the Veggieverse!';$('#victory-title').setAttribute('tabindex','-1');$('#victory-title').focus({preventScroll:true});$('#victory-description').textContent='You helped '+completedGardens+' magical garden'+(completedGardens===1?'':'s')+' bloom. What a wonderful adventure!';say('🌈 All gardens are glowing!');return}level++;levelMunched=0;restock();refreshLevel();say('🌟 You fixed it! Welcome to '+activeLevel().name+'!');stopMovement();hero.position.set(-1.7,0,1);ensureGoalAvailable();saveAdventure()}
 
  for(let i=0;i<16;i++){const a=i*2.39996,r=3.2+(i%4)*1.35;makeVeggie(types[i%4],Math.cos(a)*r,Math.sin(a)*r)}
+ // Keep the original sixteen slots stable for saved gardens.
+ for(let i=16;i<32;i++){const a=i*2.39996,r=3.55+(i%4)*1.35;makeVeggie(types[4+i%4],Math.cos(a)*r,Math.sin(a)*r)}
  const state={collected:0,eaten:0};
  const move={x:0,z:0};
  const keys=new Set();
@@ -87,80 +122,16 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
  const say=text=>{status.textContent=text;status.classList.add('notice-active');clearTimeout(say.timer);say.timer=setTimeout(()=>{status.classList.remove('notice-active');if(started&&!finished)status.textContent='Explore and find yummy veggies!'},2600)};
  function collect(v){if(!started||finished||!v||!v.visible||!chosenTypes.includes(v.userData.type))return;v.visible=false;window.dispatchEvent(new CustomEvent('veggie-collected',{detail:{type:v.userData.type,goal:v.userData.type===activeLevel().type}}));bag.push(v.userData.type);state.collected++;counter.textContent=String(bag.length);munch.disabled=false;munch.textContent='😋 Munch!';say(v.userData.type===activeLevel().type?'Great! Munch this '+v.userData.type.toLowerCase()+' to grow!':'A '+v.userData.type.toLowerCase()+'! Look for '+activeLevel().type.toLowerCase()+'s too!');celebration=1.2;updateHud();saveAdventure()}
  function updateHud(){munch.disabled=bag.length===0;const preferred=bag.includes(activeLevel().type);munch.textContent=bag.length?(preferred?'😋 Munch '+activeLevel().type+'!':'😋 Munch!'):'🥕 Find veggies';$('#veggie-found').textContent=String(state.collected);$('#veggie-eaten').textContent=String(state.eaten)}
- const photoPrompt=$('#explorer-photo');
- const photoPlay=$('#explorer-photo-play');
- const startButton=$('#start-adventure');
- const photoInput=$('#explorer-photo-input');
- startButton.addEventListener('click',()=>{
-  if(selectedVeggies().length&&!photoPrompt.open)photoPrompt.showModal();
- });
- $('#explorer-photo-skip').addEventListener('click',()=>{
-  removePhoto();
-  photoPrompt.close();
-  applyChoices();
- });
- photoPlay.addEventListener('click',()=>{
-  if(!photoUrl||photoPlay.disabled||!photoPrompt.open)return;
-  photoPrompt.close();
-  applyChoices();
- });
- photoPrompt.addEventListener('cancel',()=>{
-  photoSelection++;
-  photoPlay.disabled=false;
-  photoInput.value='';
- });
- const photoPreview=$('#explorer-photo-preview');
- const photoSelected=$('#explorer-photo-selected');
- const photoError=$('#explorer-photo-error');
  const demo=$('#veggie-demo');
  const demoPhoto=$('#veggie-demo-photo');
  const demoSnack=$('#veggie-demo-snack');
  const demonstratedVeggies=new Set();
- const veggieIcons={Carrot:'🥕',Broccoli:'🥦',Tomato:'🍅',Pea:'🫛'};
+ const veggieIcons={Carrot:'🥕',Broccoli:'🥦',Tomato:'🍅',Pea:'🫛',Corn:'🌽',Cucumber:'🥒',Eggplant:'🍆','Bell Pepper':'🫑'};
  let photoUrl='';
- let photoSelection=0;
- function removePhoto(){
-  photoSelection++;
-  if(photoUrl)URL.revokeObjectURL(photoUrl);
-  photoUrl='';
-  photoPreview.removeAttribute('src');
+ window.addEventListener('veggie-start-request',event=>{
+  photoUrl=event.detail;
   demoPhoto.removeAttribute('src');
-  photoSelected.hidden=true;
-  photoPlay.hidden=true;
-  photoPlay.disabled=false;
-  photoInput.value='';
-  photoError.textContent='';
- }
- $('#explorer-photo-remove').addEventListener('click',()=>{
-  removePhoto();
-  photoInput.focus();
- });
- photoInput.addEventListener('change',async()=>{
-  const file=photoInput.files[0];
-  if(!file)return;
-  const selection=++photoSelection;
-  photoPlay.disabled=true;
-  photoError.textContent='';
-  const candidate=URL.createObjectURL(file);
-  const image=new Image();
-  image.src=candidate;
-  try{
-   await image.decode();
-   if(selection!==photoSelection)return;
-   removePhoto();
-   photoUrl=candidate;
-   photoPreview.src=photoUrl;
-   photoSelected.hidden=false;
-   photoPlay.hidden=false;
-  }catch{
-   if(selection===photoSelection){
-    photoInput.value='';
-    photoError.textContent='This photo could not be opened. Try a JPEG, PNG, or WebP.';
-   }
-  }finally{
-   if(selection===photoSelection)photoPlay.disabled=false;
-   if(candidate!==photoUrl)URL.revokeObjectURL(candidate);
-  }
+  applyChoices();
  });
  function replayDemo(){
   demoSnack.classList.remove('demo-bite');
@@ -187,7 +158,7 @@ export function createVeggieAdventure(THREE,scene,hero,sprig,canvas){
   demoPhoto.src=photoUrl;
   demoSnack.textContent=veggieIcons[type];
   const veggie=type.toLowerCase();
-  $('#veggie-demo-title').textContent='Watch Sprig try a '+veggie+'!';
+  $('#veggie-demo-title').textContent='Watch Sprig try '+(type==='Corn'?'some ':'a ')+veggie+'!';
   $('#veggie-demo-note').textContent='If you want, try a bite with your grown-up. You can keep playing either way.';
   demo.showModal();
   replayDemo();
