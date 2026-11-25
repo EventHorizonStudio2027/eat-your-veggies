@@ -1,6 +1,6 @@
 /* Cache the game shell and any successfully fetched 3D engine modules.
    First visit still needs internet; subsequent visits may work offline. */
-const CACHE='veggieverse-v16';
+const CACHE='veggieverse-v17';
 const ENGINE='https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js';
 const SHELL=['./','./index.html','./web/styles.css','./web/main.js','./web/storybook-world.js','./web/veggie-adventure.js','./web/discovery-world.js','./web/brand/app-icon-192.png','./apple-touch-icon.png','./web/brand/eat-your-veggies-app-icon.png','./web/brand/favicon.png','./web/brand/header.webp','./web/brand/mascot.webp','./web/brand/title.webp','./manifest.webmanifest'];
 self.addEventListener('install',event=>{

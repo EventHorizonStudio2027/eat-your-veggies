@@ -263,6 +263,10 @@ body:not(.playing) .play-hud{visibility:hidden;pointer-events:none}
 
 .title-logo{display:block;width:min(100%,255px,34svh);height:auto;margin:auto}
 .header-logo{display:block;width:auto;height:clamp(32px,6vw,44px)}
+.playing .topbar{left:max(12px,env(safe-area-inset-left) + 8px);right:max(12px,env(safe-area-inset-right) + 8px);pointer-events:none}
+.playing .topbar .top-actions{pointer-events:auto}
+.playing .topbar .brand{order:1;align-self:flex-start}
+.playing .header-logo{height:clamp(16px,3vw,22px)}
 .loading-mascot{width:clamp(86px,20vw,135px);height:auto}
 .parent-card #parent-error:empty{margin:0}
 .explorer-photo{width:min(420px,calc(100% - 24px));max-height:calc(100% - 24px);padding:20px;border:3px solid #fff;border-radius:28px;background:#fffdf2;color:#285d43;text-align:center;box-shadow:0 14px 45px #233c3250}
