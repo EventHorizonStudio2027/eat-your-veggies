@@ -5,7 +5,7 @@ const html=read('index.html'),main=read('web/main.js'),sw=read('sw.js');
 const assets=['index.html','web/styles.css','web/main.js','web/explorer-photo.js','web/storybook-world.js','web/veggie-adventure.js','web/discovery-world.js','web/brand/app-icon-192.png','apple-touch-icon.png','web/brand/eat-your-veggies-app-icon.png','web/brand/favicon.png','web/brand/header.webp','web/brand/mascot.webp','web/brand/title.webp','manifest.webmanifest','sw.js'];
 for(const file of assets)assert.ok(fs.statSync(file).size>0,'Missing or empty: '+file);
 assert.match(html,/<canvas[^>]+id=["']world["']/i,'3D canvas must exist');
-assert.match(html,/type=["']module["']\s+src=["']\.\/web\/main\.js["']/i,'Main module must load');
+assert.match(html,/type=["']module["']\s+src=["']\.\/web\/main\.js\?v=20["']/i,'Main module must load');
 assert.match(main,/new THREE\.WebGLRenderer/,'3D renderer must initialize');
 assert.match(sw,/addEventListener\(['"]install['"]/,'Offline install handler missing');
 assert.match(sw,/addEventListener\(['"]fetch['"]/,'Offline fetch handler missing');
@@ -41,11 +41,11 @@ assert.match(styles,/\.playing \.play-status\{top:auto/,'Gameplay status must le
 assert.match(styles,/\.garden-celebration:not\(\[hidden\]\)/,'Garden celebration must be compact and edge-aligned');
 console.log('PASS: nonblocking gameplay notification layout guards');
 
-assert.match(sw,/veggieverse-v19/,'Updated offline cache version required');
+assert.match(sw,/veggieverse-v20/,'Updated offline cache version required');
 assert.match(models,/status\.classList\.add\('notice-active'\)/,'Feedback must explicitly activate');
 assert.match(models,/status\.classList\.remove\('notice-active'\)/,'Feedback must dismiss');
 assert.match(styles,/\.playing \.play-status:not\(\.notice-active\)/,'Idle feedback must not obstruct game');
-console.log('PASS: v19 cache and auto-dismissing feedback checks');
+console.log('PASS: v20 cache and auto-dismissing feedback checks');
 
 assert.match(models,/if\(!started\|\|finished\|\|!e\.isPrimary\|\|e\.button>0\|\|pointerId!==null\)return/,'Secondary touches and auxiliary clicks must not issue movement commands');
 assert.match(models,/if\(!rect\.width\|\|!rect\.height\)return/,'Zero-sized canvas must not create invalid raycasts');
